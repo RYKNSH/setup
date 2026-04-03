@@ -4,7 +4,7 @@
 # ryknsh-brain リポジトリをクローン（または更新）して install.sh を実行する
 #
 # Usage (curl ワンライナー):
-#   curl -fsSL https://raw.githubusercontent.com/RYKNSH/ryknsh/main/bootstrap.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash
 #
 # オプション (環境変数で上書き可):
 #   BRAIN_REPO         — brain repo の URL（省略時は自動検出）
@@ -13,12 +13,17 @@
 #
 # 自動検出の優先順位:
 #   1. BRAIN_REPO 環境変数
-#   2. brain.conf（このスクリプトと同階層 or RYKNSH repo root）
-#   3. 既存インストールの ${BRAIN_INSTALL_DIR}/telemetry.conf
-#   4. gh CLI で RYKNSH/ryknsh-brain を探索
+#   2. brain.conf（ローカル: スクリプト同階層 / カレントディレクトリ / RYKNSH_DIR）
+#   3. brain.conf（リモート: public setup リポジトリから curl で取得）
+#   4. 既存インストールの ${BRAIN_INSTALL_DIR}/telemetry.conf
+#   5. gh CLI で RYKNSH/ryknsh-brain を探索
 # =============================================================================
 
 set -euo pipefail
+
+# このスクリプト自身が置かれている public setup リポジトリの raw URL
+# curl | bash 経由で brain.conf が手元にない場合のフォールバック取得先
+SETUP_RAW_URL="https://raw.githubusercontent.com/RYKNSH/setup/main"
 
 # ── ログ関数 ────────────────────────────────────────────────────────────────
 log_info()  { echo "  ℹ️  $1"; }
@@ -27,14 +32,15 @@ log_warn()  { echo "  ⚠️  $1"; }
 log_error() { echo "  ❌ $1" >&2; }
 
 # ── brain.conf を探してsource ─────────────────────────────────────────────
-# curl | bash 経由では BASH_SOURCE[0] が空のため、RYKNSH repo のよくある配置場所を探す
+# 優先順位:
+#   1. スクリプトと同階層（git clone して直接実行した場合）
+#   2. カレントディレクトリ（curl | bash 経由で RYKNSH dir から実行した場合）
+#   3. 環境変数 RYKNSH_DIR が設定されている場合
+#   4. public setup リポジトリから curl で取得（新規マシンの curl | bash）
 load_brain_conf() {
   local candidates=(
-    # 1. このスクリプトと同階層（git clone して直接実行した場合）
     "$(cd "$(dirname "${BASH_SOURCE[0]:-$(pwd)}")" 2>/dev/null && pwd)/brain.conf"
-    # 2. カレントディレクトリ（curl | bash 経由で RYKNSH dir から実行した場合）
     "${PWD}/brain.conf"
-    # 3. 環境変数 RYKNSH_DIR が設定されている場合（任意の配置場所に対応）
     "${RYKNSH_DIR:+${RYKNSH_DIR}/brain.conf}"
   )
   for conf in "${candidates[@]}"; do
@@ -44,6 +50,17 @@ load_brain_conf() {
       return 0
     fi
   done
+
+  # ローカルに見つからない場合は public setup リポジトリから取得
+  local _tmp_conf
+  _tmp_conf=$(mktemp)
+  if curl -fsSL "${SETUP_RAW_URL}/brain.conf" -o "$_tmp_conf" 2>/dev/null; then
+    # shellcheck source=/dev/null
+    source "$_tmp_conf"
+    rm -f "$_tmp_conf"
+    return 0
+  fi
+  rm -f "$_tmp_conf"
   return 1
 }
 
