@@ -1,0 +1,35 @@
+name: Brain Invite
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'GitHub username to invite'
+        required: true
+        type: string
+
+jobs:
+  invite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate username
+        run: |
+          if ! echo "${{ github.event.inputs.username }}" | grep -qE '^[a-zA-Z0-9_-]+$'; then
+            echo "Invalid username" && exit 1
+          fi
+
+      - name: Invite collaborator
+        env:
+          GH_TOKEN: ${{ secrets.INVITE_TOKEN }}
+        run: |
+          USERNAME="${{ github.event.inputs.username }}"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X PUT \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -d '{"permission":"pull"}' \
+            "https://api.github.com/repos/RYKNSH/ryknsh-brain/collaborators/${USERNAME}")
+          if [ "$STATUS" = "201" ]; then echo "✅ Invited: $USERNAME"
+          elif [ "$STATUS" = "204" ]; then echo "✅ Already a member: $USERNAME"
+          else echo "❌ Failed (HTTP $STATUS)" && exit 1
+          fi
