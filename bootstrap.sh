@@ -21,8 +21,12 @@
 
 set -euo pipefail
 
+# ── デフォルト値（brain.conf / 環境変数で上書き可） ────────────────────────
+# bootstrap.sh は public リポジトリにあるため、Brain repo URL をここに持つことは問題ない
+BRAIN_REPO="${BRAIN_REPO:-https://github.com/RYKNSH/ryknsh-brain.git}"
+BRAIN_INSTALL_DIR="${BRAIN_INSTALL_DIR:-${HOME}/.claude}"
+
 # このスクリプト自身が置かれている public setup リポジトリの raw URL
-# curl | bash 経由で brain.conf が手元にない場合のフォールバック取得先
 SETUP_RAW_URL="https://raw.githubusercontent.com/RYKNSH/setup/main"
 
 # ── ログ関数 ────────────────────────────────────────────────────────────────
