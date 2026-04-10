@@ -645,6 +645,9 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
     所要時間：約 10〜15 分
   </div>
+  <div style="margin-top:10px;font-size:10px;font-weight:600;letter-spacing:0.12em;color:#444;">
+    LAST UPDATED · 2026-04-10
+  </div>
 </div>
 
 <div class="container">
@@ -895,6 +898,7 @@
 
     <!-- STEP 7 -->
     <div class="step">
+      <div class="step-line"></div>
       <div class="step-number">7</div>
       <div class="step-content">
         <div class="step-header">
@@ -902,7 +906,7 @@
           <span class="step-title">Brain をインストール</span>
         </div>
         <p class="step-desc">
-          いよいよ最後のステップです。<br>
+          Brain のコア（AIスキル・コマンド・環境設定）をまとめて導入します。<br>
           下のコマンドをコピーしてターミナルに貼り付け、return を押してください。
         </p>
         <div class="cmd-block">
@@ -913,7 +917,54 @@
           <div class="cmd-code" id="brain-install">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</div>
         </div>
         <div class="what-happens">
-          <strong>何が起きる？</strong> AIスキルや設定ファイルが自動でインストールされます。「Installation Complete」と表示されれば完了です。
+          <strong>何が起きる？</strong> <code>~/.claude/</code> に Brain がクローンされ、<strong>Node.js・1Password CLI・Google Workspace CLI</strong> などの必要ツールが自動でインストールされます。数分かかります。<br>
+          「<strong>Installation Complete</strong>」と表示されれば Step 7 は完了です。
+        </div>
+        <div class="note" style="margin-top:12px">
+          <strong>⚡ 途中で Action needed が表示されたら</strong>：ターミナル最後の「<code>Action needed:</code>」行に従って、<strong>1Password Desktop → Settings → Developer → Command Line Interface を ON</strong>、および <code>gws auth login</code> などを実行してください。次の Step 8 でまとめて確認します。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="step">
+      <div class="step-number">8</div>
+      <div class="step-content">
+        <div class="step-header">
+          <span class="step-emoji">🚀</span>
+          <span class="step-title">初回セッションを起動する</span>
+        </div>
+        <p class="step-desc">
+          Claude アプリを開いて最初のセッションを起動します。<br>
+          <strong>/ry-in</strong> を実行すると、環境の自動チェックと残りのセットアップが完了します。
+        </p>
+        <div class="cmd-block">
+          <div class="cmd-block-header">
+            <span class="cmd-label">Claude のチャット欄に入力</span>
+            <button class="copy-btn" onclick="copyCmd(this, 'first-checkin')">コピー</button>
+          </div>
+          <div class="cmd-code" id="first-checkin">/ry-in</div>
+        </div>
+        <div class="auth-steps">
+          <p>初回チェックインで自動実行されること：</p>
+          <div class="auth-step-item">
+            <div class="auth-num">1</div>
+            <span><strong>Brain 同期</strong>：最新のスキル・コマンドを自動取得</span>
+          </div>
+          <div class="auth-step-item">
+            <div class="auth-num">2</div>
+            <span><strong>環境ドリフト検出</strong>：CLI（op / gh / node / gws）と MCP の状態を確認</span>
+          </div>
+          <div class="auth-step-item">
+            <div class="auth-num">3</div>
+            <span><strong>MCP セットアップ案内</strong>：Notion など未接続の統合があれば承認手順を提示</span>
+          </div>
+        </div>
+        <div class="note" style="margin-top:12px">
+          <strong>🔗 Notion 連携の承認</strong>：Brain は Notion MCP が必須です。/ry-in が「未接続」と表示したら、<strong>Claude アプリ → Settings → Integrations → Notion → Connect</strong> から OAuth を承認してください。ブラウザで Notion にログインすれば完了します。
+        </div>
+        <div class="what-happens" style="margin-top:12px">
+          <strong>完了の確認</strong>：チェックイン結果に「<code>✅ checkin 完了</code>」と「<code>CLI 4/4 OK</code>」が表示されれば、すべてのセットアップが完了しています。
         </div>
       </div>
     </div>
@@ -924,13 +975,15 @@
   <div class="complete-banner">
     <div class="check-icon">✓</div>
     <h2>セットアップ完了！</h2>
-    <p>Claude アプリを開けば、Brain が使えるようになっています。<br>
-    セッションを始めるときは <strong>/ry-in</strong> と入力してください。</p>
+    <p>Brain が Claude アプリ上で動作する準備が整いました。<br>
+    毎回のセッションは <strong>/ry-in</strong> で開始し、<strong>/ry-out</strong> で終了します。</p>
     <div class="commands-summary">
       <p>よく使うコマンド</p>
-      <code>/ry-in　　— セッション開始</code>
-      <code>/ry-out　 — セッション終了</code>
-      <code>/go　　　 — タスク実行</code>
+      <code>/ry-in　　 — セッション開始（前回の続きから自動再開）</code>
+      <code>/ry-out　　— セッション終了（学びを次回に引き継ぐ）</code>
+      <code>/ry-init　 — 新しいプロジェクト / キャンペーンを初期化</code>
+      <code>/ry-debate — マルチペルソナで議題を多角検証</code>
+      <code>/ry-review — コードレビュー（差分を学習に還元）</code>
     </div>
   </div>
 
