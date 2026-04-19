@@ -716,12 +716,12 @@
           </div>
         </div>
         <div class="note" style="margin-top:12px">
-          <strong>⚠️ ボタンが押せない・メールが届かない場合</strong>：下のリンクをブラウザで開いて承認できます。<br>
-          <a href="https://github.com/RYKNSH/ryknsh-brain/invitations" target="_blank"
+          <strong>⚠️ ボタンが押せない・メールが届かない場合</strong>：下のリンクから招待の受諾画面を開けます。<br>
+          <a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank"
              style="color:#f59e0b;word-break:break-all;">
-            https://github.com/RYKNSH/ryknsh-brain/invitations
+            https://github.com/notifications?query=reason%3Ainvitation
           </a><br>
-          ※ GitHub にログインした状態で開いてください。
+          ※ GitHub にログインした状態で開いてください。招待が一覧表示されます。
         </div>
       </div>
     </div>
@@ -1064,7 +1064,7 @@ async function requestAccess() {
       showResult(result, 'success',
         '✅ 招待を送信しました！<br>GitHub からのメールを確認して「Accept invitation」を押してください。' +
         '<br><span style="font-size:12px;color:#5a8a5a">メールが見つからない場合は ' +
-        '<a href="https://github.com/' + username + '/invitations" target="_blank" style="color:#4ade80">こちら</a> を確認。</span>');
+        '<a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:#4ade80">招待通知一覧</a> を確認。</span>');
       btn.textContent = '✓ 申請済み';
     } else if (data.status === 'already_member') {
       showResult(result, 'info', '✅ すでにアクセス権があります。Step 1 へ進んでください。');
