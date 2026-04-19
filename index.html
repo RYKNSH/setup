@@ -1002,13 +1002,39 @@ function copyCmd(btn, id) {
   });
 }
 
+// 入力値から GitHub username を抽出
+// 受け付ける形: "foo" / "@foo" / "https://github.com/foo" / "github.com/foo/" / " foo "
+function normalizeUsername(raw) {
+  if (!raw) return '';
+  let v = raw.trim();
+  // URL 全体が貼られた場合 → path 最初のセグメントを抽出
+  const m = v.match(/github\.com\/([^\/?#\s]+)/i);
+  if (m) v = m[1];
+  // 先頭 @ を除去
+  v = v.replace(/^@+/, '');
+  // 末尾スラッシュ・空白除去
+  v = v.replace(/[\/\s]+$/g, '');
+  return v;
+}
+
 async function requestAccess() {
   const input = document.getElementById('github-username');
   const btn = document.getElementById('invite-btn');
   const result = document.getElementById('invite-result');
-  const username = input.value.trim();
+  const raw = input.value;
+  const username = normalizeUsername(raw);
 
-  if (!username) {
+  // 正規化結果をフォームに反映してユーザーに何が送られたか見せる
+  if (username && username !== raw.trim()) {
+    input.value = username;
+  }
+
+  // GitHub username の正規表現: 英数字とハイフンのみ、先頭末尾ハイフン不可、39文字以内
+  const validPattern = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/;
+  if (!username || !validPattern.test(username)) {
+    showResult(result, 'error',
+      '❌ GitHub ユーザー名の形式が正しくありません。' +
+      '<br><span style="font-size:12px;color:#aa6666">例: <code style="color:#ff8080">asamin09</code>（URL や @ は不要）</span>');
     input.focus();
     input.style.borderColor = '#aa3333';
     setTimeout(() => { input.style.borderColor = ''; }, 1500);
@@ -1025,34 +1051,52 @@ async function requestAccess() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username })
     });
-    const data = await r.json();
+
+    // レスポンスが JSON でない（サーバーダウン等）場合のガード
+    let data;
+    try {
+      data = await r.json();
+    } catch {
+      throw new Error(`サーバー応答エラー (HTTP ${r.status})`);
+    }
 
     if (data.status === 'invited') {
-      result.style.display = 'block';
-      result.style.background = '#0d1f0d';
-      result.style.border = '1px solid #1a3a1a';
-      result.style.color = '#4ade80';
-      result.innerHTML = '✅ 招待を送信しました！GitHubからのメールを確認して「Accept invitation」を押してください。';
+      showResult(result, 'success',
+        '✅ 招待を送信しました！<br>GitHub からのメールを確認して「Accept invitation」を押してください。' +
+        '<br><span style="font-size:12px;color:#5a8a5a">メールが見つからない場合は ' +
+        '<a href="https://github.com/' + username + '/invitations" target="_blank" style="color:#4ade80">こちら</a> を確認。</span>');
       btn.textContent = '✓ 申請済み';
     } else if (data.status === 'already_member') {
-      result.style.display = 'block';
-      result.style.background = '#0d1a2a';
-      result.style.border = '1px solid #1a2a4a';
-      result.style.color = '#60a0ff';
-      result.innerHTML = '✅ すでにアクセス権があります。Step 1へ進んでください。';
+      showResult(result, 'info', '✅ すでにアクセス権があります。Step 1 へ進んでください。');
       btn.textContent = '✓ 確認済み';
     } else {
-      throw new Error(data.error || '不明なエラー');
+      throw new Error(data.error || `不明なエラー (HTTP ${r.status})`);
     }
   } catch (e) {
-    result.style.display = 'block';
-    result.style.background = '#1a0d0d';
-    result.style.border = '1px solid #3a1a1a';
-    result.style.color = '#ff8080';
-    result.innerHTML = '❌ ' + (e.message || 'エラーが発生しました。GitHubユーザー名を確認してください。');
+    const msg = e.message || 'ネットワークエラー';
+    showResult(result, 'error',
+      '❌ ' + msg +
+      '<div style="margin-top:10px;padding-top:10px;border-top:1px solid #3a1a1a;font-size:12px;color:#aa7070">' +
+      '解決しない場合は、以下のテンプレを管理者に直接 DM してください:' +
+      '<div style="margin-top:6px;padding:8px 10px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:6px;font-family:\'SF Mono\',monospace;color:#c8c8c8;user-select:all;cursor:text">' +
+      'Brain セットアップ招待希望<br>GitHub: ' + (username || raw) + '</div></div>');
     btn.disabled = false;
     btn.textContent = '招待を申請する →';
   }
+}
+
+function showResult(el, type, html) {
+  const styles = {
+    success: { bg: '#0d1f0d', border: '#1a3a1a', color: '#4ade80' },
+    info:    { bg: '#0d1a2a', border: '#1a2a4a', color: '#60a0ff' },
+    error:   { bg: '#1a0d0d', border: '#3a1a1a', color: '#ff8080' }
+  };
+  const s = styles[type] || styles.error;
+  el.style.display = 'block';
+  el.style.background = s.bg;
+  el.style.border = '1px solid ' + s.border;
+  el.style.color = s.color;
+  el.innerHTML = html;
 }
 </script>
 
