@@ -21,6 +21,13 @@
 
 set -euo pipefail
 
+# ── カラー出力 ──────────────────────────────────────────────────────────────
+if [ -t 1 ]; then
+  C_R='\033[0;31m'; C_G='\033[0;32m'; C_Y='\033[1;33m'; C_B='\033[0;34m'; C_0='\033[0m'
+else
+  C_R=''; C_G=''; C_Y=''; C_B=''; C_0=''
+fi
+
 # ── デフォルト値（brain.conf / 環境変数で上書き可） ────────────────────────
 # bootstrap.sh は public リポジトリにあるため、Brain repo URL をここに持つことは問題ない
 BRAIN_REPO="${BRAIN_REPO:-https://github.com/RYKNSH/ryknsh-brain.git}"
@@ -30,10 +37,39 @@ BRAIN_INSTALL_DIR="${BRAIN_INSTALL_DIR:-${HOME}/.claude}"
 SETUP_RAW_URL="https://raw.githubusercontent.com/RYKNSH/setup/main"
 
 # ── ログ関数 ────────────────────────────────────────────────────────────────
-log_info()  { echo "  ℹ️  $1"; }
-log_ok()    { echo "  ✅ $1"; }
-log_warn()  { echo "  ⚠️  $1"; }
-log_error() { echo "  ❌ $1" >&2; }
+log_info()  { echo -e "  ℹ️  $1"; }
+log_ok()    { echo -e "  ${C_G}✅${C_0} $1"; }
+log_warn()  { echo -e "  ${C_Y}⚠️${C_0}  $1"; }
+log_error() { echo -e "  ${C_R}❌${C_0} $1" >&2; }
+
+# ── PREREQUISITE CHECK — 必須ツールの早期検証 ──────────────────────────────
+_MISSING=()
+command -v git &>/dev/null || _MISSING+=("git")
+command -v curl &>/dev/null || _MISSING+=("curl")
+
+if [ ${#_MISSING[@]} -gt 0 ]; then
+  echo ""
+  echo -e "${C_R}╔══════════════════════════════════════════════════════╗${C_0}"
+  echo -e "${C_R}║  ❌ 必須ツール不足                                    ║${C_0}"
+  echo -e "${C_R}╚══════════════════════════════════════════════════════╝${C_0}"
+  echo ""
+  for m in "${_MISSING[@]}"; do
+    echo "  不足: $m"
+  done
+  echo ""
+  if [[ "$(uname)" == "Darwin" ]]; then
+    echo "  macOS:"
+    echo "    xcode-select --install       # git"
+    echo "    # curl は標準装備"
+  else
+    echo "  Linux:"
+    echo "    sudo apt install git curl    # Debian/Ubuntu"
+    echo "    sudo dnf install git curl    # Fedora/RHEL"
+  fi
+  echo ""
+  echo "  インストール後、もう一度このコマンドを実行してください。"
+  exit 1
+fi
 
 # ── brain.conf を探してsource ─────────────────────────────────────────────
 # 優先順位:
@@ -196,7 +232,25 @@ elif [[ -d "${CLAUDE_DIR}" ]] && [[ -n "$(ls -A "${CLAUDE_DIR}" 2>/dev/null)" ]]
 else
   # 新規クローン（bootstrap 用途なので shallow clone で十分）
   echo "  📦 クローン中 (${BRAIN_REPO_URL})..."
-  git clone --depth 1 "$BRAIN_REPO_URL" "$CLAUDE_DIR"
+  if ! git clone --depth 1 "$BRAIN_REPO_URL" "$CLAUDE_DIR" 2>&1; then
+    echo ""
+    echo -e "${C_R}╔══════════════════════════════════════════════════════╗${C_0}"
+    echo -e "${C_R}║  ❌ クローン失敗                                      ║${C_0}"
+    echo -e "${C_R}╚══════════════════════════════════════════════════════╝${C_0}"
+    echo ""
+    echo "  考えられる原因:"
+    echo "    • ネットワーク接続できない"
+    echo "    • private repo にアクセス権がない（招待を受けていない）"
+    echo "    • gh auth が未ログイン（private 時に必要）"
+    echo ""
+    echo "  対処:"
+    echo "    1. gh CLI 未インストールなら: brew install gh  (macOS) / sudo apt install gh"
+    echo "    2. 認証: gh auth login"
+    echo "    3. リポジトリ招待を受け取っているか確認（管理者に問い合わせ）"
+    echo "    4. 認証後もう一度:  curl -fsSL ${SETUP_RAW_URL}/bootstrap.sh | bash"
+    echo ""
+    exit 1
+  fi
   log_ok "クローン完了"
 fi
 
