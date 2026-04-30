@@ -7,104 +7,429 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --bg:        #f7f7f5;
+    --bg-card:   #ffffff;
+    --bg-code:   #f0f0ed;
+    --bg-hover:  #f0f0ec;
+    --border:    #e4e4e0;
+    --border-2:  #d4d4ce;
+    --text:      #1a1a18;
+    --text-2:    #52524e;
+    --text-3:    #8a8a84;
+    --accent:    #16a34a;
+    --accent-bg: #f0fdf4;
+    --accent-bd: #bbf7d0;
+    --warn-bg:   #fffbeb;
+    --warn-bd:   #fde68a;
+    --warn-txt:  #92400e;
+    --warn-em:   #d97706;
+    --info-bg:   #eff6ff;
+    --info-bd:   #bfdbfe;
+    --info-txt:  #1e40af;
+    --purple-bg: #f5f3ff;
+    --purple-bd: #ddd6fe;
+    --purple-txt:#5b21b6;
+    --purple-em: #7c3aed;
+    --code-txt:  #166534;
+    --nav-w:     240px;
+    --nav-bg:    #fafaf8;
+    --nav-bd:    #e8e8e4;
+    --active-bg: #dcfce7;
+    --active-txt:#15803d;
+  }
+
+  html { scroll-behavior: smooth; }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-    background: #0a0a0a;
-    color: #e8e8e8;
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.7;
     min-height: 100vh;
   }
 
+  /* ── Layout ───────────────────────────────────────────────────── */
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── Sidebar ─────────────────────────────────────────────────── */
+  .sidebar {
+    width: var(--nav-w);
+    flex-shrink: 0;
+    background: var(--nav-bg);
+    border-right: 1px solid var(--nav-bd);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 0 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar-logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--nav-bd);
+    margin-bottom: 8px;
+  }
+
+  .sidebar-logo-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    background: var(--border);
+    border-radius: 100px;
+    padding: 3px 10px;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-logo-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .sidebar-section {
+    padding: 16px 0 8px;
+  }
+
+  .sidebar-section + .sidebar-section {
+    border-top: 1px solid var(--nav-bd);
+    margin-top: 4px;
+    padding-top: 16px;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    padding: 0 20px 8px;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 20px;
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    border-radius: 0;
+    transition: background 0.12s, color 0.12s;
+    position: relative;
+  }
+
+  .sidebar-link:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+  }
+
+  .sidebar-link.active {
+    background: var(--active-bg);
+    color: var(--active-txt);
+    font-weight: 600;
+  }
+
+  .sidebar-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .sidebar-link .step-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-3);
+    flex-shrink: 0;
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .sidebar-link.active .step-num {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Mobile nav ──────────────────────────────────────────────── */
+  .mobile-nav {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-bd);
+    padding: 12px 16px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .mobile-nav-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .hamburger {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--text-2);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+  }
+
+  .mobile-drawer.open {
+    display: block;
+  }
+
+  .drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .drawer-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    background: var(--nav-bg);
+    border-right: 1px solid var(--nav-bd);
+    overflow-y: auto;
+    padding: 24px 0 48px;
+  }
+
+  .drawer-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Main content ────────────────────────────────────────────── */
+  .main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────── */
   .hero {
     text-align: center;
-    padding: 72px 24px 56px;
-    background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
-    border-bottom: 1px solid #1e1e1e;
+    padding: 64px 24px 52px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
   }
 
   .hero-badge {
     display: inline-block;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #888;
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    color: var(--text-3);
+    background: var(--bg);
+    border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 6px 16px;
-    margin-bottom: 28px;
+    padding: 5px 14px;
+    margin-bottom: 24px;
   }
 
   .hero h1 {
-    font-size: clamp(28px, 5vw, 44px);
+    font-size: clamp(26px, 4vw, 40px);
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: #fff;
-    margin-bottom: 16px;
+    color: var(--text);
+    margin-bottom: 14px;
   }
 
   .hero p {
-    font-size: 16px;
-    color: #777;
-    max-width: 480px;
+    font-size: 15px;
+    color: var(--text-2);
+    max-width: 440px;
     margin: 0 auto;
   }
 
   .time-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin-top: 24px;
-    font-size: 13px;
-    color: #666;
+    gap: 5px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--text-3);
   }
 
   .time-badge svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     opacity: 0.5;
   }
 
   .container {
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 56px 24px 96px;
+    padding: 52px 32px 96px;
+  }
+
+  /* ── Quick start ─────────────────────────────────────────────── */
+  .quickstart {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 40px;
+  }
+
+  .quickstart-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-2);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .quickstart-title::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 14px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .qs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .qs-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+    cursor: pointer;
+  }
+
+  .qs-card:hover {
+    border-color: var(--border-2);
+    background: var(--bg-hover);
+  }
+
+  .qs-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 1px;
+  }
+
+  .qs-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .qs-text span {
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.4;
   }
 
   /* ── Access Gate ─────────────────────────────────────────────── */
   .access-gate {
-    background: linear-gradient(135deg, #0e0e18, #0a0a14);
-    border: 1px solid #2a2a4a;
-    border-radius: 16px;
-    padding: 28px 28px 24px;
-    margin-bottom: 48px;
+    background: var(--purple-bg);
+    border: 1px solid var(--purple-bd);
+    border-radius: 14px;
+    padding: 24px 24px 20px;
+    margin-bottom: 40px;
   }
 
   .access-gate-header {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .access-gate-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: #1a1a3a;
-    border: 1px solid #2a2a5a;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #ede9fe;
+    border: 1px solid var(--purple-bd);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 17px;
     flex-shrink: 0;
   }
 
   .access-gate-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
-    color: #a0a0ff;
+    color: var(--purple-txt);
   }
 
   .access-gate-badge {
@@ -113,25 +438,26 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6060cc;
-    background: #16163a;
-    border: 1px solid #2a2a5a;
+    color: var(--purple-em);
+    background: #ede9fe;
+    border: 1px solid var(--purple-bd);
     border-radius: 100px;
-    padding: 3px 10px;
+    padding: 2px 8px;
     margin-left: 6px;
     vertical-align: middle;
   }
 
   .access-gate-desc {
     font-size: 13px;
-    color: #6060aa;
-    margin-bottom: 20px;
+    color: var(--purple-txt);
+    margin-bottom: 16px;
     line-height: 1.7;
+    opacity: 0.8;
   }
 
   .access-form {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: stretch;
   }
 
@@ -142,90 +468,78 @@
 
   .access-input-prefix {
     position: absolute;
-    left: 14px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 13px;
-    color: #4a4a7a;
+    font-size: 12px;
+    color: var(--text-3);
     pointer-events: none;
     font-family: 'SF Mono', 'Fira Code', monospace;
   }
 
   .access-input {
     width: 100%;
-    background: #0d0d1e;
-    border: 1px solid #2a2a4a;
-    border-radius: 10px;
-    padding: 12px 14px 12px 56px;
-    font-size: 14px;
-    color: #c8c8ff;
+    background: var(--bg-card);
+    border: 1px solid var(--purple-bd);
+    border-radius: 8px;
+    padding: 10px 12px 10px 50px;
+    font-size: 13px;
+    color: var(--text);
     font-family: 'SF Mono', 'Fira Code', monospace;
     outline: none;
-    transition: border-color 0.15s;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 
-  .access-input::placeholder {
-    color: #3a3a6a;
-  }
+  .access-input::placeholder { color: var(--border-2); }
 
   .access-input:focus {
-    border-color: #4a4aaa;
+    border-color: var(--purple-em);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.08);
   }
 
   .access-btn {
-    background: #3a3acc;
+    background: var(--purple-em);
     color: #fff;
     border: none;
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
-    transition: background 0.15s;
+    transition: opacity 0.15s;
     font-family: inherit;
   }
 
-  .access-btn:hover {
-    background: #4a4aee;
-  }
+  .access-btn:hover { opacity: 0.88; }
 
   .access-hint {
-    margin-top: 12px;
+    margin-top: 10px;
     font-size: 12px;
-    color: #4a4a7a;
+    color: var(--purple-txt);
+    opacity: 0.7;
     line-height: 1.6;
   }
 
-  .access-hint strong {
-    color: #6868aa;
-  }
+  .access-hint strong { opacity: 1; }
 
   /* ── Prereq ──────────────────────────────────────────────────── */
   .prereq {
-    background: #111;
-    border: 1px solid #1e1e1e;
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 48px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
     gap: 12px;
   }
 
-  .prereq-icon {
-    font-size: 20px;
-    flex-shrink: 0;
-  }
+  .prereq-icon { font-size: 18px; flex-shrink: 0; }
 
-  .prereq p {
-    font-size: 14px;
-    color: #999;
-  }
+  .prereq p { font-size: 13px; color: var(--text-2); }
 
-  .prereq strong {
-    color: #e8e8e8;
-  }
+  .prereq strong { color: var(--text); }
 
   /* ── Steps ───────────────────────────────────────────────────── */
   .steps {
@@ -236,268 +550,255 @@
 
   .step {
     display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 0 20px;
+    grid-template-columns: 44px 1fr;
+    gap: 0 18px;
     position: relative;
   }
 
   .step:not(:last-child) .step-line {
     position: absolute;
-    left: 23px;
-    top: 48px;
+    left: 21px;
+    top: 44px;
     bottom: -24px;
     width: 2px;
-    background: #1e1e1e;
+    background: var(--border);
   }
 
   .step-number {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: #161616;
-    border: 2px solid #2a2a2a;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
-    color: #555;
+    color: var(--text-3);
     flex-shrink: 0;
     position: relative;
     z-index: 1;
     transition: all 0.2s;
   }
 
-  .step.completed .step-number {
-    background: #0d1f0d;
-    border-color: #1a3a1a;
-    color: #4ade80;
-  }
-
   .step-content {
-    padding-bottom: 48px;
+    padding-bottom: 44px;
   }
 
-  .step:last-child .step-content {
-    padding-bottom: 0;
-  }
+  .step:last-child .step-content { padding-bottom: 0; }
 
   .step-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    height: 48px;
-    margin-bottom: 16px;
+    height: 44px;
+    margin-bottom: 14px;
   }
 
-  .step-emoji {
-    font-size: 20px;
-  }
+  .step-emoji { font-size: 18px; }
 
   .step-title {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
-    color: #fff;
+    color: var(--text);
     letter-spacing: -0.01em;
   }
 
   .step-desc {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 16px;
     line-height: 1.8;
   }
 
-  /* ── App download card ───────────────────────────────────────── */
+  /* ── Download card ───────────────────────────────────────────── */
   .download-card {
-    background: #111;
-    border: 1px solid #1e1e1e;
-    border-radius: 12px;
-    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     text-decoration: none;
-    transition: border-color 0.2s, background 0.2s;
-    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 
   .download-card:hover {
-    border-color: #333;
-    background: #141414;
+    border-color: var(--border-2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
 
   .download-card-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
 
   .app-icon {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(135deg, #e65c00, #f9d423);
-    border-radius: 10px;
+    border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 20px;
     flex-shrink: 0;
   }
 
   .download-card-text strong {
     display: block;
-    font-size: 15px;
-    color: #fff;
+    font-size: 14px;
+    color: var(--text);
     font-weight: 600;
     margin-bottom: 2px;
   }
 
   .download-card-text span {
     font-size: 12px;
-    color: #666;
+    color: var(--text-3);
   }
 
   .download-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: #fff;
-    color: #000;
-    font-size: 13px;
+    gap: 5px;
+    background: var(--text);
+    color: #fff;
+    font-size: 12px;
     font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 7px 14px;
+    border-radius: 7px;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   /* ── Terminal guide ──────────────────────────────────────────── */
   .terminal-guide {
-    background: #111;
-    border: 1px solid #1e1e1e;
-    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .terminal-guide-header {
-    padding: 12px 16px;
-    border-bottom: 1px solid #1a1a1a;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: #0d0d0d;
+    gap: 6px;
+    background: var(--bg);
   }
 
   .terminal-dot {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
   }
 
   .terminal-guide-body {
-    padding: 16px 20px;
+    padding: 14px 18px;
     font-size: 13px;
-    color: #888;
+    color: var(--text-2);
   }
 
   .terminal-guide-body ol {
-    padding-left: 20px;
+    padding-left: 18px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
   }
 
-  .terminal-guide-body li strong {
-    color: #e8e8e8;
-  }
+  .terminal-guide-body li strong { color: var(--text); }
 
   /* ── Command block ───────────────────────────────────────────── */
   .cmd-block {
-    background: #0d0d0d;
-    border: 1px solid #1e1e1e;
-    border-radius: 10px;
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    border-radius: 9px;
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .cmd-block-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 16px;
-    border-bottom: 1px solid #1a1a1a;
-    background: #111;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-card);
   }
 
   .cmd-label {
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #555;
+    color: var(--text-3);
   }
 
   .copy-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     background: none;
-    border: 1px solid #2a2a2a;
-    color: #888;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--text-3);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.13s;
     font-family: inherit;
   }
 
   .copy-btn:hover {
-    border-color: #444;
-    color: #ccc;
-    background: #1a1a1a;
+    border-color: var(--border-2);
+    color: var(--text-2);
+    background: var(--bg-card);
   }
 
   .copy-btn.copied {
-    border-color: #1a3a1a;
-    color: #4ade80;
-    background: #0d1f0d;
+    border-color: var(--accent-bd);
+    color: var(--accent);
+    background: var(--accent-bg);
   }
 
   .cmd-code {
-    padding: 14px 20px;
+    padding: 13px 18px;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-    font-size: 13px;
-    color: #c8e6c9;
+    font-size: 12.5px;
+    color: var(--code-txt);
     line-height: 1.6;
     overflow-x: auto;
     white-space: pre;
   }
 
-  /* ── Auth interactive steps ──────────────────────────────────── */
+  /* ── Auth steps ──────────────────────────────────────────────── */
   .auth-steps {
-    background: #111;
-    border: 1px solid #1e1e1e;
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-top: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 14px 18px;
+    margin-top: 10px;
   }
 
   .auth-steps p {
-    font-size: 13px;
-    color: #888;
-    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--text-3);
+    margin-bottom: 10px;
   }
 
   .auth-step-item {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 8px 0;
-    border-top: 1px solid #1a1a1a;
+    gap: 9px;
+    padding: 7px 0;
+    border-top: 1px solid var(--border);
   }
 
   .auth-step-item:first-of-type {
@@ -506,96 +807,98 @@
   }
 
   .auth-num {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    background: var(--bg);
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
     font-weight: 700;
-    color: #666;
+    color: var(--text-3);
     flex-shrink: 0;
-    margin-top: 1px;
+    margin-top: 2px;
   }
 
   .auth-step-item span {
     font-size: 13px;
-    color: #888;
+    color: var(--text-2);
     line-height: 1.6;
   }
 
-  .auth-step-item strong {
-    color: #e8e8e8;
-  }
+  .auth-step-item strong { color: var(--text); }
 
   /* ── What happens / Note ─────────────────────────────────────── */
   .what-happens {
-    background: #0d1a0d;
-    border: 1px solid #1a2e1a;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-bd);
     border-radius: 8px;
-    padding: 12px 16px;
-    margin-top: 12px;
+    padding: 11px 14px;
+    margin-top: 10px;
     font-size: 12px;
-    color: #5a8a5a;
+    color: #166534;
     line-height: 1.6;
   }
 
-  .what-happens strong {
-    color: #4ade80;
-    font-weight: 600;
+  .what-happens strong { color: var(--accent); font-weight: 600; }
+
+  .what-happens ul {
+    padding-left: 16px;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
   }
 
   .note {
-    background: #141008;
-    border: 1px solid #2a220a;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-bd);
     border-radius: 8px;
-    padding: 12px 16px;
-    margin-top: 12px;
+    padding: 11px 14px;
+    margin-top: 10px;
     font-size: 12px;
-    color: #8a7a3a;
+    color: var(--warn-txt);
     line-height: 1.6;
   }
 
-  .note strong {
-    color: #f59e0b;
-  }
+  .note strong { color: var(--warn-em); }
 
   /* ── Complete banner ─────────────────────────────────────────── */
   .complete-banner {
-    margin-top: 56px;
-    background: linear-gradient(135deg, #0d1f0d, #0a150a);
-    border: 1px solid #1a3a1a;
-    border-radius: 16px;
-    padding: 36px;
+    margin-top: 48px;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-bd);
+    border-radius: 14px;
+    padding: 32px;
     text-align: center;
   }
 
   .complete-banner .check-icon {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background: #0d2a0d;
-    border: 2px solid #1a4a1a;
+    background: #dcfce7;
+    border: 2px solid var(--accent-bd);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    margin: 0 auto 20px;
+    font-size: 22px;
+    margin: 0 auto 18px;
+    color: var(--accent);
   }
 
   .complete-banner h2 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
-    color: #4ade80;
-    margin-bottom: 10px;
+    color: var(--accent);
+    margin-bottom: 8px;
   }
 
   .complete-banner p {
-    font-size: 14px;
-    color: #5a8a5a;
+    font-size: 13px;
+    color: #166534;
     max-width: 400px;
     margin: 0 auto;
     line-height: 1.7;
@@ -603,72 +906,70 @@
 
   /* ── Commands grid ───────────────────────────────────────────── */
   .commands-grid {
-    margin-top: 28px;
+    margin-top: 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
     text-align: left;
   }
 
   .cmd-category {
-    background: #0a120a;
-    border: 1px solid #162216;
-    border-radius: 10px;
-    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--accent-bd);
+    border-radius: 9px;
+    padding: 12px 14px;
   }
 
   .cmd-category-title {
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #3a7a3a;
-    margin-bottom: 10px;
+    color: var(--accent);
+    margin-bottom: 8px;
   }
 
   .cmd-category code {
     display: block;
     font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 12px;
-    color: #4ade80;
+    font-size: 11.5px;
+    color: #166534;
     line-height: 2;
   }
 
   .cmd-category code span {
-    color: #3a6a3a;
+    color: var(--text-3);
     font-size: 11px;
   }
 
-  /* ── Doctor / Update cards ───────────────────────────────────── */
+  /* ── Post-install cards ──────────────────────────────────────── */
   .post-install {
-    margin-top: 32px;
+    margin-top: 28px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   .util-card {
-    background: #0d0d0d;
-    border: 1px solid #1e1e1e;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 20px 24px;
+    padding: 18px 20px;
   }
 
   .util-card-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 9px;
+    margin-bottom: 8px;
   }
 
-  .util-card-icon {
-    font-size: 18px;
-  }
+  .util-card-icon { font-size: 17px; }
 
   .util-card-title {
     font-size: 14px;
     font-weight: 700;
-    color: #e8e8e8;
+    color: var(--text);
   }
 
   .util-card-badge {
@@ -676,9 +977,9 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #555;
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    color: var(--text-3);
+    background: var(--bg);
+    border: 1px solid var(--border);
     border-radius: 100px;
     padding: 2px 8px;
     margin-left: auto;
@@ -686,441 +987,566 @@
 
   .util-card p {
     font-size: 13px;
-    color: #666;
+    color: var(--text-2);
     line-height: 1.7;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
-  @media (max-width: 560px) {
-    .download-card { flex-direction: column; align-items: flex-start; }
-    .cmd-code { font-size: 11px; }
-    .access-form { flex-direction: column; }
-    .access-btn { width: 100%; text-align: center; }
+  /* ── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .mobile-nav { display: flex; }
+    .container { padding: 32px 20px 72px; }
     .commands-grid { grid-template-columns: 1fr; }
+    .qs-grid { grid-template-columns: 1fr; }
+    .download-card { flex-direction: column; align-items: flex-start; }
+    .access-form { flex-direction: column; }
+    .access-btn { width: 100%; }
   }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-badge">RYKNSH Brain Setup</div>
-  <h1>AIエージェントを<br>セットアップする</h1>
-  <p>コードの知識は不要です。<br>手順通りにコピペするだけで完了します。</p>
-  <div class="time-badge">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-    所要時間：約 10〜15 分
-  </div>
-  <div style="margin-top:10px;font-size:10px;font-weight:600;letter-spacing:0.12em;color:#444;">
-    LAST UPDATED · 2026-04-30
+<!-- Mobile nav -->
+<nav class="mobile-nav" id="mobile-nav">
+  <span class="mobile-nav-title">🧠 RYKNSH Brain</span>
+  <button class="hamburger" onclick="openDrawer()" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="drawer-backdrop" onclick="closeDrawer()"></div>
+  <div class="drawer-panel" id="drawer-panel">
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <div id="drawer-nav-content"></div>
   </div>
 </div>
 
-<div class="container">
+<div class="layout">
 
-  <!-- Access Gate -->
-  <div class="access-gate">
-    <div class="access-gate-header">
-      <div class="access-gate-icon">🔐</div>
-      <div>
-        <span class="access-gate-title">アクセス申請</span>
-        <span class="access-gate-badge">最初にやること</span>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-badge">Docs</div>
+      <div class="sidebar-logo-title">RYKNSH Brain<br>セットアップガイド</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">ユースケース</div>
+      <a class="sidebar-link" href="#quickstart-section">
+        <span>🆕</span> はじめての方
+      </a>
+      <a class="sidebar-link" href="#step-4">
+        <span>⚡</span> Claudeは入ってる
+      </a>
+      <a class="sidebar-link" href="#brain-update">
+        <span>🔄</span> Brain を更新したい
+      </a>
+      <a class="sidebar-link" href="#brain-doctor">
+        <span>🩺</span> 問題が起きた
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">セットアップ手順</div>
+      <a class="sidebar-link" href="#access-section">
+        <span class="step-num">✉</span> アクセス申請
+      </a>
+      <a class="sidebar-link" id="nav-step-1" href="#step-1">
+        <span class="step-num">1</span> 招待メールを承認
+      </a>
+      <a class="sidebar-link" id="nav-step-2" href="#step-2">
+        <span class="step-num">2</span> Claude をインストール
+      </a>
+      <a class="sidebar-link" id="nav-step-3" href="#step-3">
+        <span class="step-num">3</span> ターミナルを開く
+      </a>
+      <a class="sidebar-link" id="nav-step-4" href="#step-4">
+        <span class="step-num">4</span> Homebrew
+      </a>
+      <a class="sidebar-link" id="nav-step-5" href="#step-5">
+        <span class="step-num">5</span> GitHub CLI
+      </a>
+      <a class="sidebar-link" id="nav-step-6" href="#step-6">
+        <span class="step-num">6</span> GitHub ログイン
+      </a>
+      <a class="sidebar-link" id="nav-step-7" href="#step-7">
+        <span class="step-num">7</span> Brain をインストール
+      </a>
+      <a class="sidebar-link" id="nav-step-8" href="#step-8">
+        <span class="step-num">8</span> 初回セッション
+      </a>
+      <a class="sidebar-link" id="nav-complete" href="#complete">
+        <span class="step-num">✓</span> セットアップ完了
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">メンテナンス</div>
+      <a class="sidebar-link" href="#brain-doctor">
+        <span>🩺</span> 健康チェック
+      </a>
+      <a class="sidebar-link" href="#brain-update">
+        <span>🔄</span> Brain を更新する
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge">RYKNSH Brain Setup</div>
+      <h1>AIエージェントを<br>セットアップする</h1>
+      <p>コードの知識は不要です。<br>手順通りにコピペするだけで完了します。</p>
+      <div class="time-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        所要時間：約 10〜15 分
+      </div>
+      <div style="margin-top:10px;font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-3);">
+        LAST UPDATED · 2026-04-30
       </div>
     </div>
-    <p class="access-gate-desc">
-      Brain はプライベートリポジトリのため、インストール前に管理者から招待を受ける必要があります。<br>
-      GitHub ユーザー名を入力して申請ボタンを押してください。招待メールが届いたら次のステップへ進んでください。
-    </p>
-    <div class="access-form">
-      <div class="access-input-wrap">
-        <span class="access-input-prefix">github.com/</span>
-        <input class="access-input" type="text" id="github-username" placeholder="your-username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-      </div>
-      <button class="access-btn" id="invite-btn" onclick="requestAccess()">招待を申請する →</button>
-    </div>
-    <div id="invite-result" style="display:none;margin-top:12px;font-size:13px;padding:10px 14px;border-radius:8px;"></div>
-    <p class="access-hint">
-      <strong>GitHubアカウントをお持ちでない方</strong>は、先に <strong>github.com</strong> で無料登録してからこちらに戻ってください。<br>
-      申請が完了したら GitHub からメールが届きます。<strong>「Accept invitation」</strong>を押して承認してからStep 1へ進んでください。
-    </p>
-  </div>
 
-  <div class="prereq">
-    <div class="prereq-icon">💻</div>
-    <p><strong>Mac をお使いの方向けの手順です。</strong><br>
-    申請が完了したら、以下のステップを順番に進めてください。</p>
-  </div>
+    <div class="container">
 
-  <div class="steps">
-
-    <!-- STEP 1 -->
-    <div class="step">
-      <div class="step-line"></div>
-      <div class="step-number">1</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">✉️</span>
-          <span class="step-title">招待メールを承認する</span>
+      <!-- Quick Start -->
+      <div class="quickstart" id="quickstart-section">
+        <div class="quickstart-title">どのケースに当てはまりますか？</div>
+        <div class="qs-grid">
+          <a class="qs-card" href="#access-section">
+            <span class="qs-icon">🆕</span>
+            <div class="qs-text">
+              <strong>はじめてセットアップする</strong>
+              <span>アクセス申請 → Step 1 から順番に</span>
+            </div>
+          </a>
+          <a class="qs-card" href="#step-4">
+            <span class="qs-icon">⚡</span>
+            <div class="qs-text">
+              <strong>Claude は入ってる</strong>
+              <span>Step 4（Homebrew）から続きを</span>
+            </div>
+          </a>
+          <a class="qs-card" href="#brain-update">
+            <span class="qs-icon">🔄</span>
+            <div class="qs-text">
+              <strong>Brain を最新版に更新したい</strong>
+              <span>ワンコマンドで完了します</span>
+            </div>
+          </a>
+          <a class="qs-card" href="#brain-doctor">
+            <span class="qs-icon">🩺</span>
+            <div class="qs-text">
+              <strong>問題が起きた・確認したい</strong>
+              <span>診断スクリプトで状態を確認</span>
+            </div>
+          </a>
         </div>
-        <p class="step-desc">
-          管理者があなたの GitHub アカウントを招待します。<br>
-          GitHub からメールが届いたら、承認してください。
+      </div>
+
+      <!-- Access Gate -->
+      <div class="access-gate" id="access-section">
+        <div class="access-gate-header">
+          <div class="access-gate-icon">🔐</div>
+          <div>
+            <span class="access-gate-title">アクセス申請</span>
+            <span class="access-gate-badge">最初にやること</span>
+          </div>
+        </div>
+        <p class="access-gate-desc">
+          Brain はプライベートリポジトリのため、インストール前に管理者から招待を受ける必要があります。<br>
+          GitHub ユーザー名を入力して申請ボタンを押してください。
         </p>
-        <div class="auth-steps">
-          <p>招待の承認手順：</p>
-          <div class="auth-step-item">
-            <div class="auth-num">1</div>
-            <span>GitHub から <strong>「You have been invited to collaborate」</strong> という件名のメールが届きます</span>
+        <div class="access-form">
+          <div class="access-input-wrap">
+            <span class="access-input-prefix">github.com/</span>
+            <input class="access-input" type="text" id="github-username" placeholder="your-username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
           </div>
-          <div class="auth-step-item">
-            <div class="auth-num">2</div>
-            <span>メール内の <strong>「Accept invitation」</strong> ボタンをクリックしてください</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">3</div>
-            <span>ブラウザが開き <strong>「You now have access to RYKNSH/ryknsh-brain」</strong> と表示されれば完了です</span>
-          </div>
+          <button class="access-btn" id="invite-btn" onclick="requestAccess()">招待を申請する →</button>
         </div>
-        <div class="note" style="margin-top:12px">
-          <strong>⚠️ ボタンが押せない・メールが届かない場合</strong>：下のリンクから招待の受諾画面を開けます。<br>
-          <a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank"
-             style="color:#f59e0b;word-break:break-all;">
-            https://github.com/notifications?query=reason%3Ainvitation
-          </a><br>
-          ※ GitHub にログインした状態で開いてください。招待が一覧表示されます。
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 2 -->
-    <div class="step">
-      <div class="step-line"></div>
-      <div class="step-number">2</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">🤖</span>
-          <span class="step-title">Claude アプリをインストール</span>
-        </div>
-        <p class="step-desc">
-          Anthropic 社の AI「Claude」の公式アプリをダウンロードします。<br>
-          下のボタンをクリックして、ページの指示に従ってインストールしてください。
+        <div id="invite-result" style="display:none;margin-top:10px;font-size:13px;padding:10px 14px;border-radius:8px;"></div>
+        <p class="access-hint">
+          <strong>GitHubアカウントをお持ちでない方</strong>は先に github.com で無料登録してください。申請後 GitHub からメールが届きます。<strong>「Accept invitation」</strong>を押してから Step 1 へ。
         </p>
-        <a class="download-card" href="https://claude.ai/download" target="_blank">
-          <div class="download-card-left">
-            <div class="app-icon">✦</div>
-            <div class="download-card-text">
-              <strong>Claude for Mac</strong>
-              <span>claude.ai/download</span>
+      </div>
+
+      <div class="prereq">
+        <div class="prereq-icon">💻</div>
+        <p><strong>Mac をお使いの方向けの手順です。</strong><br>
+        申請が完了したら、以下のステップを順番に進めてください。</p>
+      </div>
+
+      <div class="steps">
+
+        <!-- STEP 1 -->
+        <div class="step" id="step-1">
+          <div class="step-line"></div>
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">✉️</span>
+              <span class="step-title">招待メールを承認する</span>
+            </div>
+            <p class="step-desc">
+              管理者があなたの GitHub アカウントを招待します。<br>
+              GitHub からメールが届いたら、承認してください。
+            </p>
+            <div class="auth-steps">
+              <p>招待の承認手順：</p>
+              <div class="auth-step-item">
+                <div class="auth-num">1</div>
+                <span>GitHub から <strong>「You have been invited to collaborate」</strong> という件名のメールが届きます</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">2</div>
+                <span>メール内の <strong>「Accept invitation」</strong> ボタンをクリックしてください</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">3</div>
+                <span>ブラウザが開き <strong>「You now have access to RYKNSH/ryknsh-brain」</strong> と表示されれば完了です</span>
+              </div>
+            </div>
+            <div class="note" style="margin-top:10px">
+              <strong>⚠️ ボタンが押せない・メールが届かない場合</strong>：<br>
+              <a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:var(--warn-em);">
+                https://github.com/notifications?query=reason%3Ainvitation
+              </a><br>
+              ※ GitHub にログインした状態で開いてください。
             </div>
           </div>
-          <div class="download-btn">
-            ダウンロード →
-          </div>
-        </a>
-        <div class="note" style="margin-top:12px">
-          <strong>💡 インストール後</strong>：アプリを起動してアカウントにサインインしておいてください。
         </div>
-      </div>
-    </div>
 
-    <!-- STEP 3 -->
-    <div class="step">
-      <div class="step-line"></div>
-      <div class="step-number">3</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">🖥️</span>
-          <span class="step-title">ターミナルを開く</span>
-        </div>
-        <p class="step-desc">
-          「ターミナル」はMacに最初から入っているアプリです。<br>
-          コマンドを入力して実行するための黒い画面です。以下の手順で開いてください。
-        </p>
-        <div class="terminal-guide">
-          <div class="terminal-guide-header">
-            <div class="terminal-dot" style="background:#ff5f57"></div>
-            <div class="terminal-dot" style="background:#febc2e"></div>
-            <div class="terminal-dot" style="background:#28c840"></div>
-            <span style="font-size:12px;color:#555;margin-left:6px">ターミナルの開き方</span>
+        <!-- STEP 2 -->
+        <div class="step" id="step-2">
+          <div class="step-line"></div>
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🤖</span>
+              <span class="step-title">Claude アプリをインストール</span>
+            </div>
+            <p class="step-desc">
+              Anthropic 社の AI「Claude」の公式アプリをダウンロードします。
+            </p>
+            <a class="download-card" href="https://claude.ai/download" target="_blank">
+              <div class="download-card-left">
+                <div class="app-icon">✦</div>
+                <div class="download-card-text">
+                  <strong>Claude for Mac</strong>
+                  <span>claude.ai/download</span>
+                </div>
+              </div>
+              <div class="download-btn">ダウンロード →</div>
+            </a>
+            <div class="note" style="margin-top:10px">
+              <strong>💡 インストール後</strong>：アプリを起動してアカウントにサインインしておいてください。
+            </div>
           </div>
-          <div class="terminal-guide-body">
-            <ol>
-              <li>キーボードの <strong>⌘（command）+ スペース</strong> を同時に押す</li>
-              <li>「ターミナル」と入力する</li>
-              <li><strong>return（Enter）</strong> を押す</li>
-            </ol>
-          </div>
         </div>
-        <div class="note">
-          <strong>💡 ヒント</strong>：黒または白の画面が開けば成功です。文字が入力できる状態になっています。
-        </div>
-      </div>
-    </div>
 
-    <!-- STEP 4 -->
-    <div class="step">
-      <div class="step-line"></div>
-      <div class="step-number">4</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">🍺</span>
-          <span class="step-title">Homebrew をインストール</span>
-        </div>
-        <p class="step-desc">
-          Homebrew は「アプリを簡単にインストールできる便利ツール」です。<br>
-          下のコマンドをコピーしてターミナルに貼り付け、<strong>return を押してください。</strong>
-        </p>
-        <div class="cmd-block">
-          <div class="cmd-block-header">
-            <span class="cmd-label">コマンド</span>
-            <button class="copy-btn" onclick="copyCmd(this, 'brew-install')">コピー</button>
+        <!-- STEP 3 -->
+        <div class="step" id="step-3">
+          <div class="step-line"></div>
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🖥️</span>
+              <span class="step-title">ターミナルを開く</span>
+            </div>
+            <p class="step-desc">
+              「ターミナル」はMacに最初から入っているアプリです。<br>
+              コマンドを入力して実行するための黒い画面です。
+            </p>
+            <div class="terminal-guide">
+              <div class="terminal-guide-header">
+                <div class="terminal-dot" style="background:#ff5f57"></div>
+                <div class="terminal-dot" style="background:#febc2e"></div>
+                <div class="terminal-dot" style="background:#28c840"></div>
+                <span style="font-size:12px;color:var(--text-3);margin-left:6px">ターミナルの開き方</span>
+              </div>
+              <div class="terminal-guide-body">
+                <ol>
+                  <li>キーボードの <strong>⌘（command）+ スペース</strong> を同時に押す</li>
+                  <li>「ターミナル」と入力する</li>
+                  <li><strong>return（Enter）</strong> を押す</li>
+                </ol>
+              </div>
+            </div>
+            <div class="note">
+              <strong>💡 ヒント</strong>：黒または白の画面が開けば成功です。
+            </div>
           </div>
-          <div class="cmd-code" id="brew-install">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
         </div>
-        <div class="what-happens">
-          <strong>何が起きる？</strong> パスワードを聞かれたら Mac のログインパスワードを入力してください（入力中は画面に何も表示されませんが正常です）。インストールが完了するまで数分かかります。
-        </div>
-      </div>
-    </div>
 
-    <!-- STEP 5 -->
-    <div class="step">
-      <div class="step-line"></div>
-      <div class="step-number">5</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">🐙</span>
-          <span class="step-title">GitHub CLI をインストール</span>
-        </div>
-        <p class="step-desc">
-          GitHub CLI はターミナルから GitHub を操作するためのツールです。<br>
-          プライベートリポジトリへのアクセスに必要です。下のコマンドをコピーして実行してください。
-        </p>
-        <div class="cmd-block">
-          <div class="cmd-block-header">
-            <span class="cmd-label">コマンド</span>
-            <button class="copy-btn" onclick="copyCmd(this, 'gh-install')">コピー</button>
+        <!-- STEP 4 -->
+        <div class="step" id="step-4">
+          <div class="step-line"></div>
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🍺</span>
+              <span class="step-title">Homebrew をインストール</span>
+            </div>
+            <p class="step-desc">
+              Homebrew は「アプリを簡単にインストールできる便利ツール」です。<br>
+              下のコマンドをコピーしてターミナルに貼り付け、<strong>return を押してください。</strong>
+            </p>
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">コマンド</span>
+                <button class="copy-btn" onclick="copyCmd(this, 'brew-install')">コピー</button>
+              </div>
+              <div class="cmd-code" id="brew-install">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+            </div>
+            <div class="what-happens">
+              <strong>何が起きる？</strong> パスワードを聞かれたら Mac のログインパスワードを入力してください（入力中は画面に何も表示されませんが正常です）。数分かかります。
+            </div>
           </div>
-          <div class="cmd-code" id="gh-install">brew install gh</div>
         </div>
-        <div class="what-happens">
-          <strong>何が起きる？</strong> GitHub CLI のダウンロードとインストールが自動で行われます。1〜2 分で完了します。
-        </div>
-      </div>
-    </div>
 
-    <!-- STEP 6 -->
-    <div class="step">
-      <div class="step-line"></div>
-      <div class="step-number">6</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">🔑</span>
-          <span class="step-title">GitHub にログイン</span>
-        </div>
-        <p class="step-desc">
-          ターミナルから GitHub アカウントにログインします。<br>
-          下のコマンドを実行して、画面の指示に従ってください。
-        </p>
-        <div class="cmd-block">
-          <div class="cmd-block-header">
-            <span class="cmd-label">コマンド</span>
-            <button class="copy-btn" onclick="copyCmd(this, 'gh-login')">コピー</button>
-          </div>
-          <div class="cmd-code" id="gh-login">gh auth login</div>
-        </div>
-        <div class="auth-steps">
-          <p>コマンド実行後、順番に選択・入力していきます：</p>
-          <div class="auth-step-item">
-            <div class="auth-num">1</div>
-            <span><strong>? What account do you want to log into?</strong> → <strong>GitHub.com</strong> を選択して return</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">2</div>
-            <span><strong>? What is your preferred protocol?</strong> → <strong>HTTPS</strong> を選択して return</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">3</div>
-            <span><strong>? Authenticate Git with your GitHub credentials?</strong> → <strong>Yes</strong> を選択して return</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">4</div>
-            <span><strong>? How would you like to authenticate?</strong> → <strong>Login with a web browser</strong> を選択して return</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">5</div>
-            <span>画面に <strong>8桁のコード</strong> が表示されます。メモしてから <strong>return</strong> を押してください。ブラウザが開きます。</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">6</div>
-            <span>ブラウザでコードを入力して <strong>「Authorize」</strong> をクリックすればログイン完了です。</span>
+        <!-- STEP 5 -->
+        <div class="step" id="step-5">
+          <div class="step-line"></div>
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🐙</span>
+              <span class="step-title">GitHub CLI をインストール</span>
+            </div>
+            <p class="step-desc">
+              ターミナルから GitHub を操作するためのツールです。プライベートリポジトリへのアクセスに必要です。
+            </p>
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">コマンド</span>
+                <button class="copy-btn" onclick="copyCmd(this, 'gh-install')">コピー</button>
+              </div>
+              <div class="cmd-code" id="gh-install">brew install gh</div>
+            </div>
+            <div class="what-happens">
+              <strong>何が起きる？</strong> GitHub CLI のダウンロードとインストールが自動で行われます。1〜2 分で完了します。
+            </div>
           </div>
         </div>
-        <div class="what-happens" style="margin-top:12px">
-          <strong>完了の確認</strong>：ターミナルに「Logged in as [ユーザー名]」と表示されれば成功です。
-        </div>
-      </div>
-    </div>
 
-    <!-- STEP 7 -->
-    <div class="step">
-      <div class="step-line"></div>
-      <div class="step-number">7</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">🧠</span>
-          <span class="step-title">Brain をインストール</span>
-        </div>
-        <p class="step-desc">
-          Brain のコア（AIスキル・コマンド・環境設定）をまとめて導入します。<br>
-          下のコマンドをコピーしてターミナルに貼り付け、return を押してください。
-        </p>
-        <div class="cmd-block">
-          <div class="cmd-block-header">
-            <span class="cmd-label">コマンド（これだけ！）</span>
-            <button class="copy-btn" onclick="copyCmd(this, 'brain-install')">コピー</button>
-          </div>
-          <div class="cmd-code" id="brain-install">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</div>
-        </div>
-        <div class="what-happens">
-          <strong>何が起きる？</strong> <code style="color:#a8d8a8">~/.claude/</code> に Brain がクローンされ、以下が自動で行われます：
-          <ul style="margin-top:8px;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-            <li><strong>Node.js・1Password CLI・Google Workspace CLI</strong> などの必須ツールをインストール</li>
-            <li><strong>マシン ID 登録</strong>：このマシン固有の識別情報（<code style="color:#a8d8a8">~/.claude/machine.conf</code>）を自動生成</li>
-            <li><strong>スキル・コマンド・フック</strong>（27スキル、26コマンド）を展開</li>
-            <li><strong>診断スクリプト</strong>（<code style="color:#a8d8a8">brain-doctor.sh</code>）を <code style="color:#a8d8a8">~/.claude/admin/</code> に配備</li>
-          </ul>
-          <div style="margin-top:8px">「<strong>Brain デプロイ完了</strong>」と表示されれば Step 7 は完了です。</div>
-        </div>
-        <div class="note" style="margin-top:12px">
-          <strong>⚡ 途中で Action needed が表示されたら</strong>：ターミナル最後の「<code>Action needed:</code>」行に従って、<strong>1Password Desktop → Settings → Developer → Command Line Interface を ON</strong>、および <code>gws auth login</code> などを実行してください。次の Step 8 でまとめて確認します。
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 8 -->
-    <div class="step">
-      <div class="step-number">8</div>
-      <div class="step-content">
-        <div class="step-header">
-          <span class="step-emoji">🚀</span>
-          <span class="step-title">初回セッションを起動する</span>
-        </div>
-        <p class="step-desc">
-          Claude アプリを開いて最初のセッションを起動します。<br>
-          <strong>/ry-in</strong> を実行すると、環境の自動チェックと残りのセットアップが完了します。
-        </p>
-        <div class="cmd-block">
-          <div class="cmd-block-header">
-            <span class="cmd-label">Claude のチャット欄に入力</span>
-            <button class="copy-btn" onclick="copyCmd(this, 'first-checkin')">コピー</button>
-          </div>
-          <div class="cmd-code" id="first-checkin">/ry-in</div>
-        </div>
-        <div class="auth-steps">
-          <p>初回チェックインで自動実行されること：</p>
-          <div class="auth-step-item">
-            <div class="auth-num">1</div>
-            <span><strong>Brain 同期</strong>：最新のスキル・コマンドを自動取得</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">2</div>
-            <span><strong>環境ドリフト検出</strong>：CLI（op / gh / node / gws）と MCP の状態を確認</span>
-          </div>
-          <div class="auth-step-item">
-            <div class="auth-num">3</div>
-            <span><strong>MCP セットアップ案内</strong>：Notion など未接続の統合があれば承認手順を提示</span>
+        <!-- STEP 6 -->
+        <div class="step" id="step-6">
+          <div class="step-line"></div>
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🔑</span>
+              <span class="step-title">GitHub にログイン</span>
+            </div>
+            <p class="step-desc">
+              ターミナルから GitHub アカウントにログインします。
+            </p>
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">コマンド</span>
+                <button class="copy-btn" onclick="copyCmd(this, 'gh-login')">コピー</button>
+              </div>
+              <div class="cmd-code" id="gh-login">gh auth login</div>
+            </div>
+            <div class="auth-steps">
+              <p>コマンド実行後、順番に選択・入力していきます：</p>
+              <div class="auth-step-item">
+                <div class="auth-num">1</div>
+                <span><strong>? What account do you want to log into?</strong> → <strong>GitHub.com</strong> を選択して return</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">2</div>
+                <span><strong>? What is your preferred protocol?</strong> → <strong>HTTPS</strong> を選択して return</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">3</div>
+                <span><strong>? Authenticate Git with your GitHub credentials?</strong> → <strong>Yes</strong> を選択して return</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">4</div>
+                <span><strong>? How would you like to authenticate?</strong> → <strong>Login with a web browser</strong> を選択して return</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">5</div>
+                <span>画面に <strong>8桁のコード</strong> が表示されます。メモしてから <strong>return</strong> を押してください。ブラウザが開きます。</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">6</div>
+                <span>ブラウザでコードを入力して <strong>「Authorize」</strong> をクリックすればログイン完了です。</span>
+              </div>
+            </div>
+            <div class="what-happens" style="margin-top:10px">
+              <strong>完了の確認</strong>：ターミナルに「Logged in as [ユーザー名]」と表示されれば成功です。
+            </div>
           </div>
         </div>
-        <div class="note" style="margin-top:12px">
-          <strong>🔗 Notion 連携の承認</strong>：Brain は Notion MCP が必須です。/ry-in が「未接続」と表示したら、<strong>Claude アプリ → Settings → Integrations → Notion → Connect</strong> から OAuth を承認してください。ブラウザで Notion にログインすれば完了します。
+
+        <!-- STEP 7 -->
+        <div class="step" id="step-7">
+          <div class="step-line"></div>
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🧠</span>
+              <span class="step-title">Brain をインストール</span>
+            </div>
+            <p class="step-desc">
+              Brain のコア（AIスキル・コマンド・環境設定）をまとめて導入します。
+            </p>
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">コマンド（これだけ！）</span>
+                <button class="copy-btn" onclick="copyCmd(this, 'brain-install')">コピー</button>
+              </div>
+              <div class="cmd-code" id="brain-install">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</div>
+            </div>
+            <div class="what-happens">
+              <strong>何が起きる？</strong> <code style="color:var(--accent)">~/.claude/</code> に Brain がクローンされ、以下が自動で行われます：
+              <ul>
+                <li><strong>Node.js・1Password CLI・Google Workspace CLI</strong> などの必須ツールをインストール</li>
+                <li><strong>マシン ID 登録</strong>：このマシン固有の識別情報（<code style="color:var(--accent)">machine.conf</code>）を自動生成</li>
+                <li><strong>27スキル・26コマンド・フック</strong>を展開</li>
+                <li><strong>診断スクリプト</strong>（<code style="color:var(--accent)">brain-doctor.sh</code>）を配備</li>
+              </ul>
+              <div style="margin-top:6px">「<strong>Brain デプロイ完了</strong>」と表示されれば Step 7 は完了です。</div>
+            </div>
+            <div class="note" style="margin-top:10px">
+              <strong>⚡ 途中で Action needed が表示されたら</strong>：ターミナル最後の「<code>Action needed:</code>」行に従って、<strong>1Password Desktop → Settings → Developer → Command Line Interface を ON</strong>、および <code>gws auth login</code> などを実行してください。
+            </div>
+          </div>
         </div>
-        <div class="what-happens" style="margin-top:12px">
-          <strong>完了の確認</strong>：チェックイン結果に「<code>✅ checkin 完了</code>」と「<code>CLI 4/4 OK</code>」が表示されれば、すべてのセットアップが完了しています。
+
+        <!-- STEP 8 -->
+        <div class="step" id="step-8">
+          <div class="step-number">8</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🚀</span>
+              <span class="step-title">初回セッションを起動する</span>
+            </div>
+            <p class="step-desc">
+              Claude アプリを開いて最初のセッションを起動します。<br>
+              <strong>/ry-in</strong> を実行すると、環境の自動チェックと残りのセットアップが完了します。
+            </p>
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">Claude のチャット欄に入力</span>
+                <button class="copy-btn" onclick="copyCmd(this, 'first-checkin')">コピー</button>
+              </div>
+              <div class="cmd-code" id="first-checkin">/ry-in</div>
+            </div>
+            <div class="auth-steps">
+              <p>初回チェックインで自動実行されること：</p>
+              <div class="auth-step-item">
+                <div class="auth-num">1</div>
+                <span><strong>Brain 同期</strong>：最新のスキル・コマンドを自動取得</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">2</div>
+                <span><strong>環境ドリフト検出</strong>：CLI（op / gh / node / gws）と MCP の状態を確認</span>
+              </div>
+              <div class="auth-step-item">
+                <div class="auth-num">3</div>
+                <span><strong>MCP セットアップ案内</strong>：Notion など未接続の統合があれば承認手順を提示</span>
+              </div>
+            </div>
+            <div class="note" style="margin-top:10px">
+              <strong>🔗 Notion 連携の承認</strong>：Brain は Notion MCP が必須です。/ry-in が「未接続」と表示したら、<strong>Claude アプリ → Settings → Integrations → Notion → Connect</strong> から OAuth を承認してください。
+            </div>
+            <div class="what-happens" style="margin-top:10px">
+              <strong>完了の確認</strong>：「<code>✅ checkin 完了</code>」と「<code>CLI 4/4 OK</code>」が表示されれば、すべてのセットアップが完了しています。
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Complete Banner -->
+      <div class="complete-banner" id="complete">
+        <div class="check-icon">✓</div>
+        <h2>セットアップ完了！</h2>
+        <p>Brain が Claude アプリ上で動作する準備が整いました。<br>
+        毎回のセッションは <strong>/ry-in</strong> で開始し、<strong>/ry-out</strong> で終了します。</p>
+
+        <div class="commands-grid">
+          <div class="cmd-category">
+            <div class="cmd-category-title">セッション</div>
+            <code>/ry-in <span>— セッション開始</span></code>
+            <code>/ry-out <span>— セッション終了</span></code>
+            <code>/ry-pm <span>— プロジェクト管理</span></code>
+            <code>/ry-init <span>— プロジェクト初期化</span></code>
+          </div>
+          <div class="cmd-category">
+            <div class="cmd-category-title">マーケティング</div>
+            <code>/ry-lp <span>— LP 戦略・コピー</span></code>
+            <code>/ry-craft <span>— LP HTML 実装</span></code>
+            <code>/ry-ads <span>— 広告設計・コピー</span></code>
+            <code>/ry-webinar <span>— ウェビナー台本</span></code>
+          </div>
+          <div class="cmd-category">
+            <div class="cmd-category-title">クリエイティブ</div>
+            <code>/ry-slide <span>— スライド生成</span></code>
+            <code>/ry-art <span>— ビジュアル生成</span></code>
+            <code>/ry-content <span>— SNS コンテンツ</span></code>
+            <code>/ry-page <span>— エディトリアル</span></code>
+          </div>
+          <div class="cmd-category">
+            <div class="cmd-category-title">品質・分析</div>
+            <code>/ry-review <span>— コードレビュー</span></code>
+            <code>/ry-sim <span>— ペルソナ検証</span></code>
+            <code>/ry-debate <span>— 多角ディベート</span></code>
+            <code>/ry-think <span>— 第一原理分解</span></code>
+          </div>
         </div>
       </div>
-    </div>
 
-  </div>
+      <!-- Post-install utilities -->
+      <div class="post-install">
 
-  <!-- Complete Banner -->
-  <div class="complete-banner">
-    <div class="check-icon">✓</div>
-    <h2>セットアップ完了！</h2>
-    <p>Brain が Claude アプリ上で動作する準備が整いました。<br>
-    毎回のセッションは <strong>/ry-in</strong> で開始し、<strong>/ry-out</strong> で終了します。</p>
-
-    <div class="commands-grid">
-      <div class="cmd-category">
-        <div class="cmd-category-title">セッション</div>
-        <code>/ry-in <span>— セッション開始</span></code>
-        <code>/ry-out <span>— セッション終了</span></code>
-        <code>/ry-pm <span>— プロジェクト管理</span></code>
-        <code>/ry-init <span>— プロジェクト初期化</span></code>
-      </div>
-      <div class="cmd-category">
-        <div class="cmd-category-title">マーケティング</div>
-        <code>/ry-lp <span>— LP 戦略・コピー</span></code>
-        <code>/ry-craft <span>— LP HTML 実装</span></code>
-        <code>/ry-ads <span>— 広告設計・コピー</span></code>
-        <code>/ry-webinar <span>— ウェビナー台本</span></code>
-      </div>
-      <div class="cmd-category">
-        <div class="cmd-category-title">クリエイティブ</div>
-        <code>/ry-slide <span>— スライド生成</span></code>
-        <code>/ry-art <span>— ビジュアル生成</span></code>
-        <code>/ry-content <span>— SNS コンテンツ</span></code>
-        <code>/ry-page <span>— エディトリアル</span></code>
-      </div>
-      <div class="cmd-category">
-        <div class="cmd-category-title">品質・分析</div>
-        <code>/ry-review <span>— コードレビュー</span></code>
-        <code>/ry-sim <span>— ペルソナ検証</span></code>
-        <code>/ry-debate <span>— 多角ディベート</span></code>
-        <code>/ry-think <span>— 第一原理分解</span></code>
-      </div>
-    </div>
-  </div>
-
-  <!-- Post-install utilities -->
-  <div class="post-install">
-
-    <div class="util-card">
-      <div class="util-card-header">
-        <span class="util-card-icon">🩺</span>
-        <span class="util-card-title">Brain の健康チェック</span>
-        <span class="util-card-badge">いつでも実行可</span>
-      </div>
-      <p>接続・認証・テレメトリに問題が起きたと感じたら、診断スクリプトを実行してください。マシン ID・push 権限・フック状態をまとめて確認できます。</p>
-      <div class="cmd-block" style="margin-bottom:0">
-        <div class="cmd-block-header">
-          <span class="cmd-label">ターミナルで実行</span>
-          <button class="copy-btn" onclick="copyCmd(this, 'brain-doctor')">コピー</button>
+        <div class="util-card" id="brain-doctor">
+          <div class="util-card-header">
+            <span class="util-card-icon">🩺</span>
+            <span class="util-card-title">Brain の健康チェック</span>
+            <span class="util-card-badge">いつでも実行可</span>
+          </div>
+          <p>接続・認証・テレメトリに問題が起きたと感じたら、診断スクリプトを実行してください。マシン ID・push 権限・フック状態をまとめて確認できます。</p>
+          <div class="cmd-block" style="margin-bottom:0">
+            <div class="cmd-block-header">
+              <span class="cmd-label">ターミナルで実行</span>
+              <button class="copy-btn" onclick="copyCmd(this, 'brain-doctor-cmd')">コピー</button>
+            </div>
+            <div class="cmd-code" id="brain-doctor-cmd">bash ~/.claude/admin/brain-doctor.sh</div>
+          </div>
         </div>
-        <div class="cmd-code" id="brain-doctor">bash ~/.claude/admin/brain-doctor.sh</div>
-      </div>
-    </div>
 
-    <div class="util-card">
-      <div class="util-card-header">
-        <span class="util-card-icon">🔄</span>
-        <span class="util-card-title">Brain を最新版に更新する</span>
-        <span class="util-card-badge">新バージョンが出たら</span>
-      </div>
-      <p>管理者から「アップデートあり」と連絡を受けたら、以下のコマンドを実行してください。新スキルや改善が自動で反映されます。</p>
-      <div class="cmd-block" style="margin-bottom:0">
-        <div class="cmd-block-header">
-          <span class="cmd-label">ターミナルで実行</span>
-          <button class="copy-btn" onclick="copyCmd(this, 'brain-update')">コピー</button>
+        <div class="util-card" id="brain-update">
+          <div class="util-card-header">
+            <span class="util-card-icon">🔄</span>
+            <span class="util-card-title">Brain を最新版に更新する</span>
+            <span class="util-card-badge">新バージョンが出たら</span>
+          </div>
+          <p>管理者から「アップデートあり」と連絡を受けたら、以下のコマンドを実行してください。新スキルや改善が自動で反映されます。</p>
+          <div class="cmd-block" style="margin-bottom:0">
+            <div class="cmd-block-header">
+              <span class="cmd-label">ターミナルで実行</span>
+              <button class="copy-btn" onclick="copyCmd(this, 'brain-update-cmd')">コピー</button>
+            </div>
+            <div class="cmd-code" id="brain-update-cmd">cd ~/.claude/brain && git pull origin main && bash install.sh</div>
+          </div>
         </div>
-        <div class="cmd-code" id="brain-update">cd ~/.claude/brain && git pull origin main && bash install.sh</div>
+
       </div>
-    </div>
 
-  </div>
-
-</div>
+    </div><!-- /container -->
+  </main>
+</div><!-- /layout -->
 
 <script>
+/* ── Copy button ──────────────────────────────────────────────── */
 function copyCmd(btn, id) {
   const text = document.getElementById(id).textContent.trim();
   navigator.clipboard.writeText(text).then(() => {
@@ -1133,17 +1559,66 @@ function copyCmd(btn, id) {
   });
 }
 
-// 入力値から GitHub username を抽出
-// 受け付ける形: "foo" / "@foo" / "https://github.com/foo" / "github.com/foo/" / " foo "
+/* ── Mobile drawer ────────────────────────────────────────────── */
+function openDrawer() {
+  const drawer = document.getElementById('mobile-drawer');
+  const sidebar = document.getElementById('sidebar');
+  const panel = document.getElementById('drawer-nav-content');
+  panel.innerHTML = sidebar.innerHTML;
+  // wire up links in drawer to close drawer
+  panel.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeDrawer);
+  });
+  drawer.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('mobile-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── Active nav highlight (IntersectionObserver) ──────────────── */
+const navIds = [
+  { section: 'access-section', nav: null },
+  { section: 'step-1',   nav: 'nav-step-1' },
+  { section: 'step-2',   nav: 'nav-step-2' },
+  { section: 'step-3',   nav: 'nav-step-3' },
+  { section: 'step-4',   nav: 'nav-step-4' },
+  { section: 'step-5',   nav: 'nav-step-5' },
+  { section: 'step-6',   nav: 'nav-step-6' },
+  { section: 'step-7',   nav: 'nav-step-7' },
+  { section: 'step-8',   nav: 'nav-step-8' },
+  { section: 'complete', nav: 'nav-complete' },
+];
+
+let activeNav = null;
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const match = navIds.find(n => n.section === entry.target.id);
+    if (!match || !match.nav) return;
+    const el = document.getElementById(match.nav);
+    if (!el) return;
+    if (activeNav) activeNav.classList.remove('active');
+    el.classList.add('active');
+    activeNav = el;
+  });
+}, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+navIds.forEach(({ section }) => {
+  const el = document.getElementById(section);
+  if (el) observer.observe(el);
+});
+
+/* ── GitHub username normalize + invite ───────────────────────── */
 function normalizeUsername(raw) {
   if (!raw) return '';
   let v = raw.trim();
-  // URL 全体が貼られた場合 → path 最初のセグメントを抽出
   const m = v.match(/github\.com\/([^\/?#\s]+)/i);
   if (m) v = m[1];
-  // 先頭 @ を除去
   v = v.replace(/^@+/, '');
-  // 末尾スラッシュ・空白除去
   v = v.replace(/[\/\s]+$/g, '');
   return v;
 }
@@ -1155,19 +1630,15 @@ async function requestAccess() {
   const raw = input.value;
   const username = normalizeUsername(raw);
 
-  // 正規化結果をフォームに反映してユーザーに何が送られたか見せる
-  if (username && username !== raw.trim()) {
-    input.value = username;
-  }
+  if (username && username !== raw.trim()) input.value = username;
 
-  // GitHub username の正規表現: 英数字とハイフンのみ、先頭末尾ハイフン不可、39文字以内
   const validPattern = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/;
   if (!username || !validPattern.test(username)) {
     showResult(result, 'error',
       '❌ GitHub ユーザー名の形式が正しくありません。' +
-      '<br><span style="font-size:12px;color:#aa6666">例: <code style="color:#ff8080">asamin09</code>（URL や @ は不要）</span>');
+      '<br><span style="font-size:12px">例: <code>asamin09</code>（URL や @ は不要）</span>');
     input.focus();
-    input.style.borderColor = '#aa3333';
+    input.style.borderColor = '#dc2626';
     setTimeout(() => { input.style.borderColor = ''; }, 1500);
     return;
   }
@@ -1183,19 +1654,15 @@ async function requestAccess() {
       body: JSON.stringify({ username })
     });
 
-    // レスポンスが JSON でない（サーバーダウン等）場合のガード
     let data;
-    try {
-      data = await r.json();
-    } catch {
-      throw new Error(`サーバー応答エラー (HTTP ${r.status})`);
-    }
+    try { data = await r.json(); }
+    catch { throw new Error(`サーバー応答エラー (HTTP ${r.status})`); }
 
     if (data.status === 'invited') {
       showResult(result, 'success',
-        '✅ 招待を送信しました！<br>GitHub からのメールを確認して「Accept invitation」を押してください。' +
-        '<br><span style="font-size:12px;color:#5a8a5a">メールが見つからない場合は ' +
-        '<a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:#4ade80">招待通知一覧</a> を確認。</span>');
+        '✅ 招待を送信しました！GitHub からのメールを確認して「Accept invitation」を押してください。' +
+        '<br><span style="font-size:12px">メールが見つからない場合は ' +
+        '<a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:#15803d">招待通知一覧</a> を確認。</span>');
       btn.textContent = '✓ 申請済み';
     } else if (data.status === 'already_member') {
       showResult(result, 'info', '✅ すでにアクセス権があります。Step 1 へ進んでください。');
@@ -1207,10 +1674,10 @@ async function requestAccess() {
     const msg = e.message || 'ネットワークエラー';
     showResult(result, 'error',
       '❌ ' + msg +
-      '<div style="margin-top:10px;padding-top:10px;border-top:1px solid #3a1a1a;font-size:12px;color:#aa7070">' +
-      '解決しない場合は、以下のテンプレを管理者に直接 DM してください:' +
-      '<div style="margin-top:6px;padding:8px 10px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:6px;font-family:\'SF Mono\',monospace;color:#c8c8c8;user-select:all;cursor:text">' +
-      'Brain セットアップ招待希望<br>GitHub: ' + (username || raw) + '</div></div>');
+      '<div style="margin-top:8px;font-size:12px">' +
+      '解決しない場合は管理者に直接 DM してください:<br>' +
+      '<code style="background:var(--bg);border:1px solid var(--border);padding:4px 8px;border-radius:5px;display:inline-block;margin-top:4px;user-select:all">' +
+      'Brain セットアップ招待希望 / GitHub: ' + (username || raw) + '</code></div>');
     btn.disabled = false;
     btn.textContent = '招待を申請する →';
   }
@@ -1218,15 +1685,17 @@ async function requestAccess() {
 
 function showResult(el, type, html) {
   const styles = {
-    success: { bg: '#0d1f0d', border: '#1a3a1a', color: '#4ade80' },
-    info:    { bg: '#0d1a2a', border: '#1a2a4a', color: '#60a0ff' },
-    error:   { bg: '#1a0d0d', border: '#3a1a1a', color: '#ff8080' }
+    success: { bg: '#f0fdf4', border: '#bbf7d0', color: '#166534' },
+    info:    { bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af' },
+    error:   { bg: '#fef2f2', border: '#fecaca', color: '#991b1b' }
   };
   const s = styles[type] || styles.error;
   el.style.display = 'block';
   el.style.background = s.bg;
   el.style.border = '1px solid ' + s.border;
   el.style.color = s.color;
+  el.style.borderRadius = '8px';
+  el.style.padding = '10px 14px';
   el.innerHTML = html;
 }
 </script>
