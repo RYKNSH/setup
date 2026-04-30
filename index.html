@@ -4,107 +4,107 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RYKNSH Brain — セットアップガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg:        #f7f7f5;
-    --bg-card:   #ffffff;
-    --bg-code:   #f0f0ed;
-    --bg-hover:  #f0f0ec;
-    --border:    #e4e4e0;
-    --border-2:  #d4d4ce;
-    --text:      #1a1a18;
-    --text-2:    #52524e;
-    --text-3:    #8a8a84;
-    --accent:    #16a34a;
-    --accent-bg: #f0fdf4;
-    --accent-bd: #bbf7d0;
-    --warn-bg:   #fffbeb;
-    --warn-bd:   #fde68a;
-    --warn-txt:  #92400e;
-    --warn-em:   #d97706;
-    --info-bg:   #eff6ff;
-    --info-bd:   #bfdbfe;
-    --info-txt:  #1e40af;
-    --purple-bg: #f5f3ff;
-    --purple-bd: #ddd6fe;
-    --purple-txt:#5b21b6;
-    --purple-em: #7c3aed;
-    --code-txt:  #166534;
-    --nav-w:     240px;
-    --nav-bg:    #fafaf8;
-    --nav-bd:    #e8e8e4;
-    --active-bg: #dcfce7;
-    --active-txt:#15803d;
+    --accent:       #6c5ce7;
+    --accent-2:     #8b5cf6;
+    --accent-light: #a29bfe;
+    --accent-glow:  rgba(108, 92, 231, 0.15);
+    --accent-glow2: rgba(108, 92, 231, 0.25);
+    --bg:           #ffffff;
+    --bg-subtle:    #f8f7ff;
+    --bg-card:      #ffffff;
+    --bg-card-h:    #f5f3ff;
+    --border:       rgba(0,0,0,0.07);
+    --border-2:     rgba(108,92,231,0.2);
+    --text:         #2d2d3a;
+    --text-2:       #5a5a72;
+    --text-3:       #9b9bb0;
+    --success:      #00b894;
+    --warn:         #f59e0b;
+    --warn-bg:      #fffbeb;
+    --warn-bd:      #fde68a;
+    --warn-txt:     #92400e;
+    --r:            16px;
+    --r-sm:         10px;
+    --nav-w:        248px;
+    --font:         'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    --shadow-sm:    0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md:    0 4px 16px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+    --shadow-glow:  0 20px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(108,92,231,0.1), 0 0 30px var(--accent-glow);
   }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-    background: var(--bg);
+    font-family: var(--font);
+    background: radial-gradient(ellipse 120% 60% at 50% -10%, #ede9ff 0%, #f5f3ff 30%, #ffffff 70%);
     color: var(--text);
     line-height: 1.7;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ── Layout ───────────────────────────────────────────────────── */
-  .layout {
-    display: flex;
-    min-height: 100vh;
-  }
+  /* ── Layout ────────────────────────────────────────────────────── */
+  .layout { display: flex; min-height: 100vh; }
 
-  /* ── Sidebar ─────────────────────────────────────────────────── */
+  /* ── Sidebar ───────────────────────────────────────────────────── */
   .sidebar {
     width: var(--nav-w);
     flex-shrink: 0;
-    background: var(--nav-bg);
-    border-right: 1px solid var(--nav-bd);
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    padding: 24px 0 48px;
+    padding: 0 0 56px;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border);
+    box-shadow: 4px 0 24px rgba(108,92,231,0.04);
   }
 
   .sidebar-logo {
-    padding: 0 20px 20px;
-    border-bottom: 1px solid var(--nav-bd);
-    margin-bottom: 8px;
+    padding: 24px 20px 18px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 6px;
   }
 
   .sidebar-logo-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-3);
-    background: var(--border);
+    color: var(--accent);
+    background: rgba(108,92,231,0.08);
+    border: 1px solid rgba(108,92,231,0.15);
     border-radius: 100px;
     padding: 3px 10px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .sidebar-logo-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--text);
-    line-height: 1.3;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
   }
 
-  .sidebar-section {
-    padding: 16px 0 8px;
-  }
+  .sidebar-section { padding: 14px 0 6px; }
 
   .sidebar-section + .sidebar-section {
-    border-top: 1px solid var(--nav-bd);
+    border-top: 1px solid var(--border);
     margin-top: 4px;
-    padding-top: 16px;
   }
 
   .sidebar-label {
@@ -113,282 +113,294 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-3);
-    padding: 0 20px 8px;
+    padding: 0 20px 6px;
   }
 
   .sidebar-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 20px;
+    gap: 9px;
+    padding: 7px 20px;
     font-size: 13px;
     color: var(--text-2);
     text-decoration: none;
-    border-radius: 0;
-    transition: background 0.12s, color 0.12s;
+    transition: background 0.15s, color 0.15s;
     position: relative;
+    font-weight: 450;
   }
 
-  .sidebar-link:hover {
-    background: var(--bg-hover);
-    color: var(--text);
-  }
+  .sidebar-link:hover { background: rgba(108,92,231,0.05); color: var(--accent); }
 
   .sidebar-link.active {
-    background: var(--active-bg);
-    color: var(--active-txt);
+    background: rgba(108,92,231,0.08);
+    color: var(--accent);
     font-weight: 600;
   }
 
   .sidebar-link.active::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 4px;
-    bottom: 4px;
+    left: 0; top: 5px; bottom: 5px;
     width: 3px;
-    background: var(--accent);
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
     border-radius: 0 2px 2px 0;
   }
 
   .sidebar-link .step-num {
-    width: 20px;
-    height: 20px;
+    width: 20px; height: 20px;
     border-radius: 50%;
-    background: var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 700;
+    background: rgba(0,0,0,0.05);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
     color: var(--text-3);
     flex-shrink: 0;
-    transition: background 0.12s, color 0.12s;
+    transition: all 0.15s;
   }
 
   .sidebar-link.active .step-num {
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
     color: #fff;
+    box-shadow: 0 2px 8px var(--accent-glow2);
   }
 
-  /* ── Mobile nav ──────────────────────────────────────────────── */
+  .sidebar-link .uc-icon { font-size: 14px; flex-shrink: 0; }
+
+  /* ── Mobile ─────────────────────────────────────────────────────── */
   .mobile-nav {
     display: none;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--nav-bg);
-    border-bottom: 1px solid var(--nav-bd);
-    padding: 12px 16px;
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 13px 20px;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    box-shadow: var(--shadow-sm);
   }
 
-  .mobile-nav-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
+  .mobile-nav-logo {
+    font-size: 13px; font-weight: 700;
+    background: linear-gradient(135deg, var(--text), var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
   .hamburger {
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--bg-card);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 4px;
-    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border: 1px solid var(--border); border-radius: 10px;
+    background: var(--bg-card); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 4px; flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 
-  .hamburger span {
-    display: block;
-    width: 16px;
-    height: 1.5px;
-    background: var(--text-2);
-    border-radius: 2px;
-    transition: all 0.2s;
-  }
+  .hamburger:hover { border-color: var(--border-2); box-shadow: 0 2px 8px var(--accent-glow); }
 
-  .mobile-drawer {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-  }
+  .hamburger span { display: block; width: 14px; height: 1.5px; background: var(--text-2); border-radius: 2px; }
 
-  .mobile-drawer.open {
-    display: block;
-  }
+  .mobile-drawer { display: none; position: fixed; inset: 0; z-index: 200; }
+  .mobile-drawer.open { display: block; }
 
-  .drawer-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.2);
-  }
+  .drawer-backdrop { position: absolute; inset: 0; background: rgba(45,45,58,0.3); backdrop-filter: blur(4px); }
 
   .drawer-panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 260px;
-    background: var(--nav-bg);
-    border-right: 1px solid var(--nav-bd);
-    overflow-y: auto;
-    padding: 24px 0 48px;
+    position: absolute; top: 0; left: 0; bottom: 0; width: 264px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border);
+    overflow-y: auto; padding: 20px 0 56px;
+    box-shadow: 12px 0 40px rgba(108,92,231,0.08);
   }
 
   .drawer-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 28px;
-    height: 28px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: var(--text-3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute; top: 16px; right: 16px;
+    width: 28px; height: 28px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: none; cursor: pointer;
+    font-size: 14px; color: var(--text-3);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
   }
 
-  /* ── Main content ────────────────────────────────────────────── */
-  .main {
-    flex: 1;
-    min-width: 0;
-  }
+  .drawer-close:hover { background: rgba(108,92,231,0.08); color: var(--accent); }
 
-  /* ── Hero ────────────────────────────────────────────────────── */
+  /* ── Main ───────────────────────────────────────────────────────── */
+  .main { flex: 1; min-width: 0; }
+
+  /* ── Hero ───────────────────────────────────────────────────────── */
   .hero {
     text-align: center;
-    padding: 64px 24px 52px;
-    background: var(--bg-card);
+    padding: 80px 32px 64px;
+    position: relative;
+    overflow: hidden;
     border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(109,92,231,0.04) 0%, transparent 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(circle, rgba(108,92,231,0.12) 0%, transparent 65%);
+    pointer-events: none;
   }
 
   .hero-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-3);
-    background: var(--bg);
-    border: 1px solid var(--border);
+    color: var(--accent);
+    background: rgba(108,92,231,0.08);
+    border: 1px solid rgba(108,92,231,0.18);
     border-radius: 100px;
-    padding: 5px 14px;
-    margin-bottom: 24px;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
   }
 
   .hero h1 {
-    font-size: clamp(26px, 4vw, 40px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 14px;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
   }
 
   .hero p {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-2);
-    max-width: 440px;
+    max-width: 420px;
     margin: 0 auto;
+    line-height: 1.8;
+    position: relative;
   }
 
-  .time-badge {
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 28px;
+    position: relative;
+  }
+
+  .hero-pill {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    margin-top: 20px;
     font-size: 12px;
     color: var(--text-3);
-  }
-
-  .time-badge svg {
-    width: 13px;
-    height: 13px;
-    opacity: 0.5;
-  }
-
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 52px 32px 96px;
-  }
-
-  /* ── Quick start ─────────────────────────────────────────────── */
-  .quickstart {
-    background: var(--bg-card);
+    background: rgba(255,255,255,0.7);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    margin-bottom: 40px;
+    border-radius: 100px;
+    padding: 5px 13px;
+    backdrop-filter: blur(8px);
   }
 
-  .quickstart-title {
-    font-size: 13px;
+  .hero-pill svg { width: 12px; height: 12px; opacity: 0.6; }
+
+  /* ── Container ──────────────────────────────────────────────────── */
+  .container { max-width: 740px; margin: 0 auto; padding: 52px 36px 100px; }
+
+  /* ── Quick start ────────────────────────────────────────────────── */
+  .section-label {
+    font-size: 11px;
     font-weight: 700;
-    color: var(--text-2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
     margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
 
-  .quickstart-title::before {
+  .section-label::after {
     content: '';
-    display: block;
-    width: 3px;
-    height: 14px;
-    background: var(--accent);
-    border-radius: 2px;
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(108,92,231,0.2), transparent);
   }
 
   .qs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 10px;
+    margin-bottom: 48px;
   }
 
   .qs-card {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 12px 14px;
-    background: var(--bg);
+    gap: 12px;
+    padding: 16px 18px;
+    background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: var(--r);
     text-decoration: none;
-    transition: border-color 0.15s, background 0.15s;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .qs-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    opacity: 0;
+    transition: opacity 0.25s;
   }
 
   .qs-card:hover {
-    border-color: var(--border-2);
-    background: var(--bg-hover);
+    border-color: rgba(108,92,231,0.2);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
   }
 
+  .qs-card:hover::before { opacity: 1; }
+
   .qs-icon {
-    font-size: 18px;
+    font-size: 22px;
     flex-shrink: 0;
     line-height: 1;
     margin-top: 1px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
   }
 
   .qs-text strong {
     display: block;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text);
-    margin-bottom: 2px;
+    margin-bottom: 3px;
+    letter-spacing: -0.01em;
   }
 
   .qs-text span {
@@ -397,611 +409,512 @@
     line-height: 1.4;
   }
 
-  /* ── Access Gate ─────────────────────────────────────────────── */
+  /* ── Access Gate ────────────────────────────────────────────────── */
   .access-gate {
-    background: var(--purple-bg);
-    border: 1px solid var(--purple-bd);
-    border-radius: 14px;
-    padding: 24px 24px 20px;
-    margin-bottom: 40px;
+    background: linear-gradient(135deg, rgba(108,92,231,0.06) 0%, rgba(139,92,246,0.04) 100%);
+    border: 1px solid rgba(108,92,231,0.15);
+    border-radius: var(--r);
+    padding: 28px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .access-gate::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(108,92,231,0.1), transparent 70%);
+    pointer-events: none;
   }
 
   .access-gate-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
   }
 
   .access-gate-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 9px;
-    background: #ede9fe;
-    border: 1px solid var(--purple-bd);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
-    flex-shrink: 0;
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+    box-shadow: 0 4px 12px var(--accent-glow2);
   }
 
   .access-gate-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--purple-txt);
+    font-size: 16px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.01em;
   }
 
   .access-gate-badge {
     display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--purple-em);
-    background: #ede9fe;
-    border: 1px solid var(--purple-bd);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(108,92,231,0.1);
+    border: 1px solid rgba(108,92,231,0.2);
     border-radius: 100px;
-    padding: 2px 8px;
-    margin-left: 6px;
-    vertical-align: middle;
+    padding: 2px 9px; margin-left: 6px; vertical-align: middle;
   }
 
   .access-gate-desc {
-    font-size: 13px;
-    color: var(--purple-txt);
-    margin-bottom: 16px;
-    line-height: 1.7;
-    opacity: 0.8;
+    font-size: 13px; color: var(--text-2); margin-bottom: 18px; line-height: 1.7;
   }
 
-  .access-form {
-    display: flex;
-    gap: 8px;
-    align-items: stretch;
-  }
+  .access-form { display: flex; gap: 8px; align-items: stretch; }
 
-  .access-input-wrap {
-    flex: 1;
-    position: relative;
-  }
+  .access-input-wrap { flex: 1; position: relative; }
 
   .access-input-prefix {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    color: var(--text-3);
-    pointer-events: none;
-    font-family: 'SF Mono', 'Fira Code', monospace;
+    position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+    font-size: 12px; color: var(--text-3); pointer-events: none;
+    font-family: 'SF Mono', monospace;
   }
 
   .access-input {
     width: 100%;
     background: var(--bg-card);
-    border: 1px solid var(--purple-bd);
-    border-radius: 8px;
-    padding: 10px 12px 10px 50px;
-    font-size: 13px;
-    color: var(--text);
+    border: 1px solid rgba(108,92,231,0.2);
+    border-radius: 10px;
+    padding: 11px 13px 11px 52px;
+    font-size: 13px; color: var(--text);
     font-family: 'SF Mono', 'Fira Code', monospace;
     outline: none;
     transition: border-color 0.15s, box-shadow 0.15s;
+    box-shadow: var(--shadow-sm);
   }
 
-  .access-input::placeholder { color: var(--border-2); }
+  .access-input::placeholder { color: rgba(108,92,231,0.25); }
 
   .access-input:focus {
-    border-color: var(--purple-em);
-    box-shadow: 0 0 0 3px rgba(124,58,237,0.08);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(108,92,231,0.12);
   }
 
   .access-btn {
-    background: var(--purple-em);
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
     color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: opacity 0.15s;
-    font-family: inherit;
+    border: none; border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 13px; font-weight: 700;
+    cursor: pointer; white-space: nowrap;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font);
+    box-shadow: 0 4px 14px var(--accent-glow2);
+    letter-spacing: 0.01em;
   }
 
-  .access-btn:hover { opacity: 0.88; }
+  .access-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow2);
+  }
+
+  .access-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
   .access-hint {
-    margin-top: 10px;
-    font-size: 12px;
-    color: var(--purple-txt);
-    opacity: 0.7;
-    line-height: 1.6;
+    margin-top: 12px; font-size: 12px; color: var(--text-3); line-height: 1.6;
   }
 
-  .access-hint strong { opacity: 1; }
+  .access-hint strong { color: var(--text-2); }
 
-  /* ── Prereq ──────────────────────────────────────────────────── */
+  /* ── Prereq ─────────────────────────────────────────────────────── */
   .prereq {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: var(--r-sm);
     padding: 16px 20px;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    margin-bottom: 44px;
+    display: flex; align-items: center; gap: 13px;
+    box-shadow: var(--shadow-sm);
   }
 
   .prereq-icon { font-size: 18px; flex-shrink: 0; }
-
   .prereq p { font-size: 13px; color: var(--text-2); }
-
   .prereq strong { color: var(--text); }
 
-  /* ── Steps ───────────────────────────────────────────────────── */
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  /* ── Steps ──────────────────────────────────────────────────────── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
 
   .step {
     display: grid;
     grid-template-columns: 44px 1fr;
-    gap: 0 18px;
+    gap: 0 20px;
     position: relative;
   }
 
   .step:not(:last-child) .step-line {
     position: absolute;
-    left: 21px;
-    top: 44px;
-    bottom: -24px;
+    left: 21px; top: 44px; bottom: -24px;
     width: 2px;
-    background: var(--border);
+    background: linear-gradient(180deg, rgba(108,92,231,0.2) 0%, transparent 100%);
   }
 
   .step-number {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     border-radius: 50%;
     background: var(--bg-card);
     border: 2px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
     color: var(--text-3);
     flex-shrink: 0;
-    position: relative;
-    z-index: 1;
+    position: relative; z-index: 1;
     transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+    font-family: 'Inter', monospace;
   }
 
-  .step-content {
-    padding-bottom: 44px;
-  }
-
+  .step-content { padding-bottom: 48px; }
   .step:last-child .step-content { padding-bottom: 0; }
 
   .step-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    height: 44px;
-    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+    height: 44px; margin-bottom: 16px;
   }
 
-  .step-emoji { font-size: 18px; }
+  .step-emoji { font-size: 20px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
 
   .step-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: -0.01em;
+    font-size: 17px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.02em;
   }
 
   .step-desc {
-    font-size: 13px;
-    color: var(--text-2);
-    margin-bottom: 16px;
-    line-height: 1.8;
+    font-size: 13.5px; color: var(--text-2);
+    margin-bottom: 18px; line-height: 1.8;
   }
 
-  /* ── Download card ───────────────────────────────────────────── */
+  /* ── Download card ──────────────────────────────────────────────── */
   .download-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    border-radius: var(--r);
+    padding: 18px 22px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 16px;
     text-decoration: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
   }
 
   .download-card:hover {
     border-color: var(--border-2);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
   }
 
-  .download-card-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .download-card-left { display: flex; align-items: center; gap: 13px; }
 
   .app-icon {
-    width: 40px;
-    height: 40px;
+    width: 42px; height: 42px;
     background: linear-gradient(135deg, #e65c00, #f9d423);
-    border-radius: 9px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(230,92,0,0.25);
   }
 
   .download-card-text strong {
-    display: block;
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 600;
-    margin-bottom: 2px;
+    display: block; font-size: 14px; color: var(--text);
+    font-weight: 700; margin-bottom: 2px; letter-spacing: -0.01em;
   }
 
-  .download-card-text span {
-    font-size: 12px;
-    color: var(--text-3);
-  }
+  .download-card-text span { font-size: 12px; color: var(--text-3); }
 
   .download-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: var(--text);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 7px 14px;
-    border-radius: 7px;
-    white-space: nowrap;
-    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff; font-size: 12px; font-weight: 700;
+    padding: 8px 16px; border-radius: 9px; white-space: nowrap; flex-shrink: 0;
+    box-shadow: 0 4px 12px var(--accent-glow2);
+    letter-spacing: 0.02em;
   }
 
-  /* ── Terminal guide ──────────────────────────────────────────── */
+  /* ── Terminal guide ─────────────────────────────────────────────── */
   .terminal-guide {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 14px;
+    border-radius: var(--r); overflow: hidden; margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
   }
 
   .terminal-guide-header {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--bg);
+    padding: 10px 16px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(248,247,255,0.8);
   }
 
-  .terminal-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-  }
+  .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
 
-  .terminal-guide-body {
-    padding: 14px 18px;
-    font-size: 13px;
-    color: var(--text-2);
-  }
+  .terminal-guide-body { padding: 16px 20px; font-size: 13px; color: var(--text-2); }
 
   .terminal-guide-body ol {
-    padding-left: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
+    padding-left: 18px; display: flex; flex-direction: column; gap: 8px;
   }
 
   .terminal-guide-body li strong { color: var(--text); }
 
-  /* ── Command block ───────────────────────────────────────────── */
+  /* ── Command block ──────────────────────────────────────────────── */
   .cmd-block {
-    background: var(--bg-code);
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    overflow: hidden;
-    margin-bottom: 10px;
+    background: #faf9ff;
+    border: 1px solid rgba(108,92,231,0.12);
+    border-radius: var(--r-sm);
+    overflow: hidden; margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .cmd-block:hover {
+    border-color: rgba(108,92,231,0.25);
+    box-shadow: 0 4px 16px var(--accent-glow);
   }
 
   .cmd-block-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 14px;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-card);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 16px; border-bottom: 1px solid rgba(108,92,231,0.08);
+    background: rgba(255,255,255,0.8);
   }
 
   .cmd-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-3);
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    opacity: 0.7;
   }
 
   .copy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text-3);
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.13s;
-    font-family: inherit;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: none; border: 1px solid rgba(108,92,231,0.15);
+    color: var(--accent); font-size: 11px; padding: 3px 11px;
+    border-radius: 6px; cursor: pointer;
+    transition: all 0.15s; font-family: var(--font); font-weight: 600;
   }
 
   .copy-btn:hover {
-    border-color: var(--border-2);
-    color: var(--text-2);
-    background: var(--bg-card);
+    background: rgba(108,92,231,0.08);
+    border-color: rgba(108,92,231,0.3);
   }
 
   .copy-btn.copied {
-    border-color: var(--accent-bd);
-    color: var(--accent);
-    background: var(--accent-bg);
+    background: rgba(0,184,148,0.1);
+    border-color: rgba(0,184,148,0.3);
+    color: var(--success);
   }
 
   .cmd-code {
-    padding: 13px 18px;
+    padding: 14px 20px;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
     font-size: 12.5px;
-    color: var(--code-txt);
-    line-height: 1.6;
-    overflow-x: auto;
-    white-space: pre;
+    color: #4c3db5;
+    line-height: 1.65;
+    overflow-x: auto; white-space: pre;
   }
 
-  /* ── Auth steps ──────────────────────────────────────────────── */
+  /* ── Auth steps ─────────────────────────────────────────────────── */
   .auth-steps {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 9px;
-    padding: 14px 18px;
-    margin-top: 10px;
+    border-radius: var(--r-sm);
+    padding: 16px 20px; margin-top: 12px;
+    box-shadow: var(--shadow-sm);
   }
 
-  .auth-steps p {
-    font-size: 12px;
-    color: var(--text-3);
-    margin-bottom: 10px;
-  }
+  .auth-steps p { font-size: 12px; color: var(--text-3); margin-bottom: 11px; }
 
   .auth-step-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 9px;
-    padding: 7px 0;
-    border-top: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; border-top: 1px solid var(--border);
   }
 
-  .auth-step-item:first-of-type {
-    border-top: none;
-    padding-top: 0;
-  }
+  .auth-step-item:first-of-type { border-top: none; padding-top: 0; }
 
   .auth-num {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text-3);
-    flex-shrink: 0;
-    margin-top: 2px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(108,92,231,0.08);
+    border: 1px solid rgba(108,92,231,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0; margin-top: 2px;
   }
 
-  .auth-step-item span {
-    font-size: 13px;
-    color: var(--text-2);
-    line-height: 1.6;
-  }
-
+  .auth-step-item span { font-size: 13px; color: var(--text-2); line-height: 1.6; }
   .auth-step-item strong { color: var(--text); }
 
-  /* ── What happens / Note ─────────────────────────────────────── */
+  /* ── What happens / Note ────────────────────────────────────────── */
   .what-happens {
-    background: var(--accent-bg);
-    border: 1px solid var(--accent-bd);
-    border-radius: 8px;
-    padding: 11px 14px;
-    margin-top: 10px;
-    font-size: 12px;
-    color: #166534;
-    line-height: 1.6;
+    background: linear-gradient(135deg, rgba(0,184,148,0.06), rgba(0,184,148,0.03));
+    border: 1px solid rgba(0,184,148,0.2);
+    border-radius: var(--r-sm);
+    padding: 12px 16px; margin-top: 12px;
+    font-size: 12.5px; color: #047857; line-height: 1.6;
   }
 
-  .what-happens strong { color: var(--accent); font-weight: 600; }
+  .what-happens strong { color: var(--success); font-weight: 700; }
 
   .what-happens ul {
-    padding-left: 16px;
-    margin-top: 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+    padding-left: 16px; margin-top: 7px;
+    display: flex; flex-direction: column; gap: 4px;
   }
 
   .note {
     background: var(--warn-bg);
     border: 1px solid var(--warn-bd);
-    border-radius: 8px;
-    padding: 11px 14px;
-    margin-top: 10px;
-    font-size: 12px;
-    color: var(--warn-txt);
-    line-height: 1.6;
+    border-radius: var(--r-sm);
+    padding: 12px 16px; margin-top: 12px;
+    font-size: 12.5px; color: var(--warn-txt); line-height: 1.6;
   }
 
-  .note strong { color: var(--warn-em); }
+  .note strong { color: var(--warn); }
 
-  /* ── Complete banner ─────────────────────────────────────────── */
+  /* ── Complete banner ────────────────────────────────────────────── */
   .complete-banner {
-    margin-top: 48px;
-    background: var(--accent-bg);
-    border: 1px solid var(--accent-bd);
-    border-radius: 14px;
-    padding: 32px;
+    margin-top: 56px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-radius: 20px;
+    padding: 40px 36px;
     text-align: center;
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(108,92,231,0.3);
+  }
+
+  .complete-banner::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .complete-banner::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+    pointer-events: none;
   }
 
   .complete-banner .check-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: #dcfce7;
-    border: 2px solid var(--accent-bd);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin: 0 auto 18px;
-    color: var(--accent);
+    width: 60px; height: 60px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin: 0 auto 20px;
+    position: relative;
+    backdrop-filter: blur(8px);
   }
 
   .complete-banner h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 8px;
+    font-size: 24px; font-weight: 900;
+    color: #fff; margin-bottom: 10px; letter-spacing: -0.02em;
+    position: relative;
   }
 
   .complete-banner p {
-    font-size: 13px;
-    color: #166534;
-    max-width: 400px;
-    margin: 0 auto;
-    line-height: 1.7;
+    font-size: 14px; color: rgba(255,255,255,0.8);
+    max-width: 380px; margin: 0 auto; line-height: 1.8;
+    position: relative;
   }
 
-  /* ── Commands grid ───────────────────────────────────────────── */
+  /* ── Commands grid ──────────────────────────────────────────────── */
   .commands-grid {
-    margin-top: 24px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    text-align: left;
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; text-align: left; position: relative;
   }
 
   .cmd-category {
-    background: var(--bg-card);
-    border: 1px solid var(--accent-bd);
-    border-radius: 9px;
-    padding: 12px 14px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: var(--r-sm);
+    padding: 14px 16px;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s;
   }
 
+  .cmd-category:hover { background: rgba(255,255,255,0.2); }
+
   .cmd-category-title {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.6);
     margin-bottom: 8px;
   }
 
   .cmd-category code {
     display: block;
     font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 11.5px;
-    color: #166534;
+    font-size: 11.5px; color: rgba(255,255,255,0.9);
     line-height: 2;
   }
 
-  .cmd-category code span {
-    color: var(--text-3);
-    font-size: 11px;
-  }
+  .cmd-category code span { color: rgba(255,255,255,0.5); font-size: 11px; }
 
-  /* ── Post-install cards ──────────────────────────────────────── */
-  .post-install {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  /* ── Post-install cards ─────────────────────────────────────────── */
+  .post-install { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
 
   .util-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
+    border-radius: var(--r);
+    padding: 22px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; overflow: hidden;
   }
+
+  .util-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    opacity: 0; transition: opacity 0.25s;
+  }
+
+  .util-card:hover {
+    border-color: var(--border-2);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .util-card:hover::before { opacity: 1; }
 
   .util-card-header {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
   }
 
-  .util-card-icon { font-size: 17px; }
+  .util-card-icon {
+    font-size: 22px;
+    filter: drop-shadow(0 2px 6px rgba(108,92,231,0.2));
+  }
 
   .util-card-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text);
+    font-size: 14px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.01em;
   }
 
   .util-card-badge {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 2px 8px;
-    margin-left: auto;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(108,92,231,0.08);
+    border: 1px solid rgba(108,92,231,0.15);
+    border-radius: 100px; padding: 2px 9px; margin-left: auto;
   }
 
-  .util-card p {
-    font-size: 13px;
-    color: var(--text-2);
-    line-height: 1.7;
-    margin-bottom: 10px;
-  }
+  .util-card p { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 12px; }
 
-  /* ── Responsive ──────────────────────────────────────────────── */
-  @media (max-width: 768px) {
+  /* ── Result bubbles ─────────────────────────────────────────────── */
+  #invite-result { border-radius: 10px; padding: 10px 14px; }
+
+  /* ── Responsive ─────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
     .sidebar { display: none; }
     .mobile-nav { display: flex; }
-    .container { padding: 32px 20px 72px; }
+    .container { padding: 32px 20px 80px; }
     .commands-grid { grid-template-columns: 1fr; }
     .qs-grid { grid-template-columns: 1fr; }
     .download-card { flex-direction: column; align-items: flex-start; }
     .access-form { flex-direction: column; }
-    .access-btn { width: 100%; }
+    .access-btn { width: 100%; justify-content: center; }
+    .hero { padding: 56px 24px 48px; }
   }
 </style>
 </head>
@@ -1009,8 +922,8 @@
 
 <!-- Mobile nav -->
 <nav class="mobile-nav" id="mobile-nav">
-  <span class="mobile-nav-title">🧠 RYKNSH Brain</span>
-  <button class="hamburger" onclick="openDrawer()" aria-label="メニューを開く">
+  <span class="mobile-nav-logo">🧠 RYKNSH Brain</span>
+  <button class="hamburger" onclick="openDrawer()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -1018,7 +931,7 @@
 <!-- Mobile drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
   <div class="drawer-backdrop" onclick="closeDrawer()"></div>
-  <div class="drawer-panel" id="drawer-panel">
+  <div class="drawer-panel">
     <button class="drawer-close" onclick="closeDrawer()">✕</button>
     <div id="drawer-nav-content"></div>
   </div>
@@ -1029,23 +942,23 @@
   <!-- Sidebar -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <div class="sidebar-logo-badge">Docs</div>
+      <div class="sidebar-logo-badge">✦ Docs</div>
       <div class="sidebar-logo-title">RYKNSH Brain<br>セットアップガイド</div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">ユースケース</div>
       <a class="sidebar-link" href="#quickstart-section">
-        <span>🆕</span> はじめての方
+        <span class="uc-icon">🆕</span> はじめての方
       </a>
       <a class="sidebar-link" href="#step-4">
-        <span>⚡</span> Claudeは入ってる
+        <span class="uc-icon">⚡</span> Claudeは入ってる
       </a>
       <a class="sidebar-link" href="#brain-update">
-        <span>🔄</span> Brain を更新したい
+        <span class="uc-icon">🔄</span> Brain を更新したい
       </a>
       <a class="sidebar-link" href="#brain-doctor">
-        <span>🩺</span> 問題が起きた
+        <span class="uc-icon">🩺</span> 問題が起きた
       </a>
     </div>
 
@@ -1086,10 +999,10 @@
     <div class="sidebar-section">
       <div class="sidebar-label">メンテナンス</div>
       <a class="sidebar-link" href="#brain-doctor">
-        <span>🩺</span> 健康チェック
+        <span class="uc-icon">🩺</span> 健康チェック
       </a>
       <a class="sidebar-link" href="#brain-update">
-        <span>🔄</span> Brain を更新する
+        <span class="uc-icon">🔄</span> Brain を更新する
       </a>
     </div>
   </nav>
@@ -1102,20 +1015,22 @@
       <div class="hero-badge">RYKNSH Brain Setup</div>
       <h1>AIエージェントを<br>セットアップする</h1>
       <p>コードの知識は不要です。<br>手順通りにコピペするだけで完了します。</p>
-      <div class="time-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-        所要時間：約 10〜15 分
-      </div>
-      <div style="margin-top:10px;font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-3);">
-        LAST UPDATED · 2026-04-30
+      <div class="hero-meta">
+        <div class="hero-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          所要時間：約 10〜15 分
+        </div>
+        <div class="hero-pill">
+          LAST UPDATED · 2026-04-30
+        </div>
       </div>
     </div>
 
     <div class="container">
 
-      <!-- Quick Start -->
-      <div class="quickstart" id="quickstart-section">
-        <div class="quickstart-title">どのケースに当てはまりますか？</div>
+      <!-- Quick start -->
+      <div id="quickstart-section">
+        <div class="section-label">クイックスタート</div>
         <div class="qs-grid">
           <a class="qs-card" href="#access-section">
             <span class="qs-icon">🆕</span>
@@ -1149,6 +1064,7 @@
       </div>
 
       <!-- Access Gate -->
+      <div class="section-label">アクセス申請</div>
       <div class="access-gate" id="access-section">
         <div class="access-gate-header">
           <div class="access-gate-icon">🔐</div>
@@ -1164,11 +1080,12 @@
         <div class="access-form">
           <div class="access-input-wrap">
             <span class="access-input-prefix">github.com/</span>
-            <input class="access-input" type="text" id="github-username" placeholder="your-username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <input class="access-input" type="text" id="github-username" placeholder="your-username"
+              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
           </div>
           <button class="access-btn" id="invite-btn" onclick="requestAccess()">招待を申請する →</button>
         </div>
-        <div id="invite-result" style="display:none;margin-top:10px;font-size:13px;padding:10px 14px;border-radius:8px;"></div>
+        <div id="invite-result" style="display:none;margin-top:12px;font-size:13px;"></div>
         <p class="access-hint">
           <strong>GitHubアカウントをお持ちでない方</strong>は先に github.com で無料登録してください。申請後 GitHub からメールが届きます。<strong>「Accept invitation」</strong>を押してから Step 1 へ。
         </p>
@@ -1180,6 +1097,7 @@
         申請が完了したら、以下のステップを順番に進めてください。</p>
       </div>
 
+      <div class="section-label">セットアップ手順</div>
       <div class="steps">
 
         <!-- STEP 1 -->
@@ -1191,10 +1109,7 @@
               <span class="step-emoji">✉️</span>
               <span class="step-title">招待メールを承認する</span>
             </div>
-            <p class="step-desc">
-              管理者があなたの GitHub アカウントを招待します。<br>
-              GitHub からメールが届いたら、承認してください。
-            </p>
+            <p class="step-desc">管理者があなたの GitHub アカウントを招待します。GitHub からメールが届いたら承認してください。</p>
             <div class="auth-steps">
               <p>招待の承認手順：</p>
               <div class="auth-step-item">
@@ -1210,9 +1125,9 @@
                 <span>ブラウザが開き <strong>「You now have access to RYKNSH/ryknsh-brain」</strong> と表示されれば完了です</span>
               </div>
             </div>
-            <div class="note" style="margin-top:10px">
+            <div class="note" style="margin-top:12px">
               <strong>⚠️ ボタンが押せない・メールが届かない場合</strong>：<br>
-              <a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:var(--warn-em);">
+              <a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:var(--warn);">
                 https://github.com/notifications?query=reason%3Ainvitation
               </a><br>
               ※ GitHub にログインした状態で開いてください。
@@ -1229,9 +1144,7 @@
               <span class="step-emoji">🤖</span>
               <span class="step-title">Claude アプリをインストール</span>
             </div>
-            <p class="step-desc">
-              Anthropic 社の AI「Claude」の公式アプリをダウンロードします。
-            </p>
+            <p class="step-desc">Anthropic 社の AI「Claude」の公式アプリをダウンロードします。</p>
             <a class="download-card" href="https://claude.ai/download" target="_blank">
               <div class="download-card-left">
                 <div class="app-icon">✦</div>
@@ -1242,7 +1155,7 @@
               </div>
               <div class="download-btn">ダウンロード →</div>
             </a>
-            <div class="note" style="margin-top:10px">
+            <div class="note" style="margin-top:12px">
               <strong>💡 インストール後</strong>：アプリを起動してアカウントにサインインしておいてください。
             </div>
           </div>
@@ -1257,10 +1170,7 @@
               <span class="step-emoji">🖥️</span>
               <span class="step-title">ターミナルを開く</span>
             </div>
-            <p class="step-desc">
-              「ターミナル」はMacに最初から入っているアプリです。<br>
-              コマンドを入力して実行するための黒い画面です。
-            </p>
+            <p class="step-desc">「ターミナル」はMacに最初から入っているアプリです。コマンドを入力して実行するための画面です。</p>
             <div class="terminal-guide">
               <div class="terminal-guide-header">
                 <div class="terminal-dot" style="background:#ff5f57"></div>
@@ -1291,10 +1201,7 @@
               <span class="step-emoji">🍺</span>
               <span class="step-title">Homebrew をインストール</span>
             </div>
-            <p class="step-desc">
-              Homebrew は「アプリを簡単にインストールできる便利ツール」です。<br>
-              下のコマンドをコピーしてターミナルに貼り付け、<strong>return を押してください。</strong>
-            </p>
+            <p class="step-desc">Homebrew は「アプリを簡単にインストールできる便利ツール」です。下のコマンドをコピーしてターミナルに貼り付け、<strong>return を押してください。</strong></p>
             <div class="cmd-block">
               <div class="cmd-block-header">
                 <span class="cmd-label">コマンド</span>
@@ -1317,9 +1224,7 @@
               <span class="step-emoji">🐙</span>
               <span class="step-title">GitHub CLI をインストール</span>
             </div>
-            <p class="step-desc">
-              ターミナルから GitHub を操作するためのツールです。プライベートリポジトリへのアクセスに必要です。
-            </p>
+            <p class="step-desc">ターミナルから GitHub を操作するためのツールです。プライベートリポジトリへのアクセスに必要です。</p>
             <div class="cmd-block">
               <div class="cmd-block-header">
                 <span class="cmd-label">コマンド</span>
@@ -1342,9 +1247,7 @@
               <span class="step-emoji">🔑</span>
               <span class="step-title">GitHub にログイン</span>
             </div>
-            <p class="step-desc">
-              ターミナルから GitHub アカウントにログインします。
-            </p>
+            <p class="step-desc">ターミナルから GitHub アカウントにログインします。</p>
             <div class="cmd-block">
               <div class="cmd-block-header">
                 <span class="cmd-label">コマンド</span>
@@ -1379,7 +1282,7 @@
                 <span>ブラウザでコードを入力して <strong>「Authorize」</strong> をクリックすればログイン完了です。</span>
               </div>
             </div>
-            <div class="what-happens" style="margin-top:10px">
+            <div class="what-happens" style="margin-top:12px">
               <strong>完了の確認</strong>：ターミナルに「Logged in as [ユーザー名]」と表示されれば成功です。
             </div>
           </div>
@@ -1394,9 +1297,7 @@
               <span class="step-emoji">🧠</span>
               <span class="step-title">Brain をインストール</span>
             </div>
-            <p class="step-desc">
-              Brain のコア（AIスキル・コマンド・環境設定）をまとめて導入します。
-            </p>
+            <p class="step-desc">Brain のコア（AIスキル・コマンド・環境設定）をまとめて導入します。</p>
             <div class="cmd-block">
               <div class="cmd-block-header">
                 <span class="cmd-label">コマンド（これだけ！）</span>
@@ -1405,16 +1306,16 @@
               <div class="cmd-code" id="brain-install">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</div>
             </div>
             <div class="what-happens">
-              <strong>何が起きる？</strong> <code style="color:var(--accent)">~/.claude/</code> に Brain がクローンされ、以下が自動で行われます：
+              <strong>何が起きる？</strong> <code style="color:#047857;font-family:'SF Mono',monospace">~/.claude/</code> に Brain がクローンされ、以下が自動で行われます：
               <ul>
                 <li><strong>Node.js・1Password CLI・Google Workspace CLI</strong> などの必須ツールをインストール</li>
-                <li><strong>マシン ID 登録</strong>：このマシン固有の識別情報（<code style="color:var(--accent)">machine.conf</code>）を自動生成</li>
+                <li><strong>マシン ID 登録</strong>：このマシン固有の識別情報（<code style="color:#047857;font-family:monospace">machine.conf</code>）を自動生成</li>
                 <li><strong>27スキル・26コマンド・フック</strong>を展開</li>
-                <li><strong>診断スクリプト</strong>（<code style="color:var(--accent)">brain-doctor.sh</code>）を配備</li>
+                <li><strong>診断スクリプト</strong>（<code style="color:#047857;font-family:monospace">brain-doctor.sh</code>）を配備</li>
               </ul>
-              <div style="margin-top:6px">「<strong>Brain デプロイ完了</strong>」と表示されれば Step 7 は完了です。</div>
+              <div style="margin-top:7px">「<strong>Brain デプロイ完了</strong>」と表示されれば Step 7 は完了です。</div>
             </div>
-            <div class="note" style="margin-top:10px">
+            <div class="note" style="margin-top:12px">
               <strong>⚡ 途中で Action needed が表示されたら</strong>：ターミナル最後の「<code>Action needed:</code>」行に従って、<strong>1Password Desktop → Settings → Developer → Command Line Interface を ON</strong>、および <code>gws auth login</code> などを実行してください。
             </div>
           </div>
@@ -1428,10 +1329,7 @@
               <span class="step-emoji">🚀</span>
               <span class="step-title">初回セッションを起動する</span>
             </div>
-            <p class="step-desc">
-              Claude アプリを開いて最初のセッションを起動します。<br>
-              <strong>/ry-in</strong> を実行すると、環境の自動チェックと残りのセットアップが完了します。
-            </p>
+            <p class="step-desc">Claude アプリを開いて最初のセッションを起動します。<strong>/ry-in</strong> を実行すると、環境の自動チェックと残りのセットアップが完了します。</p>
             <div class="cmd-block">
               <div class="cmd-block-header">
                 <span class="cmd-label">Claude のチャット欄に入力</span>
@@ -1454,24 +1352,22 @@
                 <span><strong>MCP セットアップ案内</strong>：Notion など未接続の統合があれば承認手順を提示</span>
               </div>
             </div>
-            <div class="note" style="margin-top:10px">
+            <div class="note" style="margin-top:12px">
               <strong>🔗 Notion 連携の承認</strong>：Brain は Notion MCP が必須です。/ry-in が「未接続」と表示したら、<strong>Claude アプリ → Settings → Integrations → Notion → Connect</strong> から OAuth を承認してください。
             </div>
-            <div class="what-happens" style="margin-top:10px">
-              <strong>完了の確認</strong>：「<code>✅ checkin 完了</code>」と「<code>CLI 4/4 OK</code>」が表示されれば、すべてのセットアップが完了しています。
+            <div class="what-happens" style="margin-top:12px">
+              <strong>完了の確認</strong>：「<code style="color:#047857;font-family:monospace">✅ checkin 完了</code>」と「<code style="color:#047857;font-family:monospace">CLI 4/4 OK</code>」が表示されれば、すべてのセットアップが完了しています。
             </div>
           </div>
         </div>
 
-      </div>
+      </div><!-- /steps -->
 
       <!-- Complete Banner -->
       <div class="complete-banner" id="complete">
         <div class="check-icon">✓</div>
         <h2>セットアップ完了！</h2>
-        <p>Brain が Claude アプリ上で動作する準備が整いました。<br>
-        毎回のセッションは <strong>/ry-in</strong> で開始し、<strong>/ry-out</strong> で終了します。</p>
-
+        <p>Brain が Claude アプリ上で動作する準備が整いました。毎回のセッションは <strong>/ry-in</strong> で開始し、<strong>/ry-out</strong> で終了します。</p>
         <div class="commands-grid">
           <div class="cmd-category">
             <div class="cmd-category-title">セッション</div>
@@ -1504,9 +1400,8 @@
         </div>
       </div>
 
-      <!-- Post-install utilities -->
+      <!-- Post-install -->
       <div class="post-install">
-
         <div class="util-card" id="brain-doctor">
           <div class="util-card-header">
             <span class="util-card-icon">🩺</span>
@@ -1538,7 +1433,6 @@
             <div class="cmd-code" id="brain-update-cmd">cd ~/.claude/brain && git pull origin main && bash install.sh</div>
           </div>
         </div>
-
       </div>
 
     </div><!-- /container -->
@@ -1546,40 +1440,31 @@
 </div><!-- /layout -->
 
 <script>
-/* ── Copy button ──────────────────────────────────────────────── */
+/* ── Copy ─────────────────────────────────────────────────────── */
 function copyCmd(btn, id) {
   const text = document.getElementById(id).textContent.trim();
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = '✓ コピー済み';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'コピー';
-      btn.classList.remove('copied');
-    }, 2000);
+    setTimeout(() => { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 2000);
   });
 }
 
 /* ── Mobile drawer ────────────────────────────────────────────── */
 function openDrawer() {
-  const drawer = document.getElementById('mobile-drawer');
-  const sidebar = document.getElementById('sidebar');
   const panel = document.getElementById('drawer-nav-content');
-  panel.innerHTML = sidebar.innerHTML;
-  // wire up links in drawer to close drawer
-  panel.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', closeDrawer);
-  });
-  drawer.classList.add('open');
+  panel.innerHTML = document.getElementById('sidebar').innerHTML;
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+  document.getElementById('mobile-drawer').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function closeDrawer() {
   document.getElementById('mobile-drawer').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-/* ── Active nav highlight (IntersectionObserver) ──────────────── */
-const navIds = [
+/* ── Active nav ───────────────────────────────────────────────── */
+const navMap = [
   { section: 'access-section', nav: null },
   { section: 'step-1',   nav: 'nav-step-1' },
   { section: 'step-2',   nav: 'nav-step-2' },
@@ -1592,113 +1477,83 @@ const navIds = [
   { section: 'complete', nav: 'nav-complete' },
 ];
 
-let activeNav = null;
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const match = navIds.find(n => n.section === entry.target.id);
-    if (!match || !match.nav) return;
-    const el = document.getElementById(match.nav);
+let active = null;
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const m = navMap.find(n => n.section === e.target.id);
+    if (!m?.nav) return;
+    const el = document.getElementById(m.nav);
     if (!el) return;
-    if (activeNav) activeNav.classList.remove('active');
+    if (active) active.classList.remove('active');
     el.classList.add('active');
-    activeNav = el;
+    active = el;
   });
-}, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+}, { rootMargin: '-15% 0px -65% 0px', threshold: 0 });
 
-navIds.forEach(({ section }) => {
+navMap.forEach(({ section }) => {
   const el = document.getElementById(section);
-  if (el) observer.observe(el);
+  if (el) obs.observe(el);
 });
 
-/* ── GitHub username normalize + invite ───────────────────────── */
+/* ── Invite ───────────────────────────────────────────────────── */
 function normalizeUsername(raw) {
   if (!raw) return '';
   let v = raw.trim();
   const m = v.match(/github\.com\/([^\/?#\s]+)/i);
   if (m) v = m[1];
-  v = v.replace(/^@+/, '');
-  v = v.replace(/[\/\s]+$/g, '');
-  return v;
+  return v.replace(/^@+/, '').replace(/[\/\s]+$/g, '');
 }
 
 async function requestAccess() {
   const input = document.getElementById('github-username');
   const btn = document.getElementById('invite-btn');
   const result = document.getElementById('invite-result');
-  const raw = input.value;
-  const username = normalizeUsername(raw);
+  const username = normalizeUsername(input.value);
+  if (username !== input.value.trim()) input.value = username;
 
-  if (username && username !== raw.trim()) input.value = username;
-
-  const validPattern = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/;
-  if (!username || !validPattern.test(username)) {
-    showResult(result, 'error',
-      '❌ GitHub ユーザー名の形式が正しくありません。' +
-      '<br><span style="font-size:12px">例: <code>asamin09</code>（URL や @ は不要）</span>');
-    input.focus();
+  const valid = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(username);
+  if (!username || !valid) {
+    showResult(result, 'error', '❌ GitHub ユーザー名の形式が正しくありません。<br><span style="font-size:12px">例: <code>your-username</code>（URL や @ は不要）</span>');
     input.style.borderColor = '#dc2626';
     setTimeout(() => { input.style.borderColor = ''; }, 1500);
     return;
   }
 
-  btn.disabled = true;
-  btn.textContent = '送信中...';
-  result.style.display = 'none';
+  btn.disabled = true; btn.textContent = '送信中...'; result.style.display = 'none';
 
   try {
     const r = await fetch('https://invite-api-nine.vercel.app/api/invite', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username })
     });
-
     let data;
-    try { data = await r.json(); }
-    catch { throw new Error(`サーバー応答エラー (HTTP ${r.status})`); }
+    try { data = await r.json(); } catch { throw new Error(`サーバーエラー (HTTP ${r.status})`); }
 
     if (data.status === 'invited') {
-      showResult(result, 'success',
-        '✅ 招待を送信しました！GitHub からのメールを確認して「Accept invitation」を押してください。' +
-        '<br><span style="font-size:12px">メールが見つからない場合は ' +
-        '<a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:#15803d">招待通知一覧</a> を確認。</span>');
+      showResult(result, 'success', '✅ 招待を送信しました！GitHub からのメールで「Accept invitation」を押してください。');
       btn.textContent = '✓ 申請済み';
     } else if (data.status === 'already_member') {
       showResult(result, 'info', '✅ すでにアクセス権があります。Step 1 へ進んでください。');
       btn.textContent = '✓ 確認済み';
     } else {
-      throw new Error(data.error || `不明なエラー (HTTP ${r.status})`);
+      throw new Error(data.error || '不明なエラー');
     }
-  } catch (e) {
-    const msg = e.message || 'ネットワークエラー';
-    showResult(result, 'error',
-      '❌ ' + msg +
-      '<div style="margin-top:8px;font-size:12px">' +
-      '解決しない場合は管理者に直接 DM してください:<br>' +
-      '<code style="background:var(--bg);border:1px solid var(--border);padding:4px 8px;border-radius:5px;display:inline-block;margin-top:4px;user-select:all">' +
-      'Brain セットアップ招待希望 / GitHub: ' + (username || raw) + '</code></div>');
-    btn.disabled = false;
-    btn.textContent = '招待を申請する →';
+  } catch(e) {
+    showResult(result, 'error', '❌ ' + (e.message || 'ネットワークエラー') + '<br><span style="font-size:12px">解決しない場合は管理者に直接 DM してください。</span>');
+    btn.disabled = false; btn.textContent = '招待を申請する →';
   }
 }
 
 function showResult(el, type, html) {
-  const styles = {
-    success: { bg: '#f0fdf4', border: '#bbf7d0', color: '#166534' },
-    info:    { bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af' },
-    error:   { bg: '#fef2f2', border: '#fecaca', color: '#991b1b' }
-  };
-  const s = styles[type] || styles.error;
-  el.style.display = 'block';
-  el.style.background = s.bg;
-  el.style.border = '1px solid ' + s.border;
-  el.style.color = s.color;
-  el.style.borderRadius = '8px';
-  el.style.padding = '10px 14px';
+  const s = {
+    success: { bg:'#f0fdf4', border:'#86efac', color:'#166534' },
+    info:    { bg:'#eff6ff', border:'#93c5fd', color:'#1d4ed8' },
+    error:   { bg:'#fef2f2', border:'#fca5a5', color:'#991b1b' }
+  }[type] || {};
+  Object.assign(el.style, { display:'block', background:s.bg, border:`1px solid ${s.border}`, color:s.color });
   el.innerHTML = html;
 }
 </script>
-
 </body>
 </html>
