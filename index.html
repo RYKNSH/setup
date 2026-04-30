@@ -596,30 +596,37 @@
   .complete-banner p {
     font-size: 14px;
     color: #5a8a5a;
-    max-width: 360px;
+    max-width: 400px;
     margin: 0 auto;
     line-height: 1.7;
   }
 
-  .commands-summary {
-    margin-top: 24px;
-    background: #0a120a;
-    border: 1px solid #162216;
-    border-radius: 10px;
-    padding: 16px 20px;
+  /* ── Commands grid ───────────────────────────────────────────── */
+  .commands-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
     text-align: left;
   }
 
-  .commands-summary p {
-    font-size: 12px;
-    color: #4a7a4a;
-    margin-bottom: 10px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .cmd-category {
+    background: #0a120a;
+    border: 1px solid #162216;
+    border-radius: 10px;
+    padding: 14px 16px;
   }
 
-  .commands-summary code {
+  .cmd-category-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3a7a3a;
+    margin-bottom: 10px;
+  }
+
+  .cmd-category code {
     display: block;
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 12px;
@@ -627,11 +634,69 @@
     line-height: 2;
   }
 
-  @media (max-width: 480px) {
+  .cmd-category code span {
+    color: #3a6a3a;
+    font-size: 11px;
+  }
+
+  /* ── Doctor / Update cards ───────────────────────────────────── */
+  .post-install {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .util-card {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+
+  .util-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .util-card-icon {
+    font-size: 18px;
+  }
+
+  .util-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e8e8e8;
+  }
+
+  .util-card-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #555;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 100px;
+    padding: 2px 8px;
+    margin-left: auto;
+  }
+
+  .util-card p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 560px) {
     .download-card { flex-direction: column; align-items: flex-start; }
     .cmd-code { font-size: 11px; }
     .access-form { flex-direction: column; }
     .access-btn { width: 100%; text-align: center; }
+    .commands-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -646,7 +711,7 @@
     所要時間：約 10〜15 分
   </div>
   <div style="margin-top:10px;font-size:10px;font-weight:600;letter-spacing:0.12em;color:#444;">
-    LAST UPDATED · 2026-04-19
+    LAST UPDATED · 2026-04-30
   </div>
 </div>
 
@@ -917,8 +982,14 @@
           <div class="cmd-code" id="brain-install">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</div>
         </div>
         <div class="what-happens">
-          <strong>何が起きる？</strong> <code>~/.claude/</code> に Brain がクローンされ、<strong>Node.js・1Password CLI・Google Workspace CLI</strong> などの必要ツールが自動でインストールされます。数分かかります。<br>
-          「<strong>Installation Complete</strong>」と表示されれば Step 7 は完了です。
+          <strong>何が起きる？</strong> <code style="color:#a8d8a8">~/.claude/</code> に Brain がクローンされ、以下が自動で行われます：
+          <ul style="margin-top:8px;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
+            <li><strong>Node.js・1Password CLI・Google Workspace CLI</strong> などの必須ツールをインストール</li>
+            <li><strong>マシン ID 登録</strong>：このマシン固有の識別情報（<code style="color:#a8d8a8">~/.claude/machine.conf</code>）を自動生成</li>
+            <li><strong>スキル・コマンド・フック</strong>（27スキル、26コマンド）を展開</li>
+            <li><strong>診断スクリプト</strong>（<code style="color:#a8d8a8">brain-doctor.sh</code>）を <code style="color:#a8d8a8">~/.claude/admin/</code> に配備</li>
+          </ul>
+          <div style="margin-top:8px">「<strong>Brain デプロイ完了</strong>」と表示されれば Step 7 は完了です。</div>
         </div>
         <div class="note" style="margin-top:12px">
           <strong>⚡ 途中で Action needed が表示されたら</strong>：ターミナル最後の「<code>Action needed:</code>」行に従って、<strong>1Password Desktop → Settings → Developer → Command Line Interface を ON</strong>、および <code>gws auth login</code> などを実行してください。次の Step 8 でまとめて確認します。
@@ -977,14 +1048,74 @@
     <h2>セットアップ完了！</h2>
     <p>Brain が Claude アプリ上で動作する準備が整いました。<br>
     毎回のセッションは <strong>/ry-in</strong> で開始し、<strong>/ry-out</strong> で終了します。</p>
-    <div class="commands-summary">
-      <p>よく使うコマンド</p>
-      <code>/ry-in　　 — セッション開始（前回の続きから自動再開）</code>
-      <code>/ry-out　　— セッション終了（学びを次回に引き継ぐ）</code>
-      <code>/ry-init　 — 新しいプロジェクト / キャンペーンを初期化</code>
-      <code>/ry-debate — マルチペルソナで議題を多角検証</code>
-      <code>/ry-review — コードレビュー（差分を学習に還元）</code>
+
+    <div class="commands-grid">
+      <div class="cmd-category">
+        <div class="cmd-category-title">セッション</div>
+        <code>/ry-in <span>— セッション開始</span></code>
+        <code>/ry-out <span>— セッション終了</span></code>
+        <code>/ry-pm <span>— プロジェクト管理</span></code>
+        <code>/ry-init <span>— プロジェクト初期化</span></code>
+      </div>
+      <div class="cmd-category">
+        <div class="cmd-category-title">マーケティング</div>
+        <code>/ry-lp <span>— LP 戦略・コピー</span></code>
+        <code>/ry-craft <span>— LP HTML 実装</span></code>
+        <code>/ry-ads <span>— 広告設計・コピー</span></code>
+        <code>/ry-webinar <span>— ウェビナー台本</span></code>
+      </div>
+      <div class="cmd-category">
+        <div class="cmd-category-title">クリエイティブ</div>
+        <code>/ry-slide <span>— スライド生成</span></code>
+        <code>/ry-art <span>— ビジュアル生成</span></code>
+        <code>/ry-content <span>— SNS コンテンツ</span></code>
+        <code>/ry-page <span>— エディトリアル</span></code>
+      </div>
+      <div class="cmd-category">
+        <div class="cmd-category-title">品質・分析</div>
+        <code>/ry-review <span>— コードレビュー</span></code>
+        <code>/ry-sim <span>— ペルソナ検証</span></code>
+        <code>/ry-debate <span>— 多角ディベート</span></code>
+        <code>/ry-think <span>— 第一原理分解</span></code>
+      </div>
     </div>
+  </div>
+
+  <!-- Post-install utilities -->
+  <div class="post-install">
+
+    <div class="util-card">
+      <div class="util-card-header">
+        <span class="util-card-icon">🩺</span>
+        <span class="util-card-title">Brain の健康チェック</span>
+        <span class="util-card-badge">いつでも実行可</span>
+      </div>
+      <p>接続・認証・テレメトリに問題が起きたと感じたら、診断スクリプトを実行してください。マシン ID・push 権限・フック状態をまとめて確認できます。</p>
+      <div class="cmd-block" style="margin-bottom:0">
+        <div class="cmd-block-header">
+          <span class="cmd-label">ターミナルで実行</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'brain-doctor')">コピー</button>
+        </div>
+        <div class="cmd-code" id="brain-doctor">bash ~/.claude/admin/brain-doctor.sh</div>
+      </div>
+    </div>
+
+    <div class="util-card">
+      <div class="util-card-header">
+        <span class="util-card-icon">🔄</span>
+        <span class="util-card-title">Brain を最新版に更新する</span>
+        <span class="util-card-badge">新バージョンが出たら</span>
+      </div>
+      <p>管理者から「アップデートあり」と連絡を受けたら、以下のコマンドを実行してください。新スキルや改善が自動で反映されます。</p>
+      <div class="cmd-block" style="margin-bottom:0">
+        <div class="cmd-block-header">
+          <span class="cmd-label">ターミナルで実行</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'brain-update')">コピー</button>
+        </div>
+        <div class="cmd-code" id="brain-update">cd ~/.claude/brain && git pull origin main && bash install.sh</div>
+      </div>
+    </div>
+
   </div>
 
 </div>
