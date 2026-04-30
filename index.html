@@ -71,9 +71,28 @@
   }
 
   .sidebar-logo {
-    padding: 24px 20px 18px;
+    padding: 20px 20px 16px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 6px;
+  }
+
+  .sidebar-artistory {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    text-decoration: none;
+  }
+
+  .sidebar-artistory-wordmark {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #FF80ED 0%, #9F40FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .sidebar-logo-badge {
@@ -942,6 +961,18 @@
   <!-- Sidebar -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-logo">
+      <a class="sidebar-artistory" href="https://artistory.jp" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 1006 1003" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="artistory-sidebar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF80ED"/>
+              <stop offset="100%" stop-color="#9F40FF"/>
+            </linearGradient>
+          </defs>
+          <path fill-rule="evenodd" fill="url(#artistory-sidebar-grad)" d="M483.141,492.911 L454.440,340.345 C461.486,337.323 467.528,335.813 472.567,335.813 C483.637,335.813 491.945,343.118 497.491,357.716 C502.023,371.818 510.827,417.135 523.926,493.666 C517.884,497.195 510.579,498.953 502.023,498.953 C493.455,498.953 487.165,496.947 483.141,492.911 L483.141,492.911 ZM490.694,761.036 C514.355,761.036 540.035,757.519 567.732,750.462 C595.418,743.416 618.832,733.090 637.973,719.495 C644.511,724.534 647.792,731.084 647.792,739.132 C647.792,751.217 633.689,762.806 605.496,773.875 C577.291,784.957 548.095,790.751 517.884,791.247 L534.500,883.391 C541.038,921.662 564.204,951.118 603.986,971.759 C643.756,992.399 692.353,1002.725 749.755,1002.725 C868.074,1002.725 953.421,968.738 1005.795,900.762 L833.591,188.533 C818.485,125.597 775.930,77.507 705.948,44.275 C644.511,15.078 570.494,0.469 483.896,0.469 C423.474,0.469 365.317,7.774 309.426,22.372 C253.536,36.982 205.446,57.115 165.168,82.794 L4.293,801.821 C1.768,811.899 0.517,823.476 0.517,836.564 C0.517,885.409 26.196,925.309 77.555,956.275 C128.915,987.242 190.588,1002.725 262.599,1002.725 C316.979,1002.725 365.813,993.284 409.123,974.402 C452.422,955.520 478.857,936.768 488.428,918.134 C480.875,908.067 473.818,866.775 467.280,794.268 C428.005,791.754 394.643,785.582 367.205,775.763 C339.756,765.945 326.043,753.742 326.043,739.132 C326.043,733.090 328.556,726.552 333.595,719.495 C370.345,747.193 422.718,761.036 490.694,761.036 L490.694,761.036 Z"/>
+        </svg>
+        <span class="sidebar-artistory-wordmark">ARTISTORY</span>
+      </a>
       <div class="sidebar-logo-badge">✦ Docs</div>
       <div class="sidebar-logo-title">RYKNSH Brain<br>セットアップガイド</div>
     </div>
