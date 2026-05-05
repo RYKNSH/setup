@@ -1452,16 +1452,19 @@
           <div class="util-card-header">
             <span class="util-card-icon">🔄</span>
             <span class="util-card-title">Brain を最新版に更新する</span>
-            <span class="util-card-badge">新バージョンが出たら</span>
+            <span class="util-card-badge">初回1回だけ</span>
           </div>
-          <p>管理者から「アップデートあり」と連絡を受けたら、以下のコマンドを実行してください。新スキルや改善が自動で反映されます。</p>
-          <div class="cmd-block" style="margin-bottom:0">
+          <p>以下のコマンドを<strong>一度だけ</strong>実行してください。これ以降は <code>claude</code> 起動時に裏で自動更新されます（手動更新は不要）。</p>
+          <div class="cmd-block" style="margin-bottom:12px">
             <div class="cmd-block-header">
               <span class="cmd-label">ターミナルで実行</span>
               <button class="copy-btn" onclick="copyCmd(this, 'brain-update-cmd')">コピー</button>
             </div>
             <div class="cmd-code" id="brain-update-cmd">cd ~/.claude/brain && git pull origin main && bash install.sh</div>
           </div>
+          <p style="font-size:13px; color:var(--text-muted); margin:0">
+            ✅ GitHub の <code>push</code> 権限は不要になりました。テレメトリは GitHub Issues 経由で送信され、受信側 Action が自動取り込みます。
+          </p>
         </div>
       </div>
 
