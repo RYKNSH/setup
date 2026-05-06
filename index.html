@@ -987,6 +987,9 @@
       <a class="sidebar-link" href="#brain-update">
         <span class="uc-icon">🔄</span> Brain を更新したい
       </a>
+      <a class="sidebar-link" href="#auth-fix">
+        <span class="uc-icon">🔓</span> 認証が頻繁に出る
+      </a>
       <a class="sidebar-link" href="#brain-doctor">
         <span class="uc-icon">🩺</span> 問題が起きた
       </a>
@@ -1051,7 +1054,7 @@
           所要時間：約 10〜15 分
         </div>
         <div class="hero-pill">
-          LAST UPDATED · 2026-04-30
+          LAST UPDATED · 2026-05-06
         </div>
       </div>
     </div>
@@ -1464,6 +1467,64 @@
           </div>
           <p style="font-size:13px; color:var(--text-muted); margin:0">
             ✅ GitHub の <code>push</code> 権限は不要になりました。テレメトリは GitHub Issues 経由で送信され、受信側 Action が自動取り込みます。
+          </p>
+        </div>
+
+        <div class="util-card" id="auth-fix">
+          <div class="util-card-header">
+            <span class="util-card-icon">🔓</span>
+            <span class="util-card-title">認証プロンプトを激減させる（2026-05-06 update）</span>
+            <span class="util-card-badge">自動適用</span>
+          </div>
+          <p>「Auto Mode でも認証が頻繁に出る」「1Password アクセスが毎回出る」問題を解決する <strong>5層対策</strong>を Brain に組み込みました。上の更新コマンドを叩けば自動配備されます。</p>
+
+          <div style="background:var(--bg-subtle); border-radius:12px; padding:14px 16px; margin:12px 0; font-size:13px;">
+            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
+              <span style="color:var(--accent); font-weight:700">P0</span>
+              <span><strong>古い Claude Code バイナリ自動退避</strong> ─ <code>~/.local/bin/claude</code> が古ければ <code>.old-X.X.X</code> にリネームし、最新版（Auto Mode 搭載）が PATH 優先になります</span>
+            </div>
+            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
+              <span style="color:var(--accent); font-weight:700">P1</span>
+              <span><strong>1Password Vault 自動移行</strong> ─ meta-ads MCP の参照を <code>op://Private/</code> から <code>op://Automation/</code> に移行（AI agent 用 Vault に統一）</span>
+            </div>
+            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
+              <span style="color:var(--accent); font-weight:700">P2</span>
+              <span><strong>Bash 許可リスト 80件自動配備</strong> ─ <code>op read</code> / <code>gh issue:*</code> / <code>git status:*</code> 等の read-only コマンドはプロンプト無しで実行</span>
+            </div>
+            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
+              <span style="color:var(--accent); font-weight:700">P3</span>
+              <span><strong>1Password session キャッシュ</strong> ─ biometric 1回で 30分キャッシュ。同セッション中は再プロンプト無し</span>
+            </div>
+            <div style="display:flex; align-items:start; gap:8px">
+              <span style="color:var(--accent); font-weight:700">P4</span>
+              <span><strong>MR-11 違反の pre-commit 検出</strong> ─ <code>op://Private/</code> 等の禁止 Vault 参照が混入したらコミットを reject</span>
+            </div>
+          </div>
+
+          <p style="font-size:13px; color:var(--text-muted); margin:0">
+            🎯 効果: <strong>認証プロンプト 95% 削減見込み</strong>。Auto Mode の classifier と組み合わせて、危険でない操作は無人実行。
+          </p>
+        </div>
+
+        <div class="util-card" id="op-trust">
+          <div class="util-card-header">
+            <span class="util-card-icon">🔐</span>
+            <span class="util-card-title">1Password 永続トラスト設定（任意）</span>
+            <span class="util-card-badge">prompt 完全ゼロ化</span>
+          </div>
+          <p>per-app 認可ダイアログ（「Claude CLI に 1Password アクセスを許可しますか？」）も <strong>完全に消したい場合</strong>、1Password 設定で「常時許可」を有効化します。</p>
+          <p style="font-size:13px; color:var(--text-muted); margin:6px 0 12px">
+            ※ Brain 更新コマンドを TTY（ターミナル）で叩くと自動でこのスクリプトが起動します。手動で叩く場合のみ以下のコマンドを実行してください。
+          </p>
+          <div class="cmd-block" style="margin-bottom:12px">
+            <div class="cmd-block-header">
+              <span class="cmd-label">ターミナルで実行</span>
+              <button class="copy-btn" onclick="copyCmd(this, 'op-trust-cmd')">コピー</button>
+            </div>
+            <div class="cmd-code" id="op-trust-cmd">bash ~/.claude/brain/brain/admin/setup-1password-trust.sh</div>
+          </div>
+          <p style="font-size:13px; color:var(--text-muted); margin:0">
+            実行内容: 1) op session 取得（biometric 1回）→ 2) <code>~/.claude/.op-session</code> に token cache → 3) 1P 設定パネルへの誘導（「常時許可」「自動ロック 4時間」推奨）
           </p>
         </div>
       </div>
