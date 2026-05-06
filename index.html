@@ -1010,19 +1010,10 @@
         <span class="step-num">3</span> ターミナルを開く
       </a>
       <a class="sidebar-link" id="nav-step-4" href="#step-4">
-        <span class="step-num">4</span> Homebrew
-      </a>
-      <a class="sidebar-link" id="nav-step-5" href="#step-5">
-        <span class="step-num">5</span> GitHub CLI
-      </a>
-      <a class="sidebar-link" id="nav-step-6" href="#step-6">
-        <span class="step-num">6</span> GitHub ログイン
-      </a>
-      <a class="sidebar-link" id="nav-step-7" href="#step-7">
-        <span class="step-num">7</span> Brain をインストール
+        <span class="step-num">4</span> 全部まとめてインストール
       </a>
       <a class="sidebar-link" id="nav-step-8" href="#step-8">
-        <span class="step-num">8</span> 初回セッション
+        <span class="step-num">5</span> 初回セッション
       </a>
       <a class="sidebar-link" id="nav-complete" href="#complete">
         <span class="step-num">✓</span> セットアップ完了
@@ -1225,8 +1216,57 @@
           </div>
         </div>
 
-        <!-- STEP 4 -->
+        <!-- STEP 4 (NEW): All-in-One -->
         <div class="step" id="step-4">
+          <div class="step-line"></div>
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🚀</span>
+              <span class="step-title">全部まとめてインストール（推奨・1コマンド）</span>
+              <span class="util-card-badge" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe); color:white; border:none">NEW</span>
+            </div>
+            <p class="step-desc"><strong>下のコマンド1つだけ</strong>で、Homebrew・GitHub CLI・GitHub ログイン・Brain インストールまで全自動で行います。所要時間 5〜10分。</p>
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">コマンド（これだけ！）</span>
+                <button class="copy-btn" onclick="copyCmd(this, 'setup-all')">コピー</button>
+              </div>
+              <div class="cmd-code" id="setup-all">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/setup-all.sh | bash</div>
+            </div>
+            <div class="what-happens">
+              <strong>何が起きる？</strong> 以下を順に自動実行します（各ステップは idempotent = 失敗しても再実行で続きから可）：
+              <ul>
+                <li><strong>① Xcode CLT</strong>：開発ツールの基盤を確認・インストール</li>
+                <li><strong>② Homebrew</strong>：Mac のパッケージマネージャをインストール（Mac パスワード1回）</li>
+                <li><strong>③ GitHub CLI (gh)</strong>：GitHub 操作ツールをインストール</li>
+                <li><strong>④ GitHub ログイン</strong>：ブラウザが開く → 8桁コードを入力 → Authorize クリック</li>
+                <li><strong>⑤ Brain インストール</strong>：~/.claude に Brain 全体を展開（マシン ID・スキル・hook・診断スクリプト）</li>
+              </ul>
+              <div style="margin-top:7px">「<strong>All-in-One Setup 完了</strong>」と表示されれば全部終わりです。</div>
+            </div>
+            <div class="note" style="margin-top:12px">
+              <strong>💡 中断してしまったら</strong>：同じコマンドをもう一度実行すれば、終わっていない箇所だけ続きから自動再開します。
+            </div>
+            <details style="margin-top:16px">
+              <summary style="cursor:pointer; color:var(--text-muted); font-size:13px; user-select:none">▸ 手動で1つずつインストールしたい場合（旧 Step 4-7）</summary>
+              <div style="margin-top:12px; padding:14px 16px; background:var(--bg-subtle); border-radius:12px; font-size:13px;">
+                <p style="margin:0 0 8px 0; color:var(--text-muted)">
+                  上の全自動コマンドが推奨ですが、各ステップを手動で実行したい場合は以下を順に行ってください：
+                </p>
+                <ol style="margin:0; padding-left:20px; line-height:2.0">
+                  <li><strong>Homebrew:</strong> <code style="font-size:12px">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
+                  <li><strong>GitHub CLI:</strong> <code>brew install gh</code></li>
+                  <li><strong>GitHub ログイン:</strong> <code>gh auth login</code></li>
+                  <li><strong>Brain:</strong> <code>curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</code></li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- STEP 4-LEGACY (collapsed inside step-4): kept for backwards anchor -->
+        <div class="step" id="step-4-old" style="display:none">
           <div class="step-line"></div>
           <div class="step-number">4</div>
           <div class="step-content">
@@ -1242,121 +1282,18 @@
               </div>
               <div class="cmd-code" id="brew-install">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
             </div>
-            <div class="what-happens">
-              <strong>何が起きる？</strong> パスワードを聞かれたら Mac のログインパスワードを入力してください（入力中は画面に何も表示されませんが正常です）。数分かかります。
-            </div>
           </div>
         </div>
 
-        <!-- STEP 5 -->
-        <div class="step" id="step-5">
-          <div class="step-line"></div>
-          <div class="step-number">5</div>
-          <div class="step-content">
-            <div class="step-header">
-              <span class="step-emoji">🐙</span>
-              <span class="step-title">GitHub CLI をインストール</span>
-            </div>
-            <p class="step-desc">ターミナルから GitHub を操作するためのツールです。プライベートリポジトリへのアクセスに必要です。</p>
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">コマンド</span>
-                <button class="copy-btn" onclick="copyCmd(this, 'gh-install')">コピー</button>
-              </div>
-              <div class="cmd-code" id="gh-install">brew install gh</div>
-            </div>
-            <div class="what-happens">
-              <strong>何が起きる？</strong> GitHub CLI のダウンロードとインストールが自動で行われます。1〜2 分で完了します。
-            </div>
-          </div>
-        </div>
+        <!-- STEP 5/6/7 はすべて新 Step 4 (setup-all.sh) に統合 -->
+        <!-- backwards-compat anchors -->
+        <div id="step-5" style="display:none"></div>
+        <div id="step-6" style="display:none"></div>
+        <div id="step-7" style="display:none"></div>
 
-        <!-- STEP 6 -->
-        <div class="step" id="step-6">
-          <div class="step-line"></div>
-          <div class="step-number">6</div>
-          <div class="step-content">
-            <div class="step-header">
-              <span class="step-emoji">🔑</span>
-              <span class="step-title">GitHub にログイン</span>
-            </div>
-            <p class="step-desc">ターミナルから GitHub アカウントにログインします。</p>
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">コマンド</span>
-                <button class="copy-btn" onclick="copyCmd(this, 'gh-login')">コピー</button>
-              </div>
-              <div class="cmd-code" id="gh-login">gh auth login</div>
-            </div>
-            <div class="auth-steps">
-              <p>コマンド実行後、順番に選択・入力していきます：</p>
-              <div class="auth-step-item">
-                <div class="auth-num">1</div>
-                <span><strong>? What account do you want to log into?</strong> → <strong>GitHub.com</strong> を選択して return</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">2</div>
-                <span><strong>? What is your preferred protocol?</strong> → <strong>HTTPS</strong> を選択して return</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">3</div>
-                <span><strong>? Authenticate Git with your GitHub credentials?</strong> → <strong>Yes</strong> を選択して return</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">4</div>
-                <span><strong>? How would you like to authenticate?</strong> → <strong>Login with a web browser</strong> を選択して return</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">5</div>
-                <span>画面に <strong>8桁のコード</strong> が表示されます。メモしてから <strong>return</strong> を押してください。ブラウザが開きます。</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">6</div>
-                <span>ブラウザでコードを入力して <strong>「Authorize」</strong> をクリックすればログイン完了です。</span>
-              </div>
-            </div>
-            <div class="what-happens" style="margin-top:12px">
-              <strong>完了の確認</strong>：ターミナルに「Logged in as [ユーザー名]」と表示されれば成功です。
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 7 -->
-        <div class="step" id="step-7">
-          <div class="step-line"></div>
-          <div class="step-number">7</div>
-          <div class="step-content">
-            <div class="step-header">
-              <span class="step-emoji">🧠</span>
-              <span class="step-title">Brain をインストール</span>
-            </div>
-            <p class="step-desc">Brain のコア（AIスキル・コマンド・環境設定）をまとめて導入します。</p>
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">コマンド（これだけ！）</span>
-                <button class="copy-btn" onclick="copyCmd(this, 'brain-install')">コピー</button>
-              </div>
-              <div class="cmd-code" id="brain-install">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</div>
-            </div>
-            <div class="what-happens">
-              <strong>何が起きる？</strong> <code style="color:#047857;font-family:'SF Mono',monospace">~/.claude/</code> に Brain がクローンされ、以下が自動で行われます：
-              <ul>
-                <li><strong>Node.js・1Password CLI・Google Workspace CLI</strong> などの必須ツールをインストール</li>
-                <li><strong>マシン ID 登録</strong>：このマシン固有の識別情報（<code style="color:#047857;font-family:monospace">machine.conf</code>）を自動生成</li>
-                <li><strong>27スキル・26コマンド・フック</strong>を展開</li>
-                <li><strong>診断スクリプト</strong>（<code style="color:#047857;font-family:monospace">brain-doctor.sh</code>）を配備</li>
-              </ul>
-              <div style="margin-top:7px">「<strong>Brain デプロイ完了</strong>」と表示されれば Step 7 は完了です。</div>
-            </div>
-            <div class="note" style="margin-top:12px">
-              <strong>⚡ 途中で Action needed が表示されたら</strong>：ターミナル最後の「<code>Action needed:</code>」行に従って、<strong>1Password Desktop → Settings → Developer → Command Line Interface を ON</strong>、および <code>gws auth login</code> などを実行してください。
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 8 -->
+        <!-- STEP 5 (旧 Step 8): 初回セッション -->
         <div class="step" id="step-8">
-          <div class="step-number">8</div>
+          <div class="step-number">5</div>
           <div class="step-content">
             <div class="step-header">
               <span class="step-emoji">🚀</span>
@@ -1564,9 +1501,6 @@ const navMap = [
   { section: 'step-2',   nav: 'nav-step-2' },
   { section: 'step-3',   nav: 'nav-step-3' },
   { section: 'step-4',   nav: 'nav-step-4' },
-  { section: 'step-5',   nav: 'nav-step-5' },
-  { section: 'step-6',   nav: 'nav-step-6' },
-  { section: 'step-7',   nav: 'nav-step-7' },
   { section: 'step-8',   nav: 'nav-step-8' },
   { section: 'complete', nav: 'nav-complete' },
 ];
