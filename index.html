@@ -1407,6 +1407,33 @@
           </p>
         </div>
 
+        <div class="util-card" id="brain-repair" style="border:2px solid #e74c3c">
+          <div class="util-card-header">
+            <span class="util-card-icon">🔧</span>
+            <span class="util-card-title">緊急リペア（auto_update が止まっている方向け）</span>
+            <span class="util-card-badge" style="background:#e74c3c; color:white; border:none">緊急</span>
+          </div>
+          <p><strong>症状チェック</strong>：以下のいずれかに該当する方は、上の「更新」コマンドではなくこのリペアを実行してください。</p>
+          <ul style="font-size:13px; color:var(--text-muted); margin:8px 0 12px 18px; line-height:1.8">
+            <li>セッション終了しても telemetry issue が repository に届かない</li>
+            <li>「auto_update が動いてない気がする」</li>
+            <li><code style="font-size:12px">git -C ~/.claude/brain branch --show-current</code> で <code style="font-size:12px">fix/auto-commit-*</code> と表示される</li>
+          </ul>
+          <p style="font-size:13px; color:var(--text-muted); margin:0 0 12px 0">
+            原因は session_end の auto-commit 後の main 復帰がサイレント失敗するバグ（2026-05-08 修正済）。既存ユーザーは下のコマンドで一発復帰できます。
+          </p>
+          <div class="cmd-block" style="margin-bottom:12px">
+            <div class="cmd-block-header">
+              <span class="cmd-label">ターミナルで実行</span>
+              <button class="copy-btn" onclick="copyCmd(this, 'brain-repair-cmd')">コピー</button>
+            </div>
+            <div class="cmd-code" id="brain-repair-cmd">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/repair.sh | bash</div>
+          </div>
+          <p style="font-size:13px; color:var(--text-muted); margin:0">
+            実行内容: 1) brain を fetch → 2) 手元の変更を stash で退避 → 3) main に強制 checkout → 4) origin/main に reset → 5) install.sh 再実行
+          </p>
+        </div>
+
         <div class="util-card" id="auth-fix">
           <div class="util-card-header">
             <span class="util-card-icon">🔓</span>
