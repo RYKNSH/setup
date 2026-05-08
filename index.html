@@ -1045,7 +1045,33 @@
           所要時間：約 10〜15 分
         </div>
         <div class="hero-pill">
-          LAST UPDATED · 2026-05-06
+          LAST UPDATED · 2026-05-08
+        </div>
+      </div>
+    </div>
+
+    <!-- 緊急 banner: 既存ユーザー (5 名) 向け -->
+    <div style="max-width: 920px; margin: 32px auto 0; padding: 0 24px;">
+      <div style="background: linear-gradient(135deg, #fff5f5, #ffe8e8); border: 2px solid #e74c3c; border-radius: 16px; padding: 24px;">
+        <div style="display: flex; align-items: start; gap: 16px;">
+          <div style="font-size: 32px; line-height: 1;">🚨</div>
+          <div style="flex: 1;">
+            <h3 style="margin: 0 0 8px 0; color: #c0392b; font-size: 18px;">既存ユーザーの方へ — Brain 凍結バグの一括復旧</h3>
+            <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.7; color: #333;">
+              2026-05-08 までの間に Brain をインストールした方は、<strong>session_end の auto-commit が main 復帰に失敗する既知バグ</strong>で
+              fix/auto-commit-* ブランチに凍結している可能性があります。auto_update が止まり、telemetry も届かない状態です。
+            </p>
+            <p style="margin: 0 0 16px 0; font-size: 14px; line-height: 1.7; color: #333;">
+              <strong>下記のコマンドを 1 回叩いてください</strong>。bootstrap.sh が自動で凍結を検出 → repair.sh に流して main 復帰 → 最新版適用までを行います (1〜3分)。
+            </p>
+            <div style="background: #1f1f1f; color: #fff; padding: 12px 16px; border-radius: 8px; font-family: 'SF Mono', monospace; font-size: 13px; overflow-x: auto;">
+              <code id="emergency-cmd">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</code>
+              <button onclick="navigator.clipboard.writeText(document.getElementById('emergency-cmd').textContent.trim()); this.textContent='✓'" style="float: right; background: #e74c3c; color: #fff; border: 0; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;">コピー</button>
+            </div>
+            <p style="margin: 12px 0 0 0; font-size: 12px; color: #666;">
+              実行内容: 既存 install を検出 → 凍結時は <a href="#brain-repair" style="color: #c0392b;">repair</a> 自動実行 → 通常時は ff-only pull → install.sh 再実行。失敗しません。
+            </p>
+          </div>
         </div>
       </div>
     </div>

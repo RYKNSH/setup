@@ -210,13 +210,43 @@ if [[ -d "${CLAUDE_DIR}/.git" ]]; then
     log_warn "スキップします。手動で確認してください。"
     exit 1
   fi
+
+  # ── 凍結検出 (= 5 ユーザー全員に発生していたバグ) ──
+  # fix/auto-commit-* ブランチで取り残されている場合 or pull が ff-only で失敗する場合
+  # = 自動回復不能な状態 → 即 repair.sh に流して救済する
+  current_branch=$(git -C "$CLAUDE_DIR" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")
+  needs_repair=0
+  if [[ "$current_branch" == fix/auto-commit-* ]]; then
+    needs_repair=1
+    log_warn "fix/auto-commit-* ブランチで凍結を検出 → repair.sh に流します"
+  elif ! git -C "$CLAUDE_DIR" diff --quiet 2>/dev/null || ! git -C "$CLAUDE_DIR" diff --cached --quiet 2>/dev/null; then
+    # uncommitted 変更あり → ff-only pull できない可能性 → repair で安全に
+    needs_repair=1
+    log_warn "uncommitted 変更を検出 → repair.sh に流します (stash で退避保護)"
+  fi
+
+  if [[ $needs_repair -eq 1 ]]; then
+    if curl -fsSL "${SETUP_RAW_URL}/repair.sh" | bash; then
+      log_ok "repair 完了"
+      exit 0
+    else
+      log_error "repair 失敗 — 手動で確認してください"
+      exit 1
+    fi
+  fi
+
   echo "  🔄 既存リポジトリを更新中..."
   if ! git -C "$CLAUDE_DIR" pull --ff-only 2>&1; then
-    log_warn "git pull --ff-only に失敗しました。uncommitted な変更がある可能性があります。"
-    log_warn "次のコマンドで状態を確認してください:"
-    echo "    git -C \"${CLAUDE_DIR}\" status"
-    echo "    git -C \"${CLAUDE_DIR}\" stash && bash bootstrap.sh"
-    exit 1
+    # ff-only 失敗 → repair で救済
+    log_warn "git pull --ff-only 失敗 → repair.sh で自動修復を試行します"
+    if curl -fsSL "${SETUP_RAW_URL}/repair.sh" | bash; then
+      log_ok "repair による更新完了"
+      exit 0
+    else
+      log_error "repair も失敗 — 手動で確認してください"
+      echo "    git -C \"${CLAUDE_DIR}\" status"
+      exit 1
+    fi
   fi
   log_ok "更新完了"
 
