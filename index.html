@@ -1426,7 +1426,7 @@
               <span class="cmd-label">ターミナルで実行</span>
               <button class="copy-btn" onclick="copyCmd(this, 'brain-update-cmd')">コピー</button>
             </div>
-            <div class="cmd-code" id="brain-update-cmd">cd ~/.claude/brain && git pull origin main && bash install.sh</div>
+            <div class="cmd-code" id="brain-update-cmd">cd ~/.claude && git pull origin main && bash install.sh</div>
           </div>
           <p style="font-size:13px; color:var(--text-muted); margin:0">
             ✅ GitHub の <code>push</code> 権限は不要になりました。テレメトリは GitHub Issues 経由で送信され、受信側 Action が自動取り込みます。
@@ -1443,7 +1443,7 @@
           <ul style="font-size:13px; color:var(--text-muted); margin:8px 0 12px 18px; line-height:1.8">
             <li>セッション終了しても telemetry issue が repository に届かない</li>
             <li>「auto_update が動いてない気がする」</li>
-            <li><code style="font-size:12px">git -C ~/.claude/brain branch --show-current</code> で <code style="font-size:12px">fix/auto-commit-*</code> と表示される</li>
+            <li><code style="font-size:12px">git -C ~/.claude branch --show-current</code> で <code style="font-size:12px">fix/auto-commit-*</code> と表示される</li>
           </ul>
           <p style="font-size:13px; color:var(--text-muted); margin:0 0 12px 0">
             原因は session_end の auto-commit 後の main 復帰がサイレント失敗するバグ（2026-05-08 修正済）。既存ユーザーは下のコマンドで一発復帰できます。
@@ -1511,7 +1511,7 @@
               <span class="cmd-label">ターミナルで実行</span>
               <button class="copy-btn" onclick="copyCmd(this, 'op-trust-cmd')">コピー</button>
             </div>
-            <div class="cmd-code" id="op-trust-cmd">bash ~/.claude/brain/brain/admin/setup-1password-trust.sh</div>
+            <div class="cmd-code" id="op-trust-cmd">bash ~/.claude/admin/setup-1password-trust.sh</div>
           </div>
           <p style="font-size:13px; color:var(--text-muted); margin:0">
             実行内容: 1) op session 取得（biometric 1回）→ 2) <code>~/.claude/.op-session</code> に token cache → 3) 1P 設定パネルへの誘導（「常時許可」「自動ロック 4時間」推奨）

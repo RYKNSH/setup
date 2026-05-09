@@ -32,7 +32,15 @@ warn() { echo -e "  ${C_Y}⚠️${C_0}  $1"; }
 fail() { echo -e "  ${C_R}❌${C_0} $1"; }
 info() { echo -e "  ${C_B}ℹ️${C_0}  $1"; }
 
-BRAIN_DIR="${HOME}/.claude/brain"
+# bootstrap.sh は ~/.claude をクローン先とするため標準は ~/.claude/.git。
+# 旧バージョンや手動セットアップで ~/.claude/brain/.git になっているケースも救済。
+if [ -d "${HOME}/.claude/.git" ]; then
+  BRAIN_DIR="${HOME}/.claude"
+elif [ -d "${HOME}/.claude/brain/.git" ]; then
+  BRAIN_DIR="${HOME}/.claude/brain"
+else
+  BRAIN_DIR="${HOME}/.claude"  # for the error message below
+fi
 
 echo ""
 echo "╔══════════════════════════════════════════════════════════════╗"
@@ -47,10 +55,11 @@ echo "╚═══════════════════════�
 echo ""
 
 if [ ! -d "$BRAIN_DIR/.git" ]; then
-  fail "$BRAIN_DIR が brain repo として存在しません"
+  fail "$HOME/.claude (または $HOME/.claude/brain) が brain repo として存在しません"
   fail "新規 install を試みてください: curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/setup-all.sh | bash"
   exit 1
 fi
+info "Brain repo: $BRAIN_DIR"
 
 cd "$BRAIN_DIR"
 
@@ -141,5 +150,5 @@ echo "║   - auto_update が正常に走る                                  �
 echo "║   - session 終了時に telemetry issue が送信される             ║"
 echo "║   - 失敗があれば diagnostic queue に集約される                ║"
 echo "║                                                              ║"
-echo "║   stash 内容を見るには: git -C ~/.claude/brain stash list      ║"
+echo "║   stash 内容を見るには: git -C $BRAIN_DIR stash list"
 echo "╚══════════════════════════════════════════════════════════════╝"
