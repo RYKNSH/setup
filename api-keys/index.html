@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RYKNSH Brain — セットアップガイド</title>
+<title>ANTHROPIC API キー取得ガイド — RYKNSH Brain</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -937,6 +937,7 @@
   }
 </style>
 </head>
+
 <body>
 
 <!-- Mobile nav -->
@@ -978,669 +979,413 @@
 
     <div class="sidebar-section">
       <div class="sidebar-label">ユースケース</div>
-      <a class="sidebar-link" href="#quickstart-section">
+      <a class="sidebar-link" href="../#quickstart-section">
         <span class="uc-icon">🆕</span> はじめての方
       </a>
-      <a class="sidebar-link" href="#step-4">
+      <a class="sidebar-link" href="../#step-4">
         <span class="uc-icon">⚡</span> Claudeは入ってる
       </a>
-      <a class="sidebar-link" href="#brain-update">
+      <a class="sidebar-link" href="../#brain-update">
         <span class="uc-icon">🔄</span> Brain を更新したい
       </a>
-      <a class="sidebar-link" href="#auth-fix">
+      <a class="sidebar-link" href="../#auth-fix">
         <span class="uc-icon">🔓</span> 認証が頻繁に出る
       </a>
-      <a class="sidebar-link" href="#brain-doctor">
+      <a class="sidebar-link" href="../#brain-doctor">
         <span class="uc-icon">🩺</span> 問題が起きた
       </a>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">セットアップ手順</div>
-      <a class="sidebar-link" href="#access-section">
+      <a class="sidebar-link" href="../#access-section">
         <span class="step-num">✉</span> アクセス申請
       </a>
-      <a class="sidebar-link" id="nav-step-1" href="#step-1">
+      <a class="sidebar-link" id="nav-step-1" href="../#step-1">
         <span class="step-num">1</span> 招待メールを承認
       </a>
-      <a class="sidebar-link" id="nav-step-2" href="#step-2">
+      <a class="sidebar-link" id="nav-step-2" href="../#step-2">
         <span class="step-num">2</span> Claude をインストール
       </a>
-      <a class="sidebar-link" id="nav-step-3" href="#step-3">
+      <a class="sidebar-link" id="nav-step-3" href="../#step-3">
         <span class="step-num">3</span> ターミナルを開く
       </a>
-      <a class="sidebar-link" id="nav-step-4" href="#step-4">
+      <a class="sidebar-link" id="nav-step-4" href="../#step-4">
         <span class="step-num">4</span> 全部まとめてインストール
       </a>
-      <a class="sidebar-link" id="nav-step-8" href="#step-8">
+      <a class="sidebar-link" id="nav-step-8" href="../#step-8">
         <span class="step-num">5</span> 初回セッション
       </a>
-      <a class="sidebar-link" id="nav-complete" href="#complete">
+      <a class="sidebar-link" id="nav-complete" href="../#complete">
         <span class="step-num">✓</span> セットアップ完了
       </a>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">メンテナンス</div>
-      <a class="sidebar-link" href="#brain-doctor">
+      <a class="sidebar-link" href="../#brain-doctor">
         <span class="uc-icon">🩺</span> 健康チェック
       </a>
-      <a class="sidebar-link" href="#brain-update">
+      <a class="sidebar-link" href="../#brain-update">
         <span class="uc-icon">🔄</span> Brain を更新する
       </a>
     </div>
-
-    <div class="sidebar-section">
+  <div class="sidebar-section">
       <div class="sidebar-label">APIキー</div>
-      <a class="sidebar-link" href="api-keys/">
+      <a class="sidebar-link active" href="./">
         <span class="uc-icon">🔑</span> ANTHROPIC API
       </a>
     </div>
   </nav>
 
+
   <!-- Main -->
   <main class="main">
 
     <!-- Hero -->
-    <div class="hero">
-      <div class="hero-badge">RYKNSH Brain Setup</div>
-      <h1>AIエージェントを<br>セットアップする</h1>
-      <p>コードの知識は不要です。<br>手順通りにコピペするだけで完了します。</p>
+    <section class="hero">
+      <div class="hero-badge">API KEY GUIDE</div>
+      <h1>ANTHROPIC API キー<br>取得ガイド</h1>
+      <p>OPS ダッシュボードで LINE ナーチャリング本文を AI が動的生成するために必要です。</p>
       <div class="hero-meta">
-        <div class="hero-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-          所要時間：約 10〜15 分
-        </div>
-        <div class="hero-pill">
-          LAST UPDATED · 2026-05-08
-        </div>
+        <span class="hero-pill">⏱️ 所要時間 約 10 分</span>
+        <span class="hero-pill">💳 最小チャージ 5 USD〜</span>
       </div>
-    </div>
-
-    <!-- 緊急 banner: 既存ユーザー (5 名) 向け -->
-    <div style="max-width: 920px; margin: 32px auto 0; padding: 0 24px;">
-      <div style="background: linear-gradient(135deg, #fff5f5, #ffe8e8); border: 2px solid #e74c3c; border-radius: 16px; padding: 24px;">
-        <div style="display: flex; align-items: start; gap: 16px;">
-          <div style="font-size: 32px; line-height: 1;">🚨</div>
-          <div style="flex: 1;">
-            <h3 style="margin: 0 0 8px 0; color: #c0392b; font-size: 18px;">既存ユーザーの方へ — Brain 凍結バグの一括復旧</h3>
-            <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.7; color: #333;">
-              2026-05-08 までの間に Brain をインストールした方は、<strong>session_end の auto-commit が main 復帰に失敗する既知バグ</strong>で
-              fix/auto-commit-* ブランチに凍結している可能性があります。auto_update が止まり、telemetry も届かない状態です。
-            </p>
-            <p style="margin: 0 0 16px 0; font-size: 14px; line-height: 1.7; color: #333;">
-              <strong>下記のコマンドを 1 回叩いてください</strong>。bootstrap.sh が自動で凍結を検出 → repair.sh に流して main 復帰 → 最新版適用までを行います (1〜3分)。
-            </p>
-            <div style="background: #1f1f1f; color: #fff; padding: 12px 16px; border-radius: 8px; font-family: 'SF Mono', monospace; font-size: 13px; overflow-x: auto;">
-              <code id="emergency-cmd">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</code>
-              <button onclick="navigator.clipboard.writeText(document.getElementById('emergency-cmd').textContent.trim()); this.textContent='✓'" style="float: right; background: #e74c3c; color: #fff; border: 0; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;">コピー</button>
-            </div>
-            <p style="margin: 12px 0 0 0; font-size: 12px; color: #666;">
-              実行内容: 既存 install を検出 → 凍結時は <a href="#brain-repair" style="color: #c0392b;">repair</a> 自動実行 → 通常時は ff-only pull → install.sh 再実行。失敗しません。
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <div class="container">
 
-      <!-- Quick start -->
-      <div id="quickstart-section">
-        <div class="section-label">クイックスタート</div>
-        <div class="qs-grid">
-          <a class="qs-card" href="#access-section">
-            <span class="qs-icon">🆕</span>
-            <div class="qs-text">
-              <strong>はじめてセットアップする</strong>
-              <span>アクセス申請 → Step 1 から順番に</span>
-            </div>
-          </a>
-          <a class="qs-card" href="#step-4">
-            <span class="qs-icon">⚡</span>
-            <div class="qs-text">
-              <strong>Claude は入ってる</strong>
-              <span>Step 4（Homebrew）から続きを</span>
-            </div>
-          </a>
-          <a class="qs-card" href="#brain-update">
-            <span class="qs-icon">🔄</span>
-            <div class="qs-text">
-              <strong>Brain を最新版に更新したい</strong>
-              <span>ワンコマンドで完了します</span>
-            </div>
-          </a>
-          <a class="qs-card" href="#brain-doctor">
-            <span class="qs-icon">🩺</span>
-            <div class="qs-text">
-              <strong>問題が起きた・確認したい</strong>
-              <span>診断スクリプトで状態を確認</span>
-            </div>
-          </a>
-        </div>
+      <!-- Quick start cards -->
+      <div class="section-label">⚡ クイックジャンプ</div>
+      <div class="qs-grid">
+        <a class="qs-card" href="#step-1">
+          <span class="qs-icon">🚪</span>
+          <div class="qs-text"><strong>1. Console にサインアップ</strong><span>Anthropic アカウント作成</span></div>
+        </a>
+        <a class="qs-card" href="#step-3">
+          <span class="qs-icon">💳</span>
+          <div class="qs-text"><strong>2. クレジット購入</strong><span>従量課金の前払い (最小 5 USD)</span></div>
+        </a>
+        <a class="qs-card" href="#step-4">
+          <span class="qs-icon">🔑</span>
+          <div class="qs-text"><strong>3. API キー発行</strong><span>sk-ant-... を生成 (一度だけ表示)</span></div>
+        </a>
+        <a class="qs-card" href="#step-6">
+          <span class="qs-icon">📄</span>
+          <div class="qs-text"><strong>4. .env.local に投入</strong><span>プロジェクトに適用 + 動作確認</span></div>
+        </a>
       </div>
 
-      <!-- Access Gate -->
-      <div class="section-label">アクセス申請</div>
-      <div class="access-gate" id="access-section">
-        <div class="access-gate-header">
-          <div class="access-gate-icon">🔐</div>
-          <div>
-            <span class="access-gate-title">アクセス申請</span>
-            <span class="access-gate-badge">最初にやること</span>
-          </div>
-        </div>
-        <p class="access-gate-desc">
-          Brain はプライベートリポジトリのため、インストール前に管理者から招待を受ける必要があります。<br>
-          GitHub ユーザー名を入力して申請ボタンを押してください。
-        </p>
-        <div class="access-form">
-          <div class="access-input-wrap">
-            <span class="access-input-prefix">github.com/</span>
-            <input class="access-input" type="text" id="github-username" placeholder="your-username"
-              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-          </div>
-          <button class="access-btn" id="invite-btn" onclick="requestAccess()">招待を申請する →</button>
-        </div>
-        <div id="invite-result" style="display:none;margin-top:12px;font-size:13px;"></div>
-        <p class="access-hint">
-          <strong>GitHubアカウントをお持ちでない方</strong>は先に github.com で無料登録してください。申請後 GitHub からメールが届きます。<strong>「Accept invitation」</strong>を押してから Step 1 へ。
-        </p>
+      <!-- Why -->
+      <div class="prereq" id="why">
+        <span class="prereq-icon">💡</span>
+        <p><strong>なぜこのキーが必要か</strong> — ViVi Club OPS の <code>/preview#line</code> は <code>steps.json</code> + <code>brand-dna.json</code> を Claude Sonnet 4.5 に渡して LINE 本文を動的生成します。キーが無いと「LINE 本文生成エラー」が出ます。</p>
       </div>
 
-      <div class="prereq">
-        <div class="prereq-icon">💻</div>
-        <p><strong>Mac をお使いの方向けの手順です。</strong><br>
-        申請が完了したら、以下のステップを順番に進めてください。</p>
-      </div>
-
-      <div class="section-label">セットアップ手順</div>
+      <!-- Steps -->
+      <div class="section-label">📋 取得手順</div>
       <div class="steps">
 
-        <!-- STEP 1 -->
+        <!-- Step 1 -->
         <div class="step" id="step-1">
-          <div class="step-line"></div>
           <div class="step-number">1</div>
+          <div class="step-line"></div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🚪</span>
+              <h3 class="step-title">Anthropic Console にサインアップ</h3>
+            </div>
+            <p class="step-desc">ブラウザで Anthropic 公式コンソールを開き、Google アカウント または メール + パスワードでサインアップします。</p>
+            <a class="download-card" href="https://console.anthropic.com/" target="_blank" rel="noopener">
+              <div class="download-card-left">
+                <span class="app-icon" style="background:linear-gradient(135deg,#d97757,#c8521e);">🤖</span>
+                <div class="download-card-text">
+                  <strong>console.anthropic.com を開く</strong>
+                  <span>新規アカウント作成 (Sign up) / 既存ならログイン</span>
+                </div>
+              </div>
+              <span class="download-btn">開く →</span>
+            </a>
+            <div class="note">
+              <strong>注意:</strong> claude.ai (チャット用) と console.anthropic.com (API 用) は別サービスです。API キーは <strong>Console 側</strong>でしか発行できません。
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step" id="step-2">
+          <div class="step-number">2</div>
+          <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
               <span class="step-emoji">✉️</span>
-              <span class="step-title">招待メールを承認する</span>
+              <h3 class="step-title">メール認証 + 組織を作成</h3>
             </div>
-            <p class="step-desc">管理者があなたの GitHub アカウントを招待します。GitHub からメールが届いたら承認してください。</p>
-            <div class="auth-steps">
-              <p>招待の承認手順：</p>
-              <div class="auth-step-item">
-                <div class="auth-num">1</div>
-                <span>GitHub から <strong>「You have been invited to collaborate」</strong> という件名のメールが届きます</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">2</div>
-                <span>メール内の <strong>「Accept invitation」</strong> ボタンをクリックしてください</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">3</div>
-                <span>ブラウザが開き <strong>「You now have access to RYKNSH/ryknsh-brain」</strong> と表示されれば完了です</span>
-              </div>
-            </div>
-            <div class="note" style="margin-top:12px">
-              <strong>⚠️ ボタンが押せない・メールが届かない場合</strong>：<br>
-              <a href="https://github.com/notifications?query=reason%3Ainvitation" target="_blank" style="color:var(--warn);">
-                https://github.com/notifications?query=reason%3Ainvitation
-              </a><br>
-              ※ GitHub にログインした状態で開いてください。
+            <p class="step-desc">サインアップ直後に確認メールが届きます。リンクをクリックして認証。初回ログイン時に「Organization 名」を聞かれるので、好きな名前 (例: <code>ryknsh-personal</code>) で作成。</p>
+            <div class="what-happens">
+              <strong>完了の合図:</strong>
+              <ul>
+                <li>左サイドバーに「Dashboard / API keys / Billing / Settings」が表示される</li>
+                <li>右上に作成した Organization 名が出る</li>
+              </ul>
             </div>
           </div>
         </div>
 
-        <!-- STEP 2 -->
-        <div class="step" id="step-2">
-          <div class="step-line"></div>
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <div class="step-header">
-              <span class="step-emoji">🤖</span>
-              <span class="step-title">Claude アプリをインストール</span>
-            </div>
-            <p class="step-desc">Anthropic 社の AI「Claude」の公式アプリをダウンロードします。</p>
-            <a class="download-card" href="https://claude.ai/download" target="_blank">
-              <div class="download-card-left">
-                <div class="app-icon">✦</div>
-                <div class="download-card-text">
-                  <strong>Claude for Mac</strong>
-                  <span>claude.ai/download</span>
-                </div>
-              </div>
-              <div class="download-btn">ダウンロード →</div>
-            </a>
-            <div class="note" style="margin-top:12px">
-              <strong>💡 インストール後</strong>：アプリを起動してアカウントにサインインしておいてください。
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 3 -->
+        <!-- Step 3 -->
         <div class="step" id="step-3">
-          <div class="step-line"></div>
           <div class="step-number">3</div>
+          <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">🖥️</span>
-              <span class="step-title">ターミナルを開く</span>
+              <span class="step-emoji">💳</span>
+              <h3 class="step-title">支払い方法を登録 + クレジット購入</h3>
             </div>
-            <p class="step-desc">「ターミナル」はMacに最初から入っているアプリです。コマンドを入力して実行するための画面です。</p>
-            <div class="terminal-guide">
-              <div class="terminal-guide-header">
-                <div class="terminal-dot" style="background:#ff5f57"></div>
-                <div class="terminal-dot" style="background:#febc2e"></div>
-                <div class="terminal-dot" style="background:#28c840"></div>
-                <span style="font-size:12px;color:var(--text-3);margin-left:6px">ターミナルの開き方</span>
+            <p class="step-desc">Anthropic API は <strong>従量課金の前払い式</strong>。先にクレジットを買わないと API キーを作っても 401 で弾かれます。</p>
+            <div class="auth-steps">
+              <p>左サイドバーの <strong>Billing</strong> → 上部メニュー <strong>Plans</strong>:</p>
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span><strong>Add payment method</strong> でクレジットカードを登録</span>
               </div>
-              <div class="terminal-guide-body">
-                <ol>
-                  <li>キーボードの <strong>⌘（command）+ スペース</strong> を同時に押す</li>
-                  <li>「ターミナル」と入力する</li>
-                  <li><strong>return（Enter）</strong> を押す</li>
-                </ol>
+              <div class="auth-step-item">
+                <span class="auth-num">2</span>
+                <span><strong>Buy credits</strong> → 最小 <strong>5 USD</strong> から購入 (LINE 本文生成は 1 回 〜0.01 USD なので 5 USD で当面足ります)</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">3</span>
+                <span><strong>Auto reload</strong> を有効にすると残高が一定額を下回ったら自動補充 (推奨)</span>
               </div>
             </div>
             <div class="note">
-              <strong>💡 ヒント</strong>：黒または白の画面が開けば成功です。
+              <strong>料金感覚:</strong> Claude Sonnet 4.5 は input $3 / 1M tokens、output $15 / 1M tokens。LINE 全 25 ステップを一括生成しても 1 回 0.05 USD 程度。
             </div>
           </div>
         </div>
 
-        <!-- STEP 4 (NEW): All-in-One -->
+        <!-- Step 4 -->
         <div class="step" id="step-4">
-          <div class="step-line"></div>
           <div class="step-number">4</div>
+          <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">🚀</span>
-              <span class="step-title">全部まとめてインストール（推奨・1コマンド）</span>
-              <span class="util-card-badge" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe); color:white; border:none">NEW</span>
+              <span class="step-emoji">🔑</span>
+              <h3 class="step-title">API キーを発行</h3>
             </div>
-            <p class="step-desc"><strong>下のコマンド1つだけ</strong>で、Homebrew・GitHub CLI・GitHub ログイン・Brain インストールまで全自動で行います。所要時間 5〜10分。</p>
+            <p class="step-desc">左サイドバー <strong>API keys</strong> → 右上 <strong>Create Key</strong> ボタン。</p>
+            <div class="auth-steps">
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span><strong>Name</strong>: 用途がわかる名前 (例: <code>vivi-club-ops</code>)</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">2</span>
+                <span><strong>Workspace</strong>: Default のまま OK</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">3</span>
+                <span><strong>Create Key</strong> → <code>sk-ant-api03-...</code> が表示される</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">4</span>
+                <span>右の <strong>Copy</strong> ボタンで即コピー</span>
+              </div>
+            </div>
+            <div class="note">
+              <strong>⚠️ 一度だけしか表示されません。</strong> このダイアログを閉じる前に必ずコピーしてください。閉じてしまったら revoke して再発行が必要です。
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step" id="step-5">
+          <div class="step-number">5</div>
+          <div class="step-line"></div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-emoji">🔐</span>
+              <h3 class="step-title">1Password Automation vault に保存 (推奨)</h3>
+            </div>
+            <p class="step-desc">1Password の <code>Automation</code> vault に保存しておくと、複数プロジェクト + リモートエージェントから安全に参照できます (CLAUDE.md MR-11)。</p>
+            <div class="auth-steps">
+              <p>1Password アプリを開いて:</p>
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span>Vaults → <strong>Automation</strong> を選択</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">2</span>
+                <span>右上 <strong>+ New Item</strong> → <strong>API Credential</strong></span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">3</span>
+                <span><strong>Title</strong>: <code>Anthropic-API</code> / <strong>Credential</strong> フィールドに <code>sk-ant-api03-...</code> を貼り付け / Save</span>
+              </div>
+            </div>
             <div class="cmd-block">
               <div class="cmd-block-header">
-                <span class="cmd-label">コマンド（これだけ！）</span>
-                <button class="copy-btn" onclick="copyCmd(this, 'setup-all')">コピー</button>
+                <span class="cmd-label">参照コマンド</span>
+                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
               </div>
-              <div class="cmd-code" id="setup-all">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/setup-all.sh | bash</div>
+              <pre class="cmd-code">op read "op://Automation/Anthropic-API/credential"</pre>
             </div>
             <div class="what-happens">
-              <strong>何が起きる？</strong> 以下を順に自動実行します（各ステップは idempotent = 失敗しても再実行で続きから可）：
+              <strong>1Password CLI を使うには:</strong>
               <ul>
-                <li><strong>① Xcode CLT</strong>：開発ツールの基盤を確認・インストール</li>
-                <li><strong>② Homebrew</strong>：Mac のパッケージマネージャをインストール（Mac パスワード1回）</li>
-                <li><strong>③ GitHub CLI (gh)</strong>：GitHub 操作ツールをインストール</li>
-                <li><strong>④ GitHub ログイン</strong>：ブラウザが開く → 8桁コードを入力 → Authorize クリック</li>
-                <li><strong>⑤ Brain インストール</strong>：~/.claude に Brain 全体を展開（マシン ID・スキル・hook・診断スクリプト）</li>
+                <li>1Password Desktop → Settings → Developer → <strong>Integrate with 1Password CLI</strong> を ON</li>
+                <li>ターミナルで <code>op signin</code> → Touch ID / 指紋認証</li>
               </ul>
-              <div style="margin-top:7px">「<strong>All-in-One Setup 完了</strong>」と表示されれば全部終わりです。</div>
             </div>
-            <div class="note" style="margin-top:12px">
-              <strong>💡 中断してしまったら</strong>：同じコマンドをもう一度実行すれば、終わっていない箇所だけ続きから自動再開します。
-            </div>
-            <details style="margin-top:16px">
-              <summary style="cursor:pointer; color:var(--text-muted); font-size:13px; user-select:none">▸ 手動で1つずつインストールしたい場合（旧 Step 4-7）</summary>
-              <div style="margin-top:12px; padding:14px 16px; background:var(--bg-subtle); border-radius:12px; font-size:13px;">
-                <p style="margin:0 0 8px 0; color:var(--text-muted)">
-                  上の全自動コマンドが推奨ですが、各ステップを手動で実行したい場合は以下を順に行ってください：
-                </p>
-                <ol style="margin:0; padding-left:20px; line-height:2.0">
-                  <li><strong>Homebrew:</strong> <code style="font-size:12px">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
-                  <li><strong>GitHub CLI:</strong> <code>brew install gh</code></li>
-                  <li><strong>GitHub ログイン:</strong> <code>gh auth login</code></li>
-                  <li><strong>Brain:</strong> <code>curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/bootstrap.sh | bash</code></li>
-                </ol>
-              </div>
-            </details>
           </div>
         </div>
 
-        <!-- STEP 4-LEGACY (collapsed inside step-4): kept for backwards anchor -->
-        <div class="step" id="step-4-old" style="display:none">
-          <div class="step-line"></div>
-          <div class="step-number">4</div>
+        <!-- Step 6 -->
+        <div class="step" id="step-6">
+          <div class="step-number">6</div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">🍺</span>
-              <span class="step-title">Homebrew をインストール</span>
+              <span class="step-emoji">📄</span>
+              <h3 class="step-title">プロジェクトの .env.local に投入 + 動作確認</h3>
             </div>
-            <p class="step-desc">Homebrew は「アプリを簡単にインストールできる便利ツール」です。下のコマンドをコピーしてターミナルに貼り付け、<strong>return を押してください。</strong></p>
+            <p class="step-desc">OPS ダッシュボードのプロジェクト直下の <code>.env.local</code> に書き込みます。</p>
+
             <div class="cmd-block">
               <div class="cmd-block-header">
-                <span class="cmd-label">コマンド</span>
-                <button class="copy-btn" onclick="copyCmd(this, 'brew-install')">コピー</button>
+                <span class="cmd-label">1Password 経由で投入 (推奨)</span>
+                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
               </div>
-              <div class="cmd-code" id="brew-install">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+              <pre class="cmd-code">cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
+echo "ANTHROPIC_API_KEY=$(op read 'op://Automation/Anthropic-API/credential')" > .env.local</pre>
             </div>
-          </div>
-        </div>
 
-        <!-- STEP 5/6/7 はすべて新 Step 4 (setup-all.sh) に統合 -->
-        <!-- backwards-compat anchors -->
-        <div id="step-5" style="display:none"></div>
-        <div id="step-6" style="display:none"></div>
-        <div id="step-7" style="display:none"></div>
-
-        <!-- STEP 5 (旧 Step 8): 初回セッション -->
-        <div class="step" id="step-8">
-          <div class="step-number">5</div>
-          <div class="step-content">
-            <div class="step-header">
-              <span class="step-emoji">🚀</span>
-              <span class="step-title">初回セッションを起動する</span>
-            </div>
-            <p class="step-desc">Claude アプリを開いて最初のセッションを起動します。<strong>/ry-in</strong> を実行すると、環境の自動チェックと残りのセットアップが完了します。</p>
             <div class="cmd-block">
               <div class="cmd-block-header">
-                <span class="cmd-label">Claude のチャット欄に入力</span>
-                <button class="copy-btn" onclick="copyCmd(this, 'first-checkin')">コピー</button>
+                <span class="cmd-label">手動で直接貼る場合</span>
+                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
               </div>
-              <div class="cmd-code" id="first-checkin">/ry-in</div>
+              <pre class="cmd-code">cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
+open -e .env.local
+# エディタで以下の1行を追加して保存
+# ANTHROPIC_API_KEY=sk-ant-api03-...</pre>
             </div>
-            <div class="auth-steps">
-              <p>初回チェックインで自動実行されること：</p>
-              <div class="auth-step-item">
-                <div class="auth-num">1</div>
-                <span><strong>Brain 同期</strong>：最新のスキル・コマンドを自動取得</span>
+
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">dev server を再起動</span>
+                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
               </div>
-              <div class="auth-step-item">
-                <div class="auth-num">2</div>
-                <span><strong>環境ドリフト検出</strong>：CLI（op / gh / node / gws）と MCP の状態を確認</span>
-              </div>
-              <div class="auth-step-item">
-                <div class="auth-num">3</div>
-                <span><strong>MCP セットアップ案内</strong>：Notion など未接続の統合があれば承認手順を提示</span>
-              </div>
+              <pre class="cmd-code">lsof -ti:3000 | xargs kill -9 2>/dev/null
+cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
+npm run dev</pre>
             </div>
-            <div class="note" style="margin-top:12px">
-              <strong>🔗 Notion 連携の承認</strong>：Brain は Notion MCP が必須です。/ry-in が「未接続」と表示したら、<strong>Claude アプリ → Settings → Integrations → Notion → Connect</strong> から OAuth を承認してください。
+
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">動作確認 (curl)</span>
+                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
+              </div>
+              <pre class="cmd-code">curl -sS https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{"model":"claude-sonnet-4-5-20250929","max_tokens":50,"messages":[{"role":"user","content":"ping"}]}' \
+  | head -20</pre>
             </div>
-            <div class="what-happens" style="margin-top:12px">
-              <strong>完了の確認</strong>：「<code style="color:#047857;font-family:monospace">✅ checkin 完了</code>」と「<code style="color:#047857;font-family:monospace">CLI 4/4 OK</code>」が表示されれば、すべてのセットアップが完了しています。
+
+            <div class="what-happens">
+              <strong>OK の合図:</strong>
+              <ul>
+                <li>curl で <code>"id":"msg_..."</code> + <code>"content":[{"type":"text",...}]</code> が返る</li>
+                <li>OPS の <code>localhost:3000/platinum-launch/preview#line</code> で「エンドユーザー体験」を選ぶと 20〜40 秒後に LINE 本文が表示される</li>
+              </ul>
             </div>
           </div>
         </div>
 
-      </div><!-- /steps -->
-
-      <!-- Complete Banner -->
-      <div class="complete-banner" id="complete">
-        <div class="check-icon">✓</div>
-        <h2>セットアップ完了！</h2>
-        <p>Brain が Claude アプリ上で動作する準備が整いました。毎回のセッションは <strong>/ry-in</strong> で開始し、<strong>/ry-out</strong> で終了します。</p>
-        <div class="commands-grid">
-          <div class="cmd-category">
-            <div class="cmd-category-title">セッション</div>
-            <code>/ry-in <span>— セッション開始</span></code>
-            <code>/ry-out <span>— セッション終了</span></code>
-            <code>/ry-pm <span>— プロジェクト管理</span></code>
-            <code>/ry-init <span>— プロジェクト初期化</span></code>
-          </div>
-          <div class="cmd-category">
-            <div class="cmd-category-title">マーケティング</div>
-            <code>/ry-lp <span>— LP 戦略・コピー</span></code>
-            <code>/ry-craft <span>— LP HTML 実装</span></code>
-            <code>/ry-ads <span>— 広告設計・コピー</span></code>
-            <code>/ry-webinar <span>— ウェビナー台本</span></code>
-          </div>
-          <div class="cmd-category">
-            <div class="cmd-category-title">クリエイティブ</div>
-            <code>/ry-slide <span>— スライド生成</span></code>
-            <code>/ry-art <span>— ビジュアル生成</span></code>
-            <code>/ry-content <span>— SNS コンテンツ</span></code>
-            <code>/ry-page <span>— エディトリアル</span></code>
-          </div>
-          <div class="cmd-category">
-            <div class="cmd-category-title">品質・分析</div>
-            <code>/ry-review <span>— コードレビュー</span></code>
-            <code>/ry-sim <span>— ペルソナ検証</span></code>
-            <code>/ry-debate <span>— 多角ディベート</span></code>
-            <code>/ry-think <span>— 第一原理分解</span></code>
-          </div>
-        </div>
       </div>
 
-      <!-- Post-install -->
+      <!-- Troubleshooting -->
+      <div class="section-label" style="margin-top:64px;">🛠️ トラブルシューティング</div>
       <div class="post-install">
-        <div class="util-card" id="brain-doctor">
+
+        <div class="util-card">
           <div class="util-card-header">
-            <span class="util-card-icon">🩺</span>
-            <span class="util-card-title">Brain の健康チェック</span>
-            <span class="util-card-badge">いつでも実行可</span>
+            <span class="util-card-icon">🚫</span>
+            <span class="util-card-title">401 invalid_api_key が返る</span>
+            <span class="util-card-badge">AUTH</span>
           </div>
-          <p>接続・認証・テレメトリに問題が起きたと感じたら、診断スクリプトを実行してください。マシン ID・push 権限・フック状態をまとめて確認できます。</p>
-          <div class="cmd-block" style="margin-bottom:0">
+          <p>キーが正しくコピーされていない可能性。先頭/末尾の空白・改行を除去して再保存。<code>sk-ant-api03-</code> で始まるか確認。</p>
+          <div class="cmd-block">
             <div class="cmd-block-header">
-              <span class="cmd-label">ターミナルで実行</span>
-              <button class="copy-btn" onclick="copyCmd(this, 'brain-doctor-cmd')">コピー</button>
+              <span class="cmd-label">キーの先頭を確認</span>
+              <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
             </div>
-            <div class="cmd-code" id="brain-doctor-cmd">bash ~/.claude/admin/brain-doctor.sh</div>
+            <pre class="cmd-code">grep ANTHROPIC_API_KEY .env.local | head -c 30; echo</pre>
           </div>
         </div>
 
-        <div class="util-card" id="brain-update">
+        <div class="util-card">
           <div class="util-card-header">
-            <span class="util-card-icon">🔄</span>
-            <span class="util-card-title">Brain を最新版に更新する</span>
-            <span class="util-card-badge">初回1回だけ</span>
+            <span class="util-card-icon">💸</span>
+            <span class="util-card-title">credit_balance_too_low</span>
+            <span class="util-card-badge">BILLING</span>
           </div>
-          <p>以下のコマンドを<strong>一度だけ</strong>実行してください。これ以降は <code>claude</code> 起動時に裏で自動更新されます（手動更新は不要）。</p>
-          <div class="cmd-block" style="margin-bottom:12px">
-            <div class="cmd-block-header">
-              <span class="cmd-label">ターミナルで実行</span>
-              <button class="copy-btn" onclick="copyCmd(this, 'brain-update-cmd')">コピー</button>
-            </div>
-            <div class="cmd-code" id="brain-update-cmd">cd ~/.claude && git pull origin main && bash install.sh</div>
-          </div>
-          <p style="font-size:13px; color:var(--text-muted); margin:0">
-            ✅ GitHub の <code>push</code> 権限は不要になりました。テレメトリは GitHub Issues 経由で送信され、受信側 Action が自動取り込みます。
-          </p>
+          <p>クレジット残高が 0。<a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener" style="color:var(--accent);">Billing</a> から追加購入してください。Auto reload を ON にしておくと再発防止。</p>
         </div>
 
-        <div class="util-card" id="brain-repair" style="border:2px solid #e74c3c">
-          <div class="util-card-header">
-            <span class="util-card-icon">🔧</span>
-            <span class="util-card-title">緊急リペア（auto_update が止まっている方向け）</span>
-            <span class="util-card-badge" style="background:#e74c3c; color:white; border:none">緊急</span>
-          </div>
-          <p><strong>症状チェック</strong>：以下のいずれかに該当する方は、上の「更新」コマンドではなくこのリペアを実行してください。</p>
-          <ul style="font-size:13px; color:var(--text-muted); margin:8px 0 12px 18px; line-height:1.8">
-            <li>セッション終了しても telemetry issue が repository に届かない</li>
-            <li>「auto_update が動いてない気がする」</li>
-            <li><code style="font-size:12px">git -C ~/.claude branch --show-current</code> で <code style="font-size:12px">fix/auto-commit-*</code> と表示される</li>
-          </ul>
-          <p style="font-size:13px; color:var(--text-muted); margin:0 0 12px 0">
-            原因は session_end の auto-commit 後の main 復帰がサイレント失敗するバグ（2026-05-08 修正済）。既存ユーザーは下のコマンドで一発復帰できます。
-          </p>
-          <div class="cmd-block" style="margin-bottom:12px">
-            <div class="cmd-block-header">
-              <span class="cmd-label">ターミナルで実行</span>
-              <button class="copy-btn" onclick="copyCmd(this, 'brain-repair-cmd')">コピー</button>
-            </div>
-            <div class="cmd-code" id="brain-repair-cmd">curl -fsSL https://raw.githubusercontent.com/RYKNSH/setup/main/repair.sh | bash</div>
-          </div>
-          <p style="font-size:13px; color:var(--text-muted); margin:0">
-            実行内容: 1) brain を fetch → 2) 手元の変更を stash で退避 → 3) main に強制 checkout → 4) origin/main に reset → 5) install.sh 再実行
-          </p>
-        </div>
-
-        <div class="util-card" id="auth-fix">
+        <div class="util-card">
           <div class="util-card-header">
             <span class="util-card-icon">🔓</span>
-            <span class="util-card-title">認証プロンプトを激減させる（2026-05-06 update）</span>
-            <span class="util-card-badge">自動適用</span>
+            <span class="util-card-title">キーが漏れた疑い</span>
+            <span class="util-card-badge">SECURITY</span>
           </div>
-          <p>「Auto Mode でも認証が頻繁に出る」「1Password アクセスが毎回出る」問題を解決する <strong>5層対策</strong>を Brain に組み込みました。上の更新コマンドを叩けば自動配備されます。</p>
-
-          <div style="background:var(--bg-subtle); border-radius:12px; padding:14px 16px; margin:12px 0; font-size:13px;">
-            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
-              <span style="color:var(--accent); font-weight:700">P0</span>
-              <span><strong>古い Claude Code バイナリ自動退避</strong> ─ <code>~/.local/bin/claude</code> が古ければ <code>.old-X.X.X</code> にリネームし、最新版（Auto Mode 搭載）が PATH 優先になります</span>
-            </div>
-            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
-              <span style="color:var(--accent); font-weight:700">P1</span>
-              <span><strong>1Password Vault 自動移行</strong> ─ meta-ads MCP の参照を <code>op://Private/</code> から <code>op://Automation/</code> に移行（AI agent 用 Vault に統一）</span>
-            </div>
-            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
-              <span style="color:var(--accent); font-weight:700">P2</span>
-              <span><strong>Bash 許可リスト 80件自動配備</strong> ─ <code>op read</code> / <code>gh issue:*</code> / <code>git status:*</code> 等の read-only コマンドはプロンプト無しで実行</span>
-            </div>
-            <div style="display:flex; align-items:start; gap:8px; margin-bottom:6px">
-              <span style="color:var(--accent); font-weight:700">P3</span>
-              <span><strong>1Password session キャッシュ</strong> ─ biometric 1回で 30分キャッシュ。同セッション中は再プロンプト無し</span>
-            </div>
-            <div style="display:flex; align-items:start; gap:8px">
-              <span style="color:var(--accent); font-weight:700">P4</span>
-              <span><strong>MR-11 違反の pre-commit 検出</strong> ─ <code>op://Private/</code> 等の禁止 Vault 参照が混入したらコミットを reject</span>
-            </div>
-          </div>
-
-          <p style="font-size:13px; color:var(--text-muted); margin:0">
-            🎯 効果: <strong>認証プロンプト 95% 削減見込み</strong>。Auto Mode の classifier と組み合わせて、危険でない操作は無人実行。
-          </p>
+          <p>Console の <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener" style="color:var(--accent);">API keys</a> 画面で該当キーの <strong>⋮ → Revoke</strong>。即無効化されるので、新しいキーを発行して <code>.env.local</code> と 1Password を更新。</p>
         </div>
 
-        <div class="util-card" id="op-trust">
+        <div class="util-card">
           <div class="util-card-header">
-            <span class="util-card-icon">🔐</span>
-            <span class="util-card-title">1Password 永続トラスト設定（任意）</span>
-            <span class="util-card-badge">prompt 完全ゼロ化</span>
+            <span class="util-card-icon">🌀</span>
+            <span class="util-card-title">.env.local 変更が反映されない</span>
+            <span class="util-card-badge">DEV SERVER</span>
           </div>
-          <p>per-app 認可ダイアログ（「Claude CLI に 1Password アクセスを許可しますか？」）も <strong>完全に消したい場合</strong>、1Password 設定で「常時許可」を有効化します。</p>
-          <p style="font-size:13px; color:var(--text-muted); margin:6px 0 12px">
-            ※ Brain 更新コマンドを TTY（ターミナル）で叩くと自動でこのスクリプトが起動します。手動で叩く場合のみ以下のコマンドを実行してください。
-          </p>
-          <div class="cmd-block" style="margin-bottom:12px">
-            <div class="cmd-block-header">
-              <span class="cmd-label">ターミナルで実行</span>
-              <button class="copy-btn" onclick="copyCmd(this, 'op-trust-cmd')">コピー</button>
-            </div>
-            <div class="cmd-code" id="op-trust-cmd">bash ~/.claude/admin/setup-1password-trust.sh</div>
-          </div>
-          <p style="font-size:13px; color:var(--text-muted); margin:0">
-            実行内容: 1) op session 取得（biometric 1回）→ 2) <code>~/.claude/.op-session</code> に token cache → 3) 1P 設定パネルへの誘導（「常時許可」「自動ロック 4時間」推奨）
-          </p>
+          <p>Next.js は起動時のみ <code>.env.local</code> を読みます。<code>lsof -ti:3000 | xargs kill -9</code> で停止 → <code>npm run dev</code> で再起動。</p>
         </div>
+
       </div>
 
-    </div><!-- /container -->
+      <!-- Complete banner -->
+      <div class="complete-banner">
+        <div class="check-icon">✓</div>
+        <h2>API キー設定完了</h2>
+        <p>OPS ダッシュボードに戻って <code>/preview#line</code> で LINE 本文が生成されていることを確認してください。</p>
+      </div>
+
+    </div>
   </main>
-</div><!-- /layout -->
+
+</div>
 
 <script>
-/* ── Copy ─────────────────────────────────────────────────────── */
-function copyCmd(btn, id) {
-  const text = document.getElementById(id).textContent.trim();
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ コピー済み';
+function copyCmd(btn) {
+  const code = btn.closest('.cmd-block').querySelector('.cmd-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
     btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 2000);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
   });
 }
 
-/* ── Mobile drawer ────────────────────────────────────────────── */
 function openDrawer() {
-  const panel = document.getElementById('drawer-nav-content');
-  panel.innerHTML = document.getElementById('sidebar').innerHTML;
-  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
-  document.getElementById('mobile-drawer').classList.add('open');
+  const sidebar = document.getElementById('sidebar');
+  const drawer = document.getElementById('mobile-drawer');
+  document.getElementById('drawer-nav-content').innerHTML = sidebar.innerHTML;
+  drawer.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeDrawer() {
   document.getElementById('mobile-drawer').classList.remove('open');
   document.body.style.overflow = '';
-}
-
-/* ── Active nav ───────────────────────────────────────────────── */
-const navMap = [
-  { section: 'access-section', nav: null },
-  { section: 'step-1',   nav: 'nav-step-1' },
-  { section: 'step-2',   nav: 'nav-step-2' },
-  { section: 'step-3',   nav: 'nav-step-3' },
-  { section: 'step-4',   nav: 'nav-step-4' },
-  { section: 'step-8',   nav: 'nav-step-8' },
-  { section: 'complete', nav: 'nav-complete' },
-];
-
-let active = null;
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const m = navMap.find(n => n.section === e.target.id);
-    if (!m?.nav) return;
-    const el = document.getElementById(m.nav);
-    if (!el) return;
-    if (active) active.classList.remove('active');
-    el.classList.add('active');
-    active = el;
-  });
-}, { rootMargin: '-15% 0px -65% 0px', threshold: 0 });
-
-navMap.forEach(({ section }) => {
-  const el = document.getElementById(section);
-  if (el) obs.observe(el);
-});
-
-/* ── Invite ───────────────────────────────────────────────────── */
-function normalizeUsername(raw) {
-  if (!raw) return '';
-  let v = raw.trim();
-  const m = v.match(/github\.com\/([^\/?#\s]+)/i);
-  if (m) v = m[1];
-  return v.replace(/^@+/, '').replace(/[\/\s]+$/g, '');
-}
-
-async function requestAccess() {
-  const input = document.getElementById('github-username');
-  const btn = document.getElementById('invite-btn');
-  const result = document.getElementById('invite-result');
-  const username = normalizeUsername(input.value);
-  if (username !== input.value.trim()) input.value = username;
-
-  const valid = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(username);
-  if (!username || !valid) {
-    showResult(result, 'error', '❌ GitHub ユーザー名の形式が正しくありません。<br><span style="font-size:12px">例: <code>your-username</code>（URL や @ は不要）</span>');
-    input.style.borderColor = '#dc2626';
-    setTimeout(() => { input.style.borderColor = ''; }, 1500);
-    return;
-  }
-
-  btn.disabled = true; btn.textContent = '送信中...'; result.style.display = 'none';
-
-  try {
-    const r = await fetch('https://invite-api-nine.vercel.app/api/invite', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username })
-    });
-    let data;
-    try { data = await r.json(); } catch { throw new Error(`サーバーエラー (HTTP ${r.status})`); }
-
-    if (data.status === 'invited') {
-      showResult(result, 'success', '✅ 招待を送信しました！GitHub からのメールで「Accept invitation」を押してください。');
-      btn.textContent = '✓ 申請済み';
-    } else if (data.status === 'already_member') {
-      showResult(result, 'info', '✅ すでにアクセス権があります。Step 1 へ進んでください。');
-      btn.textContent = '✓ 確認済み';
-    } else {
-      throw new Error(data.error || '不明なエラー');
-    }
-  } catch(e) {
-    showResult(result, 'error', '❌ ' + (e.message || 'ネットワークエラー') + '<br><span style="font-size:12px">解決しない場合は管理者に直接 DM してください。</span>');
-    btn.disabled = false; btn.textContent = '招待を申請する →';
-  }
-}
-
-function showResult(el, type, html) {
-  const s = {
-    success: { bg:'#f0fdf4', border:'#86efac', color:'#166534' },
-    info:    { bg:'#eff6ff', border:'#93c5fd', color:'#1d4ed8' },
-    error:   { bg:'#fef2f2', border:'#fca5a5', color:'#991b1b' }
-  }[type] || {};
-  Object.assign(el.style, { display:'block', background:s.bg, border:`1px solid ${s.border}`, color:s.color });
-  el.innerHTML = html;
 }
 </script>
 </body>
