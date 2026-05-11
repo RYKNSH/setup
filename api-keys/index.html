@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANTHROPIC API キー取得ガイド — RYKNSH Brain</title>
+<title>API キー取得ガイド — RYKNSH Brain</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1044,46 +1044,63 @@
 
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-badge">API KEY GUIDE</div>
-      <h1>ANTHROPIC API キー<br>取得ガイド</h1>
-      <p>OPS ダッシュボードで LINE ナーチャリング本文を AI が動的生成するために必要です。</p>
+      <div class="hero-badge">API キー取得ガイド</div>
+      <h1>OPS の LINE 部分を<br>動かすカギを手に入れる</h1>
+      <p>これがあると、OPS ダッシュボードのプレビュー画面で LINE 本文が自動で書かれます。10 分で終わります。</p>
       <div class="hero-meta">
-        <span class="hero-pill">⏱️ 所要時間 約 10 分</span>
-        <span class="hero-pill">💳 最小チャージ 5 USD〜</span>
+        <span class="hero-pill">⏱️ 約 10 分</span>
+        <span class="hero-pill">💳 最初は 5 ドル (約 750 円)</span>
+        <span class="hero-pill">🧑‍💻 ターミナル操作 最小</span>
       </div>
     </section>
 
     <div class="container">
 
-      <!-- Quick start cards -->
-      <div class="section-label">⚡ クイックジャンプ</div>
+      <!-- なぜ必要か -->
+      <div class="access-gate" id="why">
+        <div class="access-gate-header">
+          <div class="access-gate-icon">💡</div>
+          <div>
+            <div class="access-gate-title">そもそも、このカギは何?</div>
+          </div>
+        </div>
+        <p class="access-gate-desc">
+          OPS ダッシュボードを開くと、LINE のプレビュー欄に「お客さんに届く文章」が出ます。
+          その文章を <strong>AI が毎回その場で書く</strong> 仕組みになっていて、AI に話しかけるための専用の合言葉が必要です。それが <strong>API キー</strong>。
+          無いとプレビュー欄に「⚠️ ANTHROPIC_API_KEY が設定されていません」と出てしまいます。
+        </p>
+        <p class="access-gate-desc" style="margin-bottom:0;">
+          このページを上から順に進めれば、コピペだけで設定できます。途中わからなくなったら、その step のキャプション通りに画面のボタンをクリックしてください。
+        </p>
+      </div>
+
+      <!-- ステップ一覧 -->
+      <div class="section-label">⚡ 全体の流れ (5 ステップ)</div>
       <div class="qs-grid">
         <a class="qs-card" href="#step-1">
           <span class="qs-icon">🚪</span>
-          <div class="qs-text"><strong>1. Console にサインアップ</strong><span>Anthropic アカウント作成</span></div>
+          <div class="qs-text"><strong>1. サイトを開く</strong><span>Anthropic のページに行く</span></div>
+        </a>
+        <a class="qs-card" href="#step-2">
+          <span class="qs-icon">🪪</span>
+          <div class="qs-text"><strong>2. アカウントを作る</strong><span>Google でログインがおすすめ</span></div>
         </a>
         <a class="qs-card" href="#step-3">
           <span class="qs-icon">💳</span>
-          <div class="qs-text"><strong>2. クレジット購入</strong><span>従量課金の前払い (最小 5 USD)</span></div>
+          <div class="qs-text"><strong>3. お金をチャージ</strong><span>$5 から (使った分だけ減る)</span></div>
         </a>
         <a class="qs-card" href="#step-4">
           <span class="qs-icon">🔑</span>
-          <div class="qs-text"><strong>3. API キー発行</strong><span>sk-ant-... を生成 (一度だけ表示)</span></div>
+          <div class="qs-text"><strong>4. カギを発行</strong><span>長い文字列をコピー</span></div>
         </a>
-        <a class="qs-card" href="#step-6">
+        <a class="qs-card" href="#step-5">
           <span class="qs-icon">📄</span>
-          <div class="qs-text"><strong>4. .env.local に投入</strong><span>プロジェクトに適用 + 動作確認</span></div>
+          <div class="qs-text"><strong>5. パソコンに貼り付け</strong><span>1 行コピペするだけ</span></div>
         </a>
-      </div>
-
-      <!-- Why -->
-      <div class="prereq" id="why">
-        <span class="prereq-icon">💡</span>
-        <p><strong>なぜこのキーが必要か</strong> — ViVi Club OPS の <code>/preview#line</code> は <code>steps.json</code> + <code>brand-dna.json</code> を Claude Sonnet 4.5 に渡して LINE 本文を動的生成します。キーが無いと「LINE 本文生成エラー」が出ます。</p>
       </div>
 
       <!-- Steps -->
-      <div class="section-label">📋 取得手順</div>
+      <div class="section-label" style="margin-top:48px;">📋 詳しいやり方</div>
       <div class="steps">
 
         <!-- Step 1 -->
@@ -1093,21 +1110,21 @@
           <div class="step-content">
             <div class="step-header">
               <span class="step-emoji">🚪</span>
-              <h3 class="step-title">Anthropic Console にサインアップ</h3>
+              <h3 class="step-title">Anthropic のサイトを開く</h3>
             </div>
-            <p class="step-desc">ブラウザで Anthropic 公式コンソールを開き、Google アカウント または メール + パスワードでサインアップします。</p>
+            <p class="step-desc">下のボタンを押すと、AI の会社「Anthropic」の管理画面が開きます。</p>
             <a class="download-card" href="https://console.anthropic.com/" target="_blank" rel="noopener">
               <div class="download-card-left">
                 <span class="app-icon" style="background:linear-gradient(135deg,#d97757,#c8521e);">🤖</span>
                 <div class="download-card-text">
                   <strong>console.anthropic.com を開く</strong>
-                  <span>新規アカウント作成 (Sign up) / 既存ならログイン</span>
+                  <span>新しいタブで Anthropic の管理画面が開きます</span>
                 </div>
               </div>
               <span class="download-btn">開く →</span>
             </a>
             <div class="note">
-              <strong>注意:</strong> claude.ai (チャット用) と console.anthropic.com (API 用) は別サービスです。API キーは <strong>Console 側</strong>でしか発行できません。
+              <strong>ひとこと:</strong> 普段 Claude とおしゃべりしてる <code>claude.ai</code> とは別のサイトです。今回使うのは <strong>console</strong>(管理画面) のほうです。
             </div>
           </div>
         </div>
@@ -1118,15 +1135,29 @@
           <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">✉️</span>
-              <h3 class="step-title">メール認証 + 組織を作成</h3>
+              <span class="step-emoji">🪪</span>
+              <h3 class="step-title">アカウントを作る (またはログインする)</h3>
             </div>
-            <p class="step-desc">サインアップ直後に確認メールが届きます。リンクをクリックして認証。初回ログイン時に「Organization 名」を聞かれるので、好きな名前 (例: <code>ryknsh-personal</code>) で作成。</p>
+            <p class="step-desc">画面に「Sign up (新規登録)」と「Log in (ログイン)」のボタンがあります。</p>
+            <div class="auth-steps">
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span><strong>初めての人:</strong> 「Sign up」を押して、<strong>"Continue with Google"</strong> をクリック (普段使ってる Google アカウントを選ぶだけ。一番ラク)</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">2</span>
+                <span><strong>もうアカウントある人:</strong> 「Log in」からログイン</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">3</span>
+                <span>初回は <strong>"Organization name"</strong> を聞かれます。自分の名前や会社名 (例: <code>my-ai</code>) を入れて Continue</span>
+              </div>
+            </div>
             <div class="what-happens">
-              <strong>完了の合図:</strong>
+              <strong>ここまで来たら成功:</strong>
               <ul>
-                <li>左サイドバーに「Dashboard / API keys / Billing / Settings」が表示される</li>
-                <li>右上に作成した Organization 名が出る</li>
+                <li>左に「Dashboard / API keys / Billing / Settings」というメニューが並んでいる</li>
+                <li>右上に自分のメールアドレス か Organization 名が出てる</li>
               </ul>
             </div>
           </div>
@@ -1139,26 +1170,30 @@
           <div class="step-content">
             <div class="step-header">
               <span class="step-emoji">💳</span>
-              <h3 class="step-title">支払い方法を登録 + クレジット購入</h3>
+              <h3 class="step-title">最初に少しだけお金をチャージする</h3>
             </div>
-            <p class="step-desc">Anthropic API は <strong>従量課金の前払い式</strong>。先にクレジットを買わないと API キーを作っても 401 で弾かれます。</p>
+            <p class="step-desc">AI を使うときだけ少しずつお金が減る仕組みです。先に <strong>$5 (約 750 円)</strong> だけ入れておきます。LINE 文章を 1 回まるごと書き直しても 10 円もかかりません。</p>
             <div class="auth-steps">
-              <p>左サイドバーの <strong>Billing</strong> → 上部メニュー <strong>Plans</strong>:</p>
+              <p>画面の流れ:</p>
               <div class="auth-step-item">
                 <span class="auth-num">1</span>
-                <span><strong>Add payment method</strong> でクレジットカードを登録</span>
+                <span>左のメニューから <strong>"Billing"</strong> をクリック</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">2</span>
-                <span><strong>Buy credits</strong> → 最小 <strong>5 USD</strong> から購入 (LINE 本文生成は 1 回 〜0.01 USD なので 5 USD で当面足ります)</span>
+                <span>「Add payment method」でクレジットカードを登録</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">3</span>
-                <span><strong>Auto reload</strong> を有効にすると残高が一定額を下回ったら自動補充 (推奨)</span>
+                <span><strong>"Buy credits"</strong> を押して <strong>$5</strong> と入力 → 購入</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">4</span>
+                <span>(おすすめ) <strong>"Auto reload"</strong> を ON にすると、残高が減ったら自動で補充されて止まらない</span>
               </div>
             </div>
             <div class="note">
-              <strong>料金感覚:</strong> Claude Sonnet 4.5 は input $3 / 1M tokens、output $15 / 1M tokens。LINE 全 25 ステップを一括生成しても 1 回 0.05 USD 程度。
+              <strong>料金イメージ:</strong> LINE 全 25 メッセージを一括で AI に書き直してもらっても 1 回 5〜7 円程度。$5 (750 円) チャージで普通の使い方なら 1〜2 ヶ月もちます。
             </div>
           </div>
         </div>
@@ -1170,29 +1205,34 @@
           <div class="step-content">
             <div class="step-header">
               <span class="step-emoji">🔑</span>
-              <h3 class="step-title">API キーを発行</h3>
+              <h3 class="step-title">カギ (API キー) を発行してコピーする</h3>
             </div>
-            <p class="step-desc">左サイドバー <strong>API keys</strong> → 右上 <strong>Create Key</strong> ボタン。</p>
+            <p class="step-desc">いよいよ本番です。長い文字列が表示されるので、<strong>その場で必ずコピー</strong> してください。</p>
             <div class="auth-steps">
+              <p>画面の流れ:</p>
               <div class="auth-step-item">
                 <span class="auth-num">1</span>
-                <span><strong>Name</strong>: 用途がわかる名前 (例: <code>vivi-club-ops</code>)</span>
+                <span>左メニューの <strong>"API keys"</strong> をクリック</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">2</span>
-                <span><strong>Workspace</strong>: Default のまま OK</span>
+                <span>右上の <strong>"Create Key"</strong> ボタンを押す</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">3</span>
-                <span><strong>Create Key</strong> → <code>sk-ant-api03-...</code> が表示される</span>
+                <span>名前を入れる (例: <code>vivi-club-ops</code>)。何用かわかればなんでも OK</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">4</span>
-                <span>右の <strong>Copy</strong> ボタンで即コピー</span>
+                <span><strong>"Create Key"</strong> を押すと <code>sk-ant-api03-xxxx...</code> という長い文字が出る</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">5</span>
+                <span>右の <strong>📋 Copy</strong> ボタンでコピー。コピーしたらメモ帳に一旦貼り付けて保管</span>
               </div>
             </div>
             <div class="note">
-              <strong>⚠️ 一度だけしか表示されません。</strong> このダイアログを閉じる前に必ずコピーしてください。閉じてしまったら revoke して再発行が必要です。
+              <strong>⚠️ ここが一番大事です。</strong> このカギは <strong>この画面を閉じたら二度と見られません</strong>。閉じる前に必ずコピー。万が一閉じてしまったら、もう一度「Create Key」で作り直してください (前のは Revoke ボタンで消す)。
             </div>
           </div>
         </div>
@@ -1203,100 +1243,77 @@
           <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">🔐</span>
-              <h3 class="step-title">1Password Automation vault に保存 (推奨)</h3>
+              <span class="step-emoji">📄</span>
+              <h3 class="step-title">パソコンに貼り付ける</h3>
             </div>
-            <p class="step-desc">1Password の <code>Automation</code> vault に保存しておくと、複数プロジェクト + リモートエージェントから安全に参照できます (CLAUDE.md MR-11)。</p>
+            <p class="step-desc">コピーしたカギを、OPS が読みに行く決まった場所に置きます。<strong>ターミナル</strong> (黒い画面) を使う方法と、<strong>Finder で直接ファイルを開く</strong>方法、どちらでも OK です。</p>
+
+            <h4 style="font-size:14px;font-weight:800;margin:20px 0 10px;color:var(--text);">🅰️ ラクな方法: ターミナルで 1 行貼るだけ</h4>
             <div class="auth-steps">
-              <p>1Password アプリを開いて:</p>
               <div class="auth-step-item">
                 <span class="auth-num">1</span>
-                <span>Vaults → <strong>Automation</strong> を選択</span>
+                <span>Spotlight (⌘ + Space) で「ターミナル」と打って Enter</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">2</span>
-                <span>右上 <strong>+ New Item</strong> → <strong>API Credential</strong></span>
+                <span>下のコマンドの <code>sk-ant-...</code> の部分を、Step 4 でコピーした自分のカギに置き換えて、ターミナルに貼り付けて Enter</span>
+              </div>
+            </div>
+            <div class="cmd-block">
+              <div class="cmd-block-header">
+                <span class="cmd-label">これを貼って Enter</span>
+                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
+              </div>
+              <pre class="cmd-code">cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
+echo "ANTHROPIC_API_KEY=sk-ant-ここに自分のカギを貼る" > .env.local</pre>
+            </div>
+            <div class="what-happens">
+              <strong>うまくいった合図:</strong> エラーメッセージが出ず、何事もなくプロンプト (<code>$</code>) が戻ってくる。これで保存完了です。
+            </div>
+
+            <h4 style="font-size:14px;font-weight:800;margin:28px 0 10px;color:var(--text);">🅱️ ターミナル怖い人向け: Finder で直接編集</h4>
+            <div class="auth-steps">
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span>Finder で <code>ViVi-Club/Sales/platinum-launch/pm/dashboard</code> フォルダを開く</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">2</span>
+                <span>⌘ + Shift + . (ドット) を押すと隠しファイルが表示される</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">3</span>
-                <span><strong>Title</strong>: <code>Anthropic-API</code> / <strong>Credential</strong> フィールドに <code>sk-ant-api03-...</code> を貼り付け / Save</span>
+                <span><code>.env.local</code> というファイルをダブルクリック (テキストエディットで開く)</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">4</span>
+                <span>1 行だけ書く: <code>ANTHROPIC_API_KEY=sk-ant-ここに自分のカギ</code></span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">5</span>
+                <span>⌘ + S で保存して閉じる</span>
               </div>
             </div>
+
+            <h4 style="font-size:14px;font-weight:800;margin:28px 0 10px;color:var(--text);">最後に OPS を一回閉じて開き直す</h4>
+            <p style="font-size:13px;color:var(--text-2);margin-bottom:12px;line-height:1.7;">
+              貼り付けただけでは OPS は気づきません。一度止めて再起動が必要です。
+            </p>
             <div class="cmd-block">
               <div class="cmd-block-header">
-                <span class="cmd-label">参照コマンド</span>
-                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
-              </div>
-              <pre class="cmd-code">op read "op://Automation/Anthropic-API/credential"</pre>
-            </div>
-            <div class="what-happens">
-              <strong>1Password CLI を使うには:</strong>
-              <ul>
-                <li>1Password Desktop → Settings → Developer → <strong>Integrate with 1Password CLI</strong> を ON</li>
-                <li>ターミナルで <code>op signin</code> → Touch ID / 指紋認証</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 6 -->
-        <div class="step" id="step-6">
-          <div class="step-number">6</div>
-          <div class="step-content">
-            <div class="step-header">
-              <span class="step-emoji">📄</span>
-              <h3 class="step-title">プロジェクトの .env.local に投入 + 動作確認</h3>
-            </div>
-            <p class="step-desc">OPS ダッシュボードのプロジェクト直下の <code>.env.local</code> に書き込みます。</p>
-
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">1Password 経由で投入 (推奨)</span>
-                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
-              </div>
-              <pre class="cmd-code">cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
-echo "ANTHROPIC_API_KEY=$(op read 'op://Automation/Anthropic-API/credential')" > .env.local</pre>
-            </div>
-
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">手動で直接貼る場合</span>
-                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
-              </div>
-              <pre class="cmd-code">cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
-open -e .env.local
-# エディタで以下の1行を追加して保存
-# ANTHROPIC_API_KEY=sk-ant-api03-...</pre>
-            </div>
-
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">dev server を再起動</span>
+                <span class="cmd-label">ターミナルに貼って Enter</span>
                 <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
               </div>
               <pre class="cmd-code">lsof -ti:3000 | xargs kill -9 2>/dev/null
 cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
 npm run dev</pre>
             </div>
-
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">動作確認 (curl)</span>
-                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
-              </div>
-              <pre class="cmd-code">curl -sS https://api.anthropic.com/v1/messages \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "content-type: application/json" \
-  -d '{"model":"claude-sonnet-4-5-20250929","max_tokens":50,"messages":[{"role":"user","content":"ping"}]}' \
-  | head -20</pre>
-            </div>
-
             <div class="what-happens">
-              <strong>OK の合図:</strong>
+              <strong>これで完了です:</strong>
               <ul>
-                <li>curl で <code>"id":"msg_..."</code> + <code>"content":[{"type":"text",...}]</code> が返る</li>
-                <li>OPS の <code>localhost:3000/platinum-launch/preview#line</code> で「エンドユーザー体験」を選ぶと 20〜40 秒後に LINE 本文が表示される</li>
+                <li>ターミナルに <code>✓ Ready in 3s</code> のような表示が出る</li>
+                <li>ブラウザで OPS の <code>localhost:3000/platinum-launch/preview</code> を開いて「LINE ナーチャリング」を選ぶ</li>
+                <li>20〜40 秒くらい待つと、LINE 本文がチャットの吹き出しに出てくる</li>
               </ul>
             </div>
           </div>
@@ -1304,60 +1321,90 @@ npm run dev</pre>
 
       </div>
 
-      <!-- Troubleshooting -->
-      <div class="section-label" style="margin-top:64px;">🛠️ トラブルシューティング</div>
+      <!-- (オプション) 1Password -->
+      <div class="section-label" style="margin-top:56px;">🔐 (おまけ) 1Password を使っている人へ</div>
+      <div class="util-card">
+        <div class="util-card-header">
+          <span class="util-card-icon">🔐</span>
+          <span class="util-card-title">カギを安全に保管しておく</span>
+          <span class="util-card-badge">推奨</span>
+        </div>
+        <p style="margin-bottom:14px;">複数の AI ツールを使う予定があるなら、1Password の <code>Automation</code> という棚にカギを 1 つ保管しておくと、毎回コピペせずに済んで便利です。</p>
+        <div class="auth-steps">
+          <div class="auth-step-item">
+            <span class="auth-num">1</span>
+            <span>1Password アプリを開く → 左のリストで <strong>Automation</strong> を選ぶ</span>
+          </div>
+          <div class="auth-step-item">
+            <span class="auth-num">2</span>
+            <span>右上 <strong>+ 新規アイテム</strong> → <strong>API クレデンシャル</strong></span>
+          </div>
+          <div class="auth-step-item">
+            <span class="auth-num">3</span>
+            <span><strong>タイトル</strong>: <code>Anthropic-API</code> / <strong>credential</strong> の欄に <code>sk-ant-...</code> を貼って保存</span>
+          </div>
+        </div>
+        <p style="font-size:12.5px;color:var(--text-3);margin-top:14px;line-height:1.7;">
+          ※ 使っていなければ気にせず Step 5 の方法で OK です。
+        </p>
+      </div>
+
+      <!-- トラブル -->
+      <div class="section-label" style="margin-top:56px;">🛠️ 困ったとき</div>
       <div class="post-install">
 
         <div class="util-card">
           <div class="util-card-header">
+            <span class="util-card-icon">⚠️</span>
+            <span class="util-card-title">プレビューに「ANTHROPIC_API_KEY が設定されていません」と出る</span>
+            <span class="util-card-badge">よくある</span>
+          </div>
+          <p>カギの貼り付け or OPS の再起動 がまだ済んでいません。<strong>Step 5</strong> をもう一度実行してください。再起動を忘れているケースが大半です。</p>
+        </div>
+
+        <div class="util-card">
+          <div class="util-card-header">
             <span class="util-card-icon">🚫</span>
-            <span class="util-card-title">401 invalid_api_key が返る</span>
-            <span class="util-card-badge">AUTH</span>
+            <span class="util-card-title">「invalid_api_key」「401」と出る</span>
+            <span class="util-card-badge">カギ間違い</span>
           </div>
-          <p>キーが正しくコピーされていない可能性。先頭/末尾の空白・改行を除去して再保存。<code>sk-ant-api03-</code> で始まるか確認。</p>
-          <div class="cmd-block">
-            <div class="cmd-block-header">
-              <span class="cmd-label">キーの先頭を確認</span>
-              <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
-            </div>
-            <pre class="cmd-code">grep ANTHROPIC_API_KEY .env.local | head -c 30; echo</pre>
-          </div>
+          <p>カギの貼り付け時に空白や改行が混ざっている可能性。Step 4 でもう一度キーをコピーし直して、Step 5 の貼り付けをやり直してください。カギは必ず <code>sk-ant-api03-</code> から始まります。</p>
         </div>
 
         <div class="util-card">
           <div class="util-card-header">
             <span class="util-card-icon">💸</span>
-            <span class="util-card-title">credit_balance_too_low</span>
-            <span class="util-card-badge">BILLING</span>
+            <span class="util-card-title">「credit_balance_too_low」と出る</span>
+            <span class="util-card-badge">チャージ切れ</span>
           </div>
-          <p>クレジット残高が 0。<a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener" style="color:var(--accent);">Billing</a> から追加購入してください。Auto reload を ON にしておくと再発防止。</p>
+          <p>残高がゼロになりました。<a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener" style="color:var(--accent);">Billing 画面</a> を開いて、もう一度 $5 チャージするだけで復活します。Auto reload を ON にしておくと次から止まりません。</p>
         </div>
 
         <div class="util-card">
           <div class="util-card-header">
-            <span class="util-card-icon">🔓</span>
-            <span class="util-card-title">キーが漏れた疑い</span>
-            <span class="util-card-badge">SECURITY</span>
+            <span class="util-card-icon">😱</span>
+            <span class="util-card-title">カギを誰かに見られた / リークが心配</span>
+            <span class="util-card-badge">緊急</span>
           </div>
-          <p>Console の <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener" style="color:var(--accent);">API keys</a> 画面で該当キーの <strong>⋮ → Revoke</strong>。即無効化されるので、新しいキーを発行して <code>.env.local</code> と 1Password を更新。</p>
+          <p><a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener" style="color:var(--accent);">API keys 画面</a> を開く → 該当のカギの <strong>⋮</strong> → <strong>Revoke</strong> ですぐに無効化できます。その後 Step 4 から新しいカギを作り直してください。</p>
         </div>
 
         <div class="util-card">
           <div class="util-card-header">
-            <span class="util-card-icon">🌀</span>
-            <span class="util-card-title">.env.local 変更が反映されない</span>
-            <span class="util-card-badge">DEV SERVER</span>
+            <span class="util-card-icon">🔄</span>
+            <span class="util-card-title">貼ったのに変わらない</span>
+            <span class="util-card-badge">再起動忘れ</span>
           </div>
-          <p>Next.js は起動時のみ <code>.env.local</code> を読みます。<code>lsof -ti:3000 | xargs kill -9</code> で停止 → <code>npm run dev</code> で再起動。</p>
+          <p>OPS は起動した瞬間だけカギを読みます。<strong>"最後に OPS を一回閉じて開き直す"</strong>のコマンドをもう一度実行してください (Step 5 の最後)。</p>
         </div>
 
       </div>
 
-      <!-- Complete banner -->
+      <!-- Complete -->
       <div class="complete-banner">
         <div class="check-icon">✓</div>
-        <h2>API キー設定完了</h2>
-        <p>OPS ダッシュボードに戻って <code>/preview#line</code> で LINE 本文が生成されていることを確認してください。</p>
+        <h2>これでカギの設定は完了です</h2>
+        <p>OPS ダッシュボードに戻って、プレビュー画面の「LINE ナーチャリング」を開いてください。20〜40 秒で AI が文章を書き始めます。</p>
       </div>
 
     </div>
@@ -1371,7 +1418,7 @@ function copyCmd(btn) {
   navigator.clipboard.writeText(code).then(() => {
     btn.classList.add('copied');
     const orig = btn.innerHTML;
-    btn.innerHTML = '✓ Copied';
+    btn.innerHTML = '✓ コピー完了';
     setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
   });
 }
