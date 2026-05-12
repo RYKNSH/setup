@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>API キー取得ガイド — RYKNSH Brain</title>
+<title>LINE 公式アカウント取得ガイド — RYKNSH Brain</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1032,10 +1032,10 @@
     </div>
   <div class="sidebar-section">
       <div class="sidebar-label">APIキー</div>
-      <a class="sidebar-link active" href="./">
+      <a class="sidebar-link" href="../api-keys/">
         <span class="uc-icon">🔑</span> ANTHROPIC API
       </a>
-      <a class="sidebar-link" href="../line-oa/">
+      <a class="sidebar-link active" href="./">
         <span class="uc-icon">💬</span> LINE 公式アカウント
       </a>
     </div>
@@ -1047,13 +1047,13 @@
 
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-badge">API キー取得ガイド</div>
-      <h1>OPS の LINE 部分を<br>動かすカギを手に入れる</h1>
-      <p>これがあると、OPS ダッシュボードのプレビュー画面で LINE 本文が自動で書かれます。10 分で終わります。</p>
+      <div class="hero-badge">LINE 公式アカウント取得ガイド</div>
+      <h1>LINE 公式アカウント<br>を立ち上げる</h1>
+      <p>ナーチャリング Bot を稼働させるために必要な「LINE 公式アカウント」と 3 つのカギを取得します。</p>
       <div class="hero-meta">
-        <span class="hero-pill">⏱️ 約 10 分</span>
-        <span class="hero-pill">💳 最初は 5 ドル (約 750 円)</span>
-        <span class="hero-pill">🧑‍💻 ターミナル操作 最小</span>
+        <span class="hero-pill">⏱️ 約 30 分</span>
+        <span class="hero-pill">💴 無料 (月 200 通までは無料)</span>
+        <span class="hero-pill">📱 LINE アプリ必須</span>
       </div>
     </section>
 
@@ -1064,16 +1064,15 @@
         <div class="access-gate-header">
           <div class="access-gate-icon">💡</div>
           <div>
-            <div class="access-gate-title">そもそも、このカギは何?</div>
+            <div class="access-gate-title">なぜこれが必要?</div>
           </div>
         </div>
         <p class="access-gate-desc">
-          OPS ダッシュボードを開くと、LINE のプレビュー欄に「お客さんに届く文章」が出ます。
-          その文章を <strong>AI が毎回その場で書く</strong> 仕組みになっていて、AI に話しかけるための専用の合言葉が必要です。それが <strong>API キー</strong>。
-          無いとプレビュー欄に「⚠️ ANTHROPIC_API_KEY が設定されていません」と出てしまいます。
+          ViVi Club の「LINE ナーチャリング Bot」は、お客さんが LINE で友だち追加した瞬間からウェビナー前後の 24 通のメッセージを自動で送ります。
+          そのためには、お客さんが追加する <strong>LINE 公式アカウント</strong> と、その公式アカウントを Bot が操作するための <strong>3 つのカギ</strong> が必要です。
         </p>
         <p class="access-gate-desc" style="margin-bottom:0;">
-          このページを上から順に進めれば、コピペだけで設定できます。途中わからなくなったら、その step のキャプション通りに画面のボタンをクリックしてください。
+          このページは LINE 公式アカウント を <strong>ゼロから作って、カギを取り出して、1Password に保管する</strong>までを案内します。
         </p>
       </div>
 
@@ -1081,29 +1080,40 @@
       <div class="section-label">⚡ 全体の流れ (5 ステップ)</div>
       <div class="qs-grid">
         <a class="qs-card" href="#step-1">
-          <span class="qs-icon">🚪</span>
-          <div class="qs-text"><strong>1. サイトを開く</strong><span>Anthropic のページに行く</span></div>
+          <span class="qs-icon">📱</span>
+          <div class="qs-text"><strong>1. 公式アカウント開設</strong><span>LINE 公式アカウント Manager で無料作成</span></div>
         </a>
         <a class="qs-card" href="#step-2">
-          <span class="qs-icon">🪪</span>
-          <div class="qs-text"><strong>2. アカウントを作る</strong><span>Google でログインがおすすめ</span></div>
+          <span class="qs-icon">⚙️</span>
+          <div class="qs-text"><strong>2. Messaging API を有効化</strong><span>Bot 操作の許可をオンにする</span></div>
         </a>
         <a class="qs-card" href="#step-3">
-          <span class="qs-icon">💳</span>
-          <div class="qs-text"><strong>3. お金をチャージ</strong><span>$5 から (使った分だけ減る)</span></div>
+          <span class="qs-icon">🔑</span>
+          <div class="qs-text"><strong>3. 3 つのカギを取得</strong><span>Access Token / Secret / Channel ID</span></div>
         </a>
         <a class="qs-card" href="#step-4">
-          <span class="qs-icon">🔑</span>
-          <div class="qs-text"><strong>4. カギを発行</strong><span>長い文字列をコピー</span></div>
+          <span class="qs-icon">🖼️</span>
+          <div class="qs-text"><strong>4. リッチメニュー登録</strong><span>3 状態のメニュー画像を upload</span></div>
         </a>
         <a class="qs-card" href="#step-5">
-          <span class="qs-icon">📄</span>
-          <div class="qs-text"><strong>5. パソコンに貼り付け</strong><span>1 行コピペするだけ</span></div>
+          <span class="qs-icon">🔐</span>
+          <div class="qs-text"><strong>5. 1Password に保存</strong><span>取得した値をすべて Automation vault へ</span></div>
         </a>
       </div>
 
+      <!-- 用語 -->
+      <div class="prereq">
+        <span class="prereq-icon">📚</span>
+        <p style="font-size:12.5px;line-height:1.7;">
+          <strong>用語整理:</strong>
+          「<strong>LINE 公式アカウント</strong>」 = お客さんが友だち追加する窓口 (UI 名は LINE@ → LINE 公式アカウント) /
+          「<strong>Messaging API channel</strong>」 = その公式アカウントを Bot が操作する仕組み /
+          「<strong>Provider</strong>」 = channel をまとめる "会社単位" のフォルダ
+        </p>
+      </div>
+
       <!-- Steps -->
-      <div class="section-label" style="margin-top:48px;">📋 詳しいやり方</div>
+      <div class="section-label" style="margin-top:8px;">📋 詳しいやり方</div>
       <div class="steps">
 
         <!-- Step 1 -->
@@ -1112,22 +1122,51 @@
           <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">🚪</span>
-              <h3 class="step-title">Anthropic のサイトを開く</h3>
+              <span class="step-emoji">📱</span>
+              <h3 class="step-title">LINE 公式アカウントを開設する</h3>
             </div>
-            <p class="step-desc">下のボタンを押すと、AI の会社「Anthropic」の管理画面が開きます。</p>
-            <a class="download-card" href="https://console.anthropic.com/" target="_blank" rel="noopener">
+            <p class="step-desc">下のボタンで LINE 公式アカウント Manager を開きます。普段使っている <strong>個人の LINE アカウント</strong> でログインします。</p>
+            <a class="download-card" href="https://manager.line.biz/" target="_blank" rel="noopener">
               <div class="download-card-left">
-                <span class="app-icon" style="background:linear-gradient(135deg,#d97757,#c8521e);">🤖</span>
+                <span class="app-icon" style="background:linear-gradient(135deg,#00B900,#06C755);">💬</span>
                 <div class="download-card-text">
-                  <strong>console.anthropic.com を開く</strong>
-                  <span>新しいタブで Anthropic の管理画面が開きます</span>
+                  <strong>manager.line.biz を開く</strong>
+                  <span>LINE 公式アカウント Manager (無料)</span>
                 </div>
               </div>
               <span class="download-btn">開く →</span>
             </a>
-            <div class="note">
-              <strong>ひとこと:</strong> 普段 Claude とおしゃべりしてる <code>claude.ai</code> とは別のサイトです。今回使うのは <strong>console</strong>(管理画面) のほうです。
+            <div class="auth-steps" style="margin-top:14px;">
+              <p>画面の流れ:</p>
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span>LINE Business ID で <strong>"LINE アカウントでログイン"</strong></span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">2</span>
+                <span>QR コードが出たら、スマホの LINE アプリで読み取る → 個人 LINE で承認</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">3</span>
+                <span>初回は <strong>"アカウント作成"</strong> → 必要情報を入力:
+                  <ul style="margin-top:6px;padding-left:18px;font-size:12.5px;color:var(--text-2);">
+                    <li>アカウント名: <code>ViVi Club</code></li>
+                    <li>メールアドレス: 自分の連絡先</li>
+                    <li>会社・事業者の所在地・業種: 「健康・美容」「個人」など実情に合わせて</li>
+                  </ul>
+                </span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">4</span>
+                <span>「アカウント作成」ボタン → 開設完了</span>
+              </div>
+            </div>
+            <div class="what-happens">
+              <strong>完了の合図:</strong>
+              <ul>
+                <li>Manager のホーム画面に「ViVi Club」アカウントが表示される</li>
+                <li>左メニューに「ホーム / トーク / 配信 / 設定」が並ぶ</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -1138,30 +1177,42 @@
           <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">🪪</span>
-              <h3 class="step-title">アカウントを作る (またはログインする)</h3>
+              <span class="step-emoji">⚙️</span>
+              <h3 class="step-title">Messaging API を有効にする</h3>
             </div>
-            <p class="step-desc">画面に「Sign up (新規登録)」と「Log in (ログイン)」のボタンがあります。</p>
+            <p class="step-desc">作ったばかりの公式アカウントは「人間が手で運用するモード」になっています。これを「Bot で自動運用するモード」に切り替えます。</p>
             <div class="auth-steps">
+              <p>画面の流れ:</p>
               <div class="auth-step-item">
                 <span class="auth-num">1</span>
-                <span><strong>初めての人:</strong> 「Sign up」を押して、<strong>"Continue with Google"</strong> をクリック (普段使ってる Google アカウントを選ぶだけ。一番ラク)</span>
+                <span>右上の <strong>歯車アイコン (設定)</strong> をクリック</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">2</span>
-                <span><strong>もうアカウントある人:</strong> 「Log in」からログイン</span>
+                <span>左メニュー <strong>"Messaging API"</strong> を選択</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">3</span>
-                <span>初回は <strong>"Organization name"</strong> を聞かれます。自分の名前や会社名 (例: <code>my-ai</code>) を入れて Continue</span>
+                <span>「Messaging API を利用する」を <strong>"利用する"</strong> ボタンで有効化</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">4</span>
+                <span>Provider 選択画面が出る → <strong>"新規プロバイダー作成"</strong> → 名前: <code>ViVi Club</code> (= ブランド名でOK)</span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">5</span>
+                <span>プライバシーポリシー・利用規約 URL は<strong>後から設定可能</strong>なので空欄でOK。「OK」</span>
               </div>
             </div>
             <div class="what-happens">
-              <strong>ここまで来たら成功:</strong>
+              <strong>完了の合図:</strong>
               <ul>
-                <li>左に「Dashboard / API keys / Billing / Settings」というメニューが並んでいる</li>
-                <li>右上に自分のメールアドレス か Organization 名が出てる</li>
+                <li>画面に <code>Channel ID</code> / <code>Channel Secret</code> が表示される</li>
+                <li>「<strong>応答メッセージ</strong>」が「無効」、「<strong>Webhook</strong>」が「有効」になっていることを確認 (Bot 駆動の前提)</li>
               </ul>
+            </div>
+            <div class="note">
+              <strong>うっかり注意:</strong> 「あいさつメッセージ」「応答メッセージ」が <strong>有効</strong> のままだと、Bot が送るメッセージと喧嘩します。Step 5 デプロイ前に必ず両方とも <strong>無効</strong> に設定してください。
             </div>
           </div>
         </div>
@@ -1172,31 +1223,70 @@
           <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">💳</span>
-              <h3 class="step-title">最初に少しだけお金をチャージする</h3>
+              <span class="step-emoji">🔑</span>
+              <h3 class="step-title">3 つのカギを取得する</h3>
             </div>
-            <p class="step-desc">AI を使うときだけ少しずつお金が減る仕組みです。先に <strong>$5 (約 750 円)</strong> だけ入れておきます。LINE 文章を 1 回まるごと書き直しても 10 円もかかりません。</p>
+            <p class="step-desc">Bot から LINE を操作するための <strong>3 つの値</strong> を取り出します。LINE Developers Console (別サイト) でしか取得できない値もあります。</p>
+
+            <a class="download-card" href="https://developers.line.biz/console/" target="_blank" rel="noopener">
+              <div class="download-card-left">
+                <span class="app-icon" style="background:linear-gradient(135deg,#00B900,#06C755);">🛠️</span>
+                <div class="download-card-text">
+                  <strong>developers.line.biz/console を開く</strong>
+                  <span>同じ LINE アカウントでログイン</span>
+                </div>
+              </div>
+              <span class="download-btn">開く →</span>
+            </a>
+
+            <h4 style="font-size:14px;font-weight:800;margin:22px 0 10px;color:var(--text);">🅰️ Channel Access Token (長期)</h4>
             <div class="auth-steps">
-              <p>画面の流れ:</p>
               <div class="auth-step-item">
                 <span class="auth-num">1</span>
-                <span>左のメニューから <strong>"Billing"</strong> をクリック</span>
+                <span>Provider <code>ViVi Club</code> → channel <code>ViVi Club</code> をクリック</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">2</span>
-                <span>「Add payment method」でクレジットカードを登録</span>
+                <span>上部タブ <strong>"Messaging API設定"</strong> をクリック</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">3</span>
-                <span><strong>"Buy credits"</strong> を押して <strong>$5</strong> と入力 → 購入</span>
+                <span>下までスクロール → <strong>"チャネルアクセストークン (長期)"</strong> の <strong>"発行"</strong> ボタン</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">4</span>
-                <span>(おすすめ) <strong>"Auto reload"</strong> を ON にすると、残高が減ったら自動で補充されて止まらない</span>
+                <span>長い文字列が表示される → コピーしてメモ帳に一旦保管。これが <strong>LINE_CHANNEL_ACCESS_TOKEN</strong></span>
               </div>
             </div>
+
+            <h4 style="font-size:14px;font-weight:800;margin:22px 0 10px;color:var(--text);">🅱️ Channel Secret</h4>
+            <div class="auth-steps">
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span>同じ channel ページの上部タブ <strong>"チャネル基本設定"</strong></span>
+              </div>
+              <div class="auth-step-item">
+                <span class="auth-num">2</span>
+                <span><strong>"チャネルシークレット"</strong> の値をコピー (32 文字の英数字)。これが <strong>LINE_CHANNEL_SECRET</strong></span>
+              </div>
+            </div>
+
+            <h4 style="font-size:14px;font-weight:800;margin:22px 0 10px;color:var(--text);">🅲 Channel ID</h4>
+            <div class="auth-steps">
+              <div class="auth-step-item">
+                <span class="auth-num">1</span>
+                <span>同じ「チャネル基本設定」の一番上 <strong>"チャネルID"</strong> をコピー (10桁の数字)。これが <strong>LINE_CHANNEL_ID</strong></span>
+              </div>
+            </div>
+
             <div class="note">
-              <strong>料金イメージ:</strong> LINE 全 25 メッセージを一括で AI に書き直してもらっても 1 回 5〜7 円程度。$5 (750 円) チャージで普通の使い方なら 1〜2 ヶ月もちます。
+              <strong>⚠️ 3 つ揃っているか確認:</strong>
+              <ul style="margin-top:6px;padding-left:18px;">
+                <li>LINE_CHANNEL_ACCESS_TOKEN: 長い文字列 (200 文字以上)</li>
+                <li>LINE_CHANNEL_SECRET: 32 文字</li>
+                <li>LINE_CHANNEL_ID: 10 桁の数字</li>
+              </ul>
+              全部揃ったら次へ。
             </div>
           </div>
         </div>
@@ -1207,35 +1297,46 @@
           <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">🔑</span>
-              <h3 class="step-title">カギ (API キー) を発行してコピーする</h3>
+              <span class="step-emoji">🖼️</span>
+              <h3 class="step-title">リッチメニュー画像を登録する</h3>
             </div>
-            <p class="step-desc">いよいよ本番です。長い文字列が表示されるので、<strong>その場で必ずコピー</strong> してください。</p>
+            <p class="step-desc">LINE トーク画面の下に出る <strong>固定メニュー</strong> です。ViVi Club は状況に応じて 3 種類のメニューを切り替えます (ウェビナー前 / 参加後 / 不参加)。</p>
+            <p class="step-desc" style="margin-top:-8px;">画像は既に <code>assets/nurture/output/rm-{default,attended,noshow}.png</code> に書き出し済みです (2500×1686 LINE 規格)。</p>
             <div class="auth-steps">
-              <p>画面の流れ:</p>
+              <p>LINE 公式アカウント Manager (Step 1 のサイト) で:</p>
               <div class="auth-step-item">
                 <span class="auth-num">1</span>
-                <span>左メニューの <strong>"API keys"</strong> をクリック</span>
+                <span>左メニュー <strong>"トークルーム管理"</strong> → <strong>"リッチメニュー"</strong></span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">2</span>
-                <span>右上の <strong>"Create Key"</strong> ボタンを押す</span>
+                <span><strong>"作成"</strong> ボタン → 3 つ作成:
+                  <ul style="margin-top:6px;padding-left:18px;font-size:12.5px;color:var(--text-2);">
+                    <li>① <strong>ViVi - default (PRE-WEBINAR)</strong> → <code>rm-default.png</code> を upload</li>
+                    <li>② <strong>ViVi - attended (POST-WEBINAR)</strong> → <code>rm-attended.png</code></li>
+                    <li>③ <strong>ViVi - noshow (REPLAY)</strong> → <code>rm-noshow.png</code></li>
+                  </ul>
+                </span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">3</span>
-                <span>名前を入れる (例: <code>vivi-club-ops</code>)。何用かわかればなんでも OK</span>
+                <span>各メニューの <strong>"アクション設定"</strong> でクリック領域を設定 (詳細は <code>scenario.md</code> 参照、Bot が自動で割り当てるので最低限の URL でOK)</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">4</span>
-                <span><strong>"Create Key"</strong> を押すと <code>sk-ant-api03-xxxx...</code> という長い文字が出る</span>
-              </div>
-              <div class="auth-step-item">
-                <span class="auth-num">5</span>
-                <span>右の <strong>📋 Copy</strong> ボタンでコピー。コピーしたらメモ帳に一旦貼り付けて保管</span>
+                <span>3 つ作成後、それぞれの <strong>"リッチメニューID"</strong> (= <code>richmenu-xxx...</code>) をコピー</span>
               </div>
             </div>
+            <div class="what-happens">
+              <strong>取得する 3 つの値:</strong>
+              <ul>
+                <li>LINE_RICH_MENU_AWARENESS (= default の ID)</li>
+                <li>LINE_RICH_MENU_CLOSING (= attended の ID)</li>
+                <li>LINE_RICH_MENU_CONSIDERATION (= noshow の ID)</li>
+              </ul>
+            </div>
             <div class="note">
-              <strong>⚠️ ここが一番大事です。</strong> このカギは <strong>この画面を閉じたら二度と見られません</strong>。閉じる前に必ずコピー。万が一閉じてしまったら、もう一度「Create Key」で作り直してください (前のは Revoke ボタンで消す)。
+              <strong>面倒なら後回し可:</strong> リッチメニュー無しでも Bot は動きます。先に Step 5 → 配信開始 → 後でメニュー追加でもOKです。
             </div>
           </div>
         </div>
@@ -1243,80 +1344,45 @@
         <!-- Step 5 -->
         <div class="step" id="step-5">
           <div class="step-number">5</div>
-          <div class="step-line"></div>
           <div class="step-content">
             <div class="step-header">
-              <span class="step-emoji">📄</span>
-              <h3 class="step-title">パソコンに貼り付ける</h3>
+              <span class="step-emoji">🔐</span>
+              <h3 class="step-title">取得した値を 1Password に保管する</h3>
             </div>
-            <p class="step-desc">コピーしたカギを、OPS が読みに行く決まった場所に置きます。<strong>ターミナル</strong> (黒い画面) を使う方法と、<strong>Finder で直接ファイルを開く</strong>方法、どちらでも OK です。</p>
-
-            <h4 style="font-size:14px;font-weight:800;margin:20px 0 10px;color:var(--text);">🅰️ ラクな方法: ターミナルで 1 行貼るだけ</h4>
+            <p class="step-desc">Bot は <strong>1Password の Automation vault</strong> から自動で値を読みに来ます。ここに正しい名前で保管すれば、私 (Claude) がそのままデプロイできます。</p>
             <div class="auth-steps">
+              <p>1Password アプリで:</p>
               <div class="auth-step-item">
                 <span class="auth-num">1</span>
-                <span>Spotlight (⌘ + Space) で「ターミナル」と打って Enter</span>
+                <span>Vaults → <strong>Automation</strong> → 右上 <strong>+ New Item</strong> → <strong>API Credential</strong></span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">2</span>
-                <span>下のコマンドの <code>sk-ant-...</code> の部分を、Step 4 でコピーした自分のカギに置き換えて、ターミナルに貼り付けて Enter</span>
-              </div>
-            </div>
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">これを貼って Enter</span>
-                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
-              </div>
-              <pre class="cmd-code">cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
-echo "ANTHROPIC_API_KEY=sk-ant-ここに自分のカギを貼る" > .env.local</pre>
-            </div>
-            <div class="what-happens">
-              <strong>うまくいった合図:</strong> エラーメッセージが出ず、何事もなくプロンプト (<code>$</code>) が戻ってくる。これで保存完了です。
-            </div>
-
-            <h4 style="font-size:14px;font-weight:800;margin:28px 0 10px;color:var(--text);">🅱️ ターミナル怖い人向け: Finder で直接編集</h4>
-            <div class="auth-steps">
-              <div class="auth-step-item">
-                <span class="auth-num">1</span>
-                <span>Finder で <code>ViVi-Club/Sales/platinum-launch/pm/dashboard</code> フォルダを開く</span>
-              </div>
-              <div class="auth-step-item">
-                <span class="auth-num">2</span>
-                <span>⌘ + Shift + . (ドット) を押すと隠しファイルが表示される</span>
+                <span><strong>Title</strong>: <code>LINE-OA-ViVi-Club</code> (← この名前が必須)</span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">3</span>
-                <span><code>.env.local</code> というファイルをダブルクリック (テキストエディットで開く)</span>
+                <span>下記 <strong>6 つのフィールド</strong> を追加して、Step 3-4 で取得した値を貼る (フィールド名はそのままコピー):
+                  <div style="margin-top:8px;background:rgba(108,92,231,0.04);border-radius:6px;padding:10px 12px;font-family:'SF Mono',monospace;font-size:12px;line-height:1.9;color:var(--text-2);">
+                    LINE_CHANNEL_ACCESS_TOKEN<br>
+                    LINE_CHANNEL_SECRET<br>
+                    LINE_CHANNEL_ID<br>
+                    LINE_RICH_MENU_AWARENESS<br>
+                    LINE_RICH_MENU_CLOSING<br>
+                    LINE_RICH_MENU_CONSIDERATION
+                  </div>
+                </span>
               </div>
               <div class="auth-step-item">
                 <span class="auth-num">4</span>
-                <span>1 行だけ書く: <code>ANTHROPIC_API_KEY=sk-ant-ここに自分のカギ</code></span>
+                <span><strong>Save</strong> で保存</span>
               </div>
-              <div class="auth-step-item">
-                <span class="auth-num">5</span>
-                <span>⌘ + S で保存して閉じる</span>
-              </div>
-            </div>
-
-            <h4 style="font-size:14px;font-weight:800;margin:28px 0 10px;color:var(--text);">最後に OPS を一回閉じて開き直す</h4>
-            <p style="font-size:13px;color:var(--text-2);margin-bottom:12px;line-height:1.7;">
-              貼り付けただけでは OPS は気づきません。一度止めて再起動が必要です。
-            </p>
-            <div class="cmd-block">
-              <div class="cmd-block-header">
-                <span class="cmd-label">ターミナルに貼って Enter</span>
-                <button class="copy-btn" onclick="copyCmd(this)">📋 Copy</button>
-              </div>
-              <pre class="cmd-code">lsof -ti:3000 | xargs kill -9 2>/dev/null
-cd ~/Desktop/ARTISTORY\ BASE/ViVi/ViVi-Club/Sales/platinum-launch/pm/dashboard
-npm run dev</pre>
             </div>
             <div class="what-happens">
-              <strong>これで完了です:</strong>
+              <strong>これで完了です。</strong>
               <ul>
-                <li>ターミナルに <code>✓ Ready in 3s</code> のような表示が出る</li>
-                <li>ブラウザで OPS の <code>localhost:3000/platinum-launch/preview</code> を開いて「LINE ナーチャリング」を選ぶ</li>
-                <li>20〜40 秒くらい待つと、LINE 本文がチャットの吹き出しに出てくる</li>
+                <li>1Password の Automation vault に <code>LINE-OA-ViVi-Club</code> アイテムができている</li>
+                <li>Claude に「<strong>Bot をデプロイして</strong>」と伝えれば、ここから値を読み取って Cloudflare Workers にデプロイ + LINE Webhook URL までセットアップします</li>
               </ul>
             </div>
           </div>
@@ -1324,81 +1390,53 @@ npm run dev</pre>
 
       </div>
 
-      <!-- (オプション) 1Password -->
-      <div class="section-label" style="margin-top:56px;">🔐 (おまけ) 1Password を使っている人へ</div>
-      <div class="util-card">
-        <div class="util-card-header">
-          <span class="util-card-icon">🔐</span>
-          <span class="util-card-title">カギを安全に保管しておく</span>
-          <span class="util-card-badge">推奨</span>
-        </div>
-        <p style="margin-bottom:14px;">複数の AI ツールを使う予定があるなら、1Password の <code>Automation</code> という棚にカギを 1 つ保管しておくと、毎回コピペせずに済んで便利です。</p>
-        <div class="auth-steps">
-          <div class="auth-step-item">
-            <span class="auth-num">1</span>
-            <span>1Password アプリを開く → 左のリストで <strong>Automation</strong> を選ぶ</span>
-          </div>
-          <div class="auth-step-item">
-            <span class="auth-num">2</span>
-            <span>右上 <strong>+ 新規アイテム</strong> → <strong>API クレデンシャル</strong></span>
-          </div>
-          <div class="auth-step-item">
-            <span class="auth-num">3</span>
-            <span><strong>タイトル</strong>: <code>Anthropic-API</code> / <strong>credential</strong> の欄に <code>sk-ant-...</code> を貼って保存</span>
-          </div>
-        </div>
-        <p style="font-size:12.5px;color:var(--text-3);margin-top:14px;line-height:1.7;">
-          ※ 使っていなければ気にせず Step 5 の方法で OK です。
-        </p>
-      </div>
-
-      <!-- トラブル -->
+      <!-- 困ったとき -->
       <div class="section-label" style="margin-top:56px;">🛠️ 困ったとき</div>
       <div class="post-install">
 
         <div class="util-card">
           <div class="util-card-header">
-            <span class="util-card-icon">⚠️</span>
-            <span class="util-card-title">プレビューに「ANTHROPIC_API_KEY が設定されていません」と出る</span>
+            <span class="util-card-icon">📵</span>
+            <span class="util-card-title">LINE Business ID でログインできない</span>
             <span class="util-card-badge">よくある</span>
           </div>
-          <p>カギの貼り付け or OPS の再起動 がまだ済んでいません。<strong>Step 5</strong> をもう一度実行してください。再起動を忘れているケースが大半です。</p>
-        </div>
-
-        <div class="util-card">
-          <div class="util-card-header">
-            <span class="util-card-icon">🚫</span>
-            <span class="util-card-title">「invalid_api_key」「401」と出る</span>
-            <span class="util-card-badge">カギ間違い</span>
-          </div>
-          <p>カギの貼り付け時に空白や改行が混ざっている可能性。Step 4 でもう一度キーをコピーし直して、Step 5 の貼り付けをやり直してください。カギは必ず <code>sk-ant-api03-</code> から始まります。</p>
-        </div>
-
-        <div class="util-card">
-          <div class="util-card-header">
-            <span class="util-card-icon">💸</span>
-            <span class="util-card-title">「credit_balance_too_low」と出る</span>
-            <span class="util-card-badge">チャージ切れ</span>
-          </div>
-          <p>残高がゼロになりました。<a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener" style="color:var(--accent);">Billing 画面</a> を開いて、もう一度 $5 チャージするだけで復活します。Auto reload を ON にしておくと次から止まりません。</p>
-        </div>
-
-        <div class="util-card">
-          <div class="util-card-header">
-            <span class="util-card-icon">😱</span>
-            <span class="util-card-title">カギを誰かに見られた / リークが心配</span>
-            <span class="util-card-badge">緊急</span>
-          </div>
-          <p><a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener" style="color:var(--accent);">API keys 画面</a> を開く → 該当のカギの <strong>⋮</strong> → <strong>Revoke</strong> ですぐに無効化できます。その後 Step 4 から新しいカギを作り直してください。</p>
+          <p>普段使っている LINE アプリで QR コードを読み取ってください。<strong>パソコンで開いた QR コード</strong>を <strong>スマホ LINE のカメラ</strong> で読む流れです。LINE 内蔵カメラからのみ動作します (一般カメラ不可)。</p>
         </div>
 
         <div class="util-card">
           <div class="util-card-header">
             <span class="util-card-icon">🔄</span>
-            <span class="util-card-title">貼ったのに変わらない</span>
-            <span class="util-card-badge">再起動忘れ</span>
+            <span class="util-card-title">「応答メッセージ」が勝手に送られる</span>
+            <span class="util-card-badge">設定漏れ</span>
           </div>
-          <p>OPS は起動した瞬間だけカギを読みます。<strong>"最後に OPS を一回閉じて開き直す"</strong>のコマンドをもう一度実行してください (Step 5 の最後)。</p>
+          <p>LINE 公式アカウント Manager → <strong>応答設定</strong> → 「あいさつメッセージ」「応答メッセージ」を <strong>無効</strong> に。Webhook を「有効」に。Bot がメッセージ送信を担当する設計なので、LINE 標準の自動返信は OFF が必須です。</p>
+        </div>
+
+        <div class="util-card">
+          <div class="util-card-header">
+            <span class="util-card-icon">💸</span>
+            <span class="util-card-title">配信数の制限が気になる</span>
+            <span class="util-card-badge">料金</span>
+          </div>
+          <p>LINE 公式アカウントの無料枠は <strong>月 200 通まで</strong>。Bot のナーチャリングは 1 人あたり 24 通なので、最初の数名でテストする分には十分。本格運用が見えてきたら「ライト ¥5,000/月 (5,000通)」or「スタンダード ¥15,000/月 (30,000通)」へ。</p>
+        </div>
+
+        <div class="util-card">
+          <div class="util-card-header">
+            <span class="util-card-icon">🆔</span>
+            <span class="util-card-title">Provider と Channel の違いがわからない</span>
+            <span class="util-card-badge">用語</span>
+          </div>
+          <p><strong>Provider</strong> = 会社や個人事業者単位の「箱」(複数の Channel をまとめる)。<strong>Channel</strong> = 実際の公式アカウント+Bot 連携の「窓口」。普通は Provider 1 つの中に Channel 1 つ。</p>
+        </div>
+
+        <div class="util-card">
+          <div class="util-card-header">
+            <span class="util-card-icon">🙈</span>
+            <span class="util-card-title">Channel Secret を失くした</span>
+            <span class="util-card-badge">緊急</span>
+          </div>
+          <p>LINE Developers Console → 該当 channel → <strong>"チャネル基本設定"</strong> → <strong>"再発行"</strong> ボタン。旧 secret は即無効化されるので、1Password の値も更新が必要です。</p>
         </div>
 
       </div>
@@ -1406,8 +1444,8 @@ npm run dev</pre>
       <!-- Complete -->
       <div class="complete-banner">
         <div class="check-icon">✓</div>
-        <h2>これでカギの設定は完了です</h2>
-        <p>OPS ダッシュボードに戻って、プレビュー画面の「LINE ナーチャリング」を開いてください。20〜40 秒で AI が文章を書き始めます。</p>
+        <h2>これで Bot デプロイ準備 完了</h2>
+        <p>Claude に「LINE Bot をデプロイして」と伝えれば、ここから後は全自動です。<br>Cloudflare Workers + D1 へのデプロイ + LINE Webhook URL 登録までやります。</p>
       </div>
 
     </div>
